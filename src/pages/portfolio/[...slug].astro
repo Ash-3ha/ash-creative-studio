@@ -1,0 +1,227 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import site from '../../data/site.json';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('portfolio');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Portfolio', href: '/portfolio/' },
+  { label: project.data.title }
+];
+
+const pageTitle = project.data.seoTitle || `${project.data.title} — Case Study | ${site.name}`;
+const pageDesc = project.data.seoDescription || project.data.overview;
+const canonicalUrl = `${site.url}/portfolio/${project.slug}/`;
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  headline: project.data.title,
+  description: pageDesc,
+  genre: project.data.category,
+  dateCreated: project.data.year,
+  url: canonicalUrl,
+  image: project.data.featuredImage
+    ? project.data.featuredImage.startsWith('http')
+      ? project.data.featuredImage
+      : `${site.url}${project.data.featuredImage}`
+    : undefined,
+  creator: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+  },
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonicalUrl}
+  ogImage={project.data.featuredImage}
+  schema={schemaData}
+>
+  <section class="page-header">
+    <div class="wrap">
+      <Breadcrumbs items={breadcrumbs} />
+      <span class="eyebrow">{project.data.category} — {project.data.year}</span>
+      <h1>{project.data.title}</h1>
+      <p class="section-sub">{project.data.overview}</p>
+
+      <!-- Case Study Meta Bar -->
+      <div class="case-study-meta">
+        <div>
+          <div class="lab">Client</div>
+          <div class="val">{project.data.client || 'Confidential'}</div>
+        </div>
+        <div>
+          <div class="lab">Industry</div>
+          <div class="val">{project.data.industry || 'Multi-disciplinary'}</div>
+        </div>
+        <div>
+          <div class="lab">Category</div>
+          <div class="val">{project.data.category}</div>
+        </div>
+        <div>
+          <div class="lab">Timeline</div>
+          <div class="val">{project.data.year}</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Project Visual Header -->
+  <section class="section" style="padding:60px 0;">
+    <div class="wrap">
+      <div
+        class="proj-media reveal"
+        style={`aspect-ratio:16/9;border-radius:18px;border:1px solid var(--border);--proj-c1:${project.data.gradientFrom};--proj-c2:${project.data.gradientTo};display:flex;align-items:center;justify-content:center;position:relative;`}
+      >
+        {project.data.featuredImage ? (
+          <img
+            src={project.data.featuredImage}
+            alt={project.data.title}
+            width="1200"
+            height="675"
+            loading="eager"
+            decoding="async"
+            style="width:100%;height:100%;object-fit:cover;"
+          />
+        ) : (
+          <div style="font-family:var(--display);font-size:clamp(28px,4vw,56px);color:var(--text-1);text-align:center;padding:24px;z-index:2;">
+            {project.data.title}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Structured Strategic Sections -->
+  {(project.data.objective || project.data.strategy || project.data.execution) && (
+    <section class="section" style="background:var(--bg-2);">
+      <div class="wrap">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;">
+          {project.data.objective && (
+            <div class="reveal">
+              <span class="eyebrow">01 — Objective</span>
+              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">The Challenge</h3>
+              <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{project.data.objective}</p>
+            </div>
+          )}
+          {project.data.strategy && (
+            <div class="reveal">
+              <span class="eyebrow">02 — Strategy</span>
+              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">The Direction</h3>
+              <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{project.data.strategy}</p>
+            </div>
+          )}
+          {project.data.execution && (
+            <div class="reveal">
+              <span class="eyebrow">03 — Execution</span>
+              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">The Solution</h3>
+              <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{project.data.execution}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Deliverables & Results -->
+  <section class="section">
+    <div class="wrap">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+        {project.data.deliverables && project.data.deliverables.length > 0 && (
+          <div class="reveal">
+            <span class="eyebrow">Project Deliverables</span>
+            <h2 style="font-size:28px;margin:12px 0 24px;">Scope of Work</h2>
+            <div class="deliverables-list">
+              {project.data.deliverables.map((item) => (
+                <span class="deliverable-tag">✓ {item}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {project.data.results && project.data.results.length > 0 && (
+          <div class="reveal">
+            <span class="eyebrow">Measurable Outcomes</span>
+            <h2 style="font-size:28px;margin:12px 0 12px;">Verified Results</h2>
+            <p style="font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:20px;">[Verified client outcome metric]</p>
+            <ul style="list-style:none;padding:0;">
+              {project.data.results.map((res) => (
+                <li style="padding:14px 0;border-top:1px solid var(--border);color:var(--text-1);font-size:15px;display:flex;align-items:center;gap:12px;">
+                  <span style="color:var(--accent);font-weight:600;">→</span> {res}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Markdown Narrative Body -->
+  <section class="section" style="background:var(--bg-2);">
+    <div class="wrap">
+      <article class="case-study-content reveal">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <!-- Multiple Images Gallery -->
+  {project.data.images && project.data.images.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Visual Documentation</span>
+            <h2 style="margin-top:8px;">Project Gallery</h2>
+          </div>
+        </div>
+        <div class="projects-grid" style="margin-top:40px;">
+          {project.data.images.map((img, i) => (
+            <div class="reveal" style="border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+              <img src={img} alt={`${project.data.title} asset ${i + 1}`} loading="lazy" decoding="async" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Next Step CTA -->
+  <section class="section">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow reveal">Next Step</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Interested in Similar Work for Your Brand?</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Let's schedule a discovery consultation to explore goals, scope, and timeline.</p>
+      <div class="reveal" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="/contact/" class="btn primary magnetic" data-track="primary_cta_click" data-track-location="case_study_bottom">
+          Start a Project <span class="arrow">→</span>
+        </a>
+        <a href="/portfolio/" class="btn ghost magnetic">
+          Back to Portfolio
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "eyebrow": "Where Creativity Meets Technology",
+    "headline": "Creating digital experiences that inspire, engage & perform.",
+    "description": "ASH Creative Studio blends creativity, technology, and strategy to craft powerful brands, immersive visuals, high-end 3D experiences, and performance-driven digital solutions.",
+    "ctaPrimaryLabel": "Explore Portfolio",
+    "ctaSecondaryLabel": "Book Discovery Call"
+  },
+  "philosophy": {
+    "eyebrow": "02 — Studio Philosophy",
+    "headline": "Creativity without strategy is decoration.",
+    "lightHeadline": "Strategy without creativity is invisible.",
+    "paragraph1": "ASH was founded on the belief that the best digital work sits at the intersection of art and analytics — where a sketch and a spreadsheet inform the same decision.",
+    "paragraph2": "We're not a design agency that also does marketing, or a marketing shop that also designs. We're a single studio built to carry an idea from first pencil line to measurable business growth, without losing the thread in the handoff.",
+    "vision": "Design that performs as well as it looks.",
+    "mission": "One studio, every discipline, one strategy.",
+    "values": "Craft, rigor, honesty, momentum."
+  },
+  "stats": {
+    "eyebrow": "07 — Track Record",
+    "headline": "Why Choose ASH",
+    "disclaimer": "[Sample metrics — illustrative placeholders]",
+    "items": [
+      { "count": 150, "suffix": "+", "label": "Projects [Sample]" },
+      { "count": 50, "suffix": "+", "label": "Clients [Sample]" },
+      { "count": 10, "suffix": "+", "label": "Disciplines" },
+      { "count": 98, "suffix": "%", "label": "Satisfaction [Sample]" },
+      { "count": 100, "suffix": "%", "label": "Dedication" }
+    ]
+  }
+}

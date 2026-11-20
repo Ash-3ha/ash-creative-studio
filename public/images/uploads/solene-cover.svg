@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a1a10"/>
+      <stop offset="60%" stop-color="#140d07"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <radialGradient id="r1" cx="30%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#FF6A00" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FF6A00" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#g1)"/>
+  <rect width="800" height="1000" fill="url(#r1)"/>
+  
+  <rect x="60" y="60" width="680" height="880" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  
+  <!-- Abstract geometric bottle packaging shape -->
+  <g transform="translate(400, 480)">
+    <rect x="-80" y="-180" width="160" height="280" rx="8" fill="#181310" stroke="rgba(255,106,0,0.3)" stroke-width="1.5"/>
+    <rect x="-30" y="-230" width="60" height="50" rx="2" fill="#241a12" stroke="#FF6A00" stroke-width="1.5"/>
+    <line x1="-50" y1="-80" x2="50" y2="-80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+    <text x="0" y="-30" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="18" text-anchor="middle" letter-spacing="4">SOLENE</text>
+    <text x="0" y="-5" fill="#9C9C9C" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle" letter-spacing="2">ORGANIC ELIXIR</text>
+  </g>
+  
+  <text x="100" y="860" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="12" letter-spacing="3">01 / BRAND IDENTITY</text>
+  <text x="100" y="900" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="32" font-weight="500">Solene Skincare</text>
+</svg>

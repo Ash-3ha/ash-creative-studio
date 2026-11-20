@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Host & XML Sitemap
+Host: https://ashcreativestudio.com
+Sitemap: https://ashcreativestudio.com/sitemap-index.xml

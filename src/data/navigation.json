@@ -1,0 +1,19 @@
+{
+  "main": [
+    {"label": "Home", "href": "/"},
+    {"label": "About", "href": "/about/"},
+    {"label": "Services", "href": "/services/", "children": [
+      {"label": "Performance Marketing", "href": "/performance-marketing/"},
+      {"label": "Google Ads", "href": "/google-ads/"},
+      {"label": "Meta Ads", "href": "/meta-ads/"},
+      {"label": "Social Media Marketing", "href": "/social-media-marketing/"},
+      {"label": "SEO Services", "href": "/seo-services/"},
+      {"label": "Creative Design", "href": "/creative-design/"},
+      {"label": "3D & Animation", "href": "/3d-animation/"}
+    ]},
+    {"label": "Portfolio", "href": "/portfolio/"},
+    {"label": "Blog", "href": "/blog/"},
+    {"label": "Contact", "href": "/contact/"}
+  ],
+  "cta": {"label": "Book a Call", "href": "/contact/"}
+}

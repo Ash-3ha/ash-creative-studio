@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Services' }
+];
+
+const serviceEntries = (await getCollection('services'))
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const servicesSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `Our Services & Disciplines — ${site.name}`,
+  description: 'Explore our specialized creative and marketing disciplines — from brand identity and 3D animation to Google Ads and performance marketing.',
+  url: `${site.url}/services/`,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: serviceEntries.map((svc, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: svc.data.title,
+      url: `${site.url}/${svc.slug}/`,
+      description: svc.data.shortDescription,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title={`Our Services & Disciplines — ${site.name}`}
+  description="Explore our specialized creative and marketing disciplines — from brand identity and 3D animation to Google Ads and performance marketing."
+  canonical={`${site.url}/services/`}
+  schema={servicesSchema}
+>
+  <section class="page-header">
+    <div class="wrap">
+      <Breadcrumbs items={breadcrumbs} />
+      <span class="eyebrow">Studio Capabilities</span>
+      <h1>Our <span style="color:var(--accent);">Services</span></h1>
+      <p class="section-sub">Multidisciplinary pillars, each led by dedicated specialists and coordinated under one unified growth strategy.</p>
+    </div>
+  </section>
+
+  <!-- Overview Grid -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Integrated Disciplines</span>
+          <h2 style="margin-top:8px;">Everything Your Brand Needs to Compete</h2>
+        </div>
+        <p>No handoff friction between design agencies and ad buyers. We conceptualize, build, and scale under one roof.</p>
+      </div>
+
+      <div>
+        {serviceEntries.map((svc) => (
+          <div class="svc-row reveal">
+            <div class="svc-media" data-tag={svc.data.tag}></div>
+            <div class="svc-body">
+              <span class="eyebrow">{String(svc.data.sortOrder).padStart(2, '0')}</span>
+              <h3>{svc.data.title}</h3>
+              <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{svc.data.shortDescription}</p>
+              {svc.data.capabilities && svc.data.capabilities.length > 0 && (
+                <ul>
+                  {svc.data.capabilities.slice(0, 3).map((cap) => (
+                    <li>{cap.title}</li>
+                  ))}
+                </ul>
+              )}
+              <a href={`/${svc.slug}/`} class="btn ghost" style="margin-top:20px;">
+                Learn More About {svc.data.title} →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow reveal">Consultation</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Not Sure Which Mix is Right for You?</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Schedule an exploratory discovery call. We'll assess your current brand footprint and identify the highest-leverage opportunities.</p>
+      <a href="/contact/" class="btn primary magnetic reveal" data-track="book_call_click" data-track-location="services_bottom">
+        Schedule Discovery Call <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

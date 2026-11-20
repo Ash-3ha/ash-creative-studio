@@ -1,0 +1,28 @@
+---
+---
+
+<div id="loader">
+  <div class="loader-mark">ASH</div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<script is:inline>
+(function () {
+  window.addEventListener('load', function () {
+    var bar = document.querySelector('.loader-bar span');
+    if (!bar) return;
+    var p = 0;
+    var iv = setInterval(function () {
+      p += Math.random() * 18;
+      bar.style.width = Math.min(p, 100) + '%';
+      if (p >= 100) {
+        clearInterval(iv);
+        setTimeout(function () {
+          var loader = document.getElementById('loader');
+          if (loader) loader.classList.add('hide');
+        }, 250);
+      }
+    }, 90);
+  });
+})();
+</script>

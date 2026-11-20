@@ -1,0 +1,383 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import ProjectCard from '../components/ProjectCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+import Testimonials from '../components/Testimonials.astro';
+import ContactForm from '../components/ContactForm.astro';
+import site from '../data/site.json';
+import home from '../data/home.json';
+import { getWhatsAppUrl } from '../utils/whatsapp';
+
+const allProjects = (await getCollection('portfolio'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const featuredProjects = allProjects.slice(0, 6);
+
+const allArticles = (await getCollection('blog'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+const featuredArticle = allArticles[0];
+const gridArticles = allArticles.slice(1, 4);
+
+const rawTestimonials = (await getCollection('testimonials'))
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+  .map((t) => t.data);
+
+const serviceEntries = (await getCollection('services'))
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const homeSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${site.url}/#website`,
+    url: `${site.url}/`,
+    name: site.name,
+    description: site.description,
+    inLanguage: 'en-US',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${site.url}/#organization`,
+    name: site.name,
+    url: `${site.url}/`,
+    logo: `${site.url}/images/uploads/og-default.svg`,
+    image: `${site.url}/images/uploads/og-default.svg`,
+    description: site.description,
+    email: site.email,
+    telephone: site.phone,
+    priceRange: '$$$$',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Mumbai',
+      addressCountry: 'IN',
+    },
+    sameAs: [
+      site.social.linkedin !== '#' ? site.social.linkedin : undefined,
+      site.social.behance !== '#' ? site.social.behance : undefined,
+      site.social.artstation !== '#' ? site.social.artstation : undefined,
+      site.social.instagram !== '#' ? site.social.instagram : undefined,
+      site.social.youtube !== '#' ? site.social.youtube : undefined,
+    ].filter(Boolean),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Creative & Performance Marketing Services',
+      itemListElement: serviceEntries.map((svc) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: svc.data.title,
+          url: `${site.url}/${svc.slug}/`,
+          description: svc.data.shortDescription,
+        },
+      })),
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={`${site.name} — Where Creativity Meets Technology`}
+  description={site.description}
+  canonical={`${site.url}/`}
+  schema={homeSchema}
+>
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="wrap hero-copy">
+      <div class="eyebrow reveal">{home.hero.eyebrow}</div>
+      <h1 class="reveal">Creating digital experiences that <em>inspire</em>, engage &amp; perform.</h1>
+      <p class="reveal">{home.hero.description}</p>
+      <div class="hero-ctas reveal">
+        <a href="/portfolio/" class="btn primary magnetic" data-track="primary_cta_click">
+          {home.hero.ctaPrimaryLabel} <span class="arrow">→</span>
+        </a>
+        <a href="/contact/" class="btn ghost magnetic" data-track="book_call_click">
+          {home.hero.ctaSecondaryLabel}
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual" id="heroVisual" aria-hidden="true">
+      <div class="blob b1"></div><div class="blob b2"></div>
+      <div class="float-card fc1" data-depth="18">Sketchbook</div>
+      <div class="float-card fc2" data-depth="30">3D Sculpt</div>
+      <div class="float-card fc3" data-depth="12">Marketing Dashboard</div>
+      <div class="float-card fc4" data-depth="24">Camera + Lighting</div>
+    </div>
+    <div class="scroll-cue"><div class="line"><span></span></div>Scroll</div>
+  </section>
+
+  <!-- ============ STUDIO PHILOSOPHY ============ -->
+  <section class="section" id="studio">
+    <div class="wrap philosophy">
+      <div class="philosophy-copy">
+        <div class="eyebrow reveal">{home.philosophy.eyebrow}</div>
+        <h2 class="reveal">{home.philosophy.headline} <span class="light">{home.philosophy.lightHeadline}</span></h2>
+        <div class="philosophy-body reveal">
+          <p>{home.philosophy.paragraph1}</p>
+          <p>{home.philosophy.paragraph2}</p>
+        </div>
+        <div class="timeline-vmv reveal">
+          <div><div class="eyebrow">Vision</div><span style="font-size:13px;color:var(--text-2);">{home.philosophy.vision}</span></div>
+          <div><div class="eyebrow">Mission</div><span style="font-size:13px;color:var(--text-2);">{home.philosophy.mission}</span></div>
+          <div><div class="eyebrow">Values</div><span style="font-size:13px;color:var(--text-2);">{home.philosophy.values}</span></div>
+        </div>
+      </div>
+      <div class="studio-portrait reveal">
+        <span class="cap">Studio — Global &amp; Digital</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAPABILITIES ============ -->
+  <section class="section" id="capabilities">
+    <div class="wrap">
+      <div class="eyebrow reveal">03 — Creative Capabilities</div>
+      <div class="cap-list reveal" id="capList">
+        <div class="cap-row open">
+          <div class="cap-head"><h3>Creative Design</h3><span class="cap-num">01</span><div class="cap-plus"></div></div>
+          <div class="cap-body"><p>Sketching, illustration, and graphic design that gives every brand a distinct visual hand. <a href="/creative-design/" style="color:var(--accent);display:inline-block;margin-top:6px;">Explore Creative Design →</a></p></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-head"><h3>3D Production</h3><span class="cap-num">02</span><div class="cap-plus"></div></div>
+          <div class="cap-body"><p>Modeling, texturing, rigging, animation and rendering for product, character and environment work. <a href="/3d-animation/" style="color:var(--accent);display:inline-block;margin-top:6px;">Explore 3D &amp; Animation →</a></p></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-head"><h3>Digital Marketing</h3><span class="cap-num">03</span><div class="cap-plus"></div></div>
+          <div class="cap-body"><p>SEO, performance media, and content strategy built around a single measurable goal. <a href="/services/" style="color:var(--accent);display:inline-block;margin-top:6px;">View Marketing Services →</a></p></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-head"><h3>Performance Marketing</h3><span class="cap-num">04</span><div class="cap-plus"></div></div>
+          <div class="cap-body"><p>Google Ads, Meta Ads and full-funnel campaigns optimized against cost per outcome. <a href="/performance-marketing/" style="color:var(--accent);display:inline-block;margin-top:6px;">Explore Performance Marketing →</a></p></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-head"><h3>Social Media</h3><span class="cap-num">05</span><div class="cap-plus"></div></div>
+          <div class="cap-body"><p>Editorial content calendars and community management tuned to each platform's native voice. <a href="/social-media-marketing/" style="color:var(--accent);display:inline-block;margin-top:6px;">Explore Social Media Marketing →</a></p></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-head"><h3>Web Development</h3><span class="cap-num">06</span><div class="cap-plus"></div></div>
+          <div class="cap-body"><p>UI/UX, responsive builds, and CMS integrations engineered for speed and clarity.</p></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-head"><h3>Content Creation</h3><span class="cap-num">07</span><div class="cap-plus"></div></div>
+          <div class="cap-body"><p>Video editing, motion graphics and brand film production from concept to delivery.</p></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-head"><h3>Search Engine Optimization</h3><span class="cap-num">08</span><div class="cap-plus"></div></div>
+          <div class="cap-body"><p>Technical SEO and content programs designed to compound organic reach over time. <a href="/seo-services/" style="color:var(--accent);display:inline-block;margin-top:6px;">Explore SEO Services →</a></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED PROJECTS ============ -->
+  <section class="section" id="portfolio">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">04 — Selected Work</span>
+          <h2 style="margin-top:8px;">Featured Projects</h2>
+        </div>
+        <p>A selection of brand, 3D, and performance work spanning multiple disciplines.</p>
+      </div>
+      <div class="projects-grid">
+        {featuredProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            category={project.data.category}
+            year={project.data.year}
+            slug={project.slug}
+            gradientFrom={project.data.gradientFrom}
+            gradientTo={project.data.gradientTo}
+            featuredImage={project.data.featuredImage}
+          />
+        ))}
+      </div>
+      <div style="text-align:center;margin-top:60px;" class="reveal">
+        <a href="/portfolio/" class="btn ghost magnetic">View All Projects ({allProjects.length})</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section" id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">05 — Methodology</span>
+          <h2 style="margin-top:8px;">Creative Process</h2>
+        </div>
+        <p>Nine stages, one continuous thread from idea to growth.</p>
+      </div>
+      <div class="process-wrap reveal">
+        <div class="process-track" id="processTrack">
+          <div class="process-line"><div class="process-line-fill" id="processFill"></div></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">01</span><h4>Discover</h4></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">02</span><h4>Research</h4></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">03</span><h4>Strategy</h4></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">04</span><h4>Sketch</h4></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">05</span><h4>Design</h4></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">06</span><h4>Build</h4></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">07</span><h4>Test</h4></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">08</span><h4>Launch</h4></div>
+          <div class="p-step"><div class="p-dot"></div><span class="eyebrow">09</span><h4>Grow</h4></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">06 — Core Capabilities</span>
+          <h2 style="margin-top:8px;">Services</h2>
+        </div>
+        <p>Seven pillars, each run by specialists, coordinated under one strategy.</p>
+      </div>
+
+      <div>
+        {serviceEntries.map((svc, i) => (
+          <div class="svc-row reveal">
+            <div class="svc-media" data-tag={svc.data.tag}></div>
+            <div class="svc-body">
+              <span class="eyebrow">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{svc.data.title}</h3>
+              <p style="color:var(--text-2);font-size:14px;">{svc.data.shortDescription}</p>
+              {svc.data.capabilities && svc.data.capabilities.length > 0 && (
+                <ul>
+                  {svc.data.capabilities.slice(0, 3).map((cap) => (
+                    <li>{cap.title}</li>
+                  ))}
+                </ul>
+              )}
+              <a href={`/${svc.slug}/`} class="btn ghost" style="margin-top:16px;">
+                View {svc.data.title} →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY CHOOSE ASH ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">{home.stats.eyebrow}</span>
+          <h2 style="margin-top:8px;">{home.stats.headline}</h2>
+        </div>
+        <p style="font-family:var(--mono);font-size:11px;color:var(--accent);">{home.stats.disclaimer}</p>
+      </div>
+      <div class="stats-grid reveal">
+        {home.stats.items.map((st) => (
+          <div class="stat">
+            <div class="num" data-count={st.count} data-suffix={st.suffix}><span>0{st.suffix}</span></div>
+            <div class="lab">{st.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOFTWARE ECOSYSTEM ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">08 — Production Stack</span>
+          <h2 style="margin-top:8px;">Software Ecosystem</h2>
+        </div>
+        <p>The industrial-grade tools behind the work.</p>
+      </div>
+      <div class="soft-wall reveal">
+        <div class="soft-tag lg">Blender</div><div class="soft-tag">Autodesk Maya</div><div class="soft-tag sm">Substance Painter</div>
+        <div class="soft-tag">ZBrush</div><div class="soft-tag lg">Figma</div><div class="soft-tag sm">Photoshop</div>
+        <div class="soft-tag">Illustrator</div><div class="soft-tag sm">After Effects</div><div class="soft-tag">Premiere Pro</div>
+        <div class="soft-tag sm">DaVinci Resolve</div><div class="soft-tag lg">Astro &amp; Netlify</div><div class="soft-tag sm">VS Code</div>
+        <div class="soft-tag">Google Ads</div><div class="soft-tag sm">Meta Business Suite</div><div class="soft-tag">Google Analytics 4</div>
+        <div class="soft-tag sm">SEMrush</div><div class="soft-tag sm">Ahrefs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <Testimonials items={rawTestimonials} />
+
+  <!-- ============ INSIGHTS / BLOG ============ -->
+  <section class="section" id="blog">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">10 — Editorial</span>
+          <h2 style="margin-top:8px;">Insights &amp; Blog</h2>
+        </div>
+        <p>Notes on craft, strategy, and the tools we build with.</p>
+      </div>
+
+      {featuredArticle && (
+        <a href={`/blog/${featuredArticle.slug}/`} class="blog-feature reveal" style="text-decoration:none;display:grid;">
+          <div class="proj-media" style="--proj-c1:#211a26;--proj-c2:#0a0a0a;">
+            {featuredArticle.data.featuredImage && (
+              <img src={featuredArticle.data.featuredImage} alt={featuredArticle.data.title} />
+            )}
+            <div class="proj-info"><span class="eyebrow">Featured Insight</span></div>
+          </div>
+          <div>
+            <span class="eyebrow">{featuredArticle.data.category}</span>
+            <h3 style="font-size:clamp(22px,2.5vw,32px);margin-top:12px;color:var(--text-1);">{featuredArticle.data.title}</h3>
+            <p style="color:var(--text-2);font-size:14px;margin-top:16px;">{featuredArticle.data.excerpt}</p>
+            <div class="tag-row">
+              {featuredArticle.data.tags.map(tag => (
+                <span>{tag}</span>
+              ))}
+            </div>
+          </div>
+        </a>
+      )}
+
+      <div class="blog-grid">
+        {gridArticles.map((article) => (
+          <BlogCard
+            title={article.data.title}
+            category={article.data.category}
+            slug={article.slug}
+            featuredImage={article.data.featuredImage}
+          />
+        ))}
+      </div>
+
+      <div style="text-align:center;margin-top:60px;" class="reveal">
+        <a href="/blog/" class="btn ghost magnetic">View All Insights ({allArticles.length})</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact-section section" id="contact">
+    <div class="wrap">
+      <div class="eyebrow reveal">11 — Start a Project</div>
+      <h2 class="reveal">Let's build something extraordinary.</h2>
+      
+      <ContactForm id="home-contact-form" />
+
+      <div class="social-row reveal">
+        <a href={getWhatsAppUrl(site.whatsapp)} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="home_contact_section" class="magnetic">WhatsApp</a>
+        <a href={`mailto:${site.email}`} data-track="email_click" data-track-location="home_contact_section" class="magnetic">Email</a>
+        <a href={`tel:${site.phone.replace(/[^\d+]/g, '')}`} data-track="phone_click" data-track-location="home_contact_section" class="magnetic">Call</a>
+        {site.social.linkedin !== '#' && <a href={site.social.linkedin} target="_blank" rel="noopener noreferrer" class="magnetic">LinkedIn</a>}
+        {site.social.behance !== '#' && <a href={site.social.behance} target="_blank" rel="noopener noreferrer" class="magnetic">Behance</a>}
+        {site.social.artstation !== '#' && <a href={site.social.artstation} target="_blank" rel="noopener noreferrer" class="magnetic">ArtStation</a>}
+        {site.social.instagram !== '#' && <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="magnetic">Instagram</a>}
+        {site.social.youtube !== '#' && <a href={site.social.youtube} target="_blank" rel="noopener noreferrer" class="magnetic">YouTube</a>}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

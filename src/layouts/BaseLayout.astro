@@ -1,0 +1,87 @@
+---
+import site from '../data/site.json';
+import SEOHead from '../components/SEOHead.astro';
+import GTM from '../components/GTM.astro';
+import Loader from '../components/Loader.astro';
+import CustomCursor from '../components/CustomCursor.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloating from '../components/WhatsAppFloating.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType,
+  noindex,
+  schema,
+} = Astro.props;
+
+const activeGtmId = import.meta.env.PUBLIC_GTM_ID || import.meta.env.GTM_ID || site.gtmId;
+const isGtmConfigured = activeGtmId && activeGtmId !== 'GTM-XXXXXXX';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <SEOHead
+    title={title}
+    description={description}
+    canonical={canonical}
+    ogImage={ogImage}
+    ogType={ogType}
+    noindex={noindex}
+    schema={schema}
+  />
+  <GTM gtmId={activeGtmId} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="/favicon.svg" />
+</head>
+<body>
+  {/* Google Tag Manager (noscript) immediately after opening <body> */}
+  {isGtmConfigured && (
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${activeGtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
+  )}
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <Loader />
+  <CustomCursor />
+  <Header />
+  <MobileMenu />
+  <main id="main-content">
+    <slot />
+  </main>
+  <WhatsAppFloating />
+  <Footer />
+  <script>
+    import '../scripts/animations.js';
+    import '../scripts/tracking.js';
+  </script>
+</body>
+</html>

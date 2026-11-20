@@ -1,0 +1,48 @@
+---
+import site from '../data/site.json';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {items.map((item, i) => (
+      <li>
+        {i < items.length - 1 && item.href ? (
+          <a href={item.href}>{item.label}</a>
+        ) : (
+          <span aria-current="page">{item.label}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, i) => {
+    const rawHref = item.href;
+    const fullHref = rawHref
+      ? rawHref.startsWith('http')
+        ? rawHref
+        : `${site.url}${rawHref.startsWith('/') ? rawHref : `/${rawHref}`}`
+      : undefined;
+
+    return {
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": item.label,
+      ...(fullHref ? { "item": fullHref } : {}),
+    };
+  }),
+})} />

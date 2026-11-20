@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { getEntry } from 'astro:content';
+import site from '../data/site.json';
+
+const service = await getEntry('services', 'google-ads');
+const { data } = service;
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services/' },
+  { label: data.title }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: data.title,
+  serviceType: data.tag || 'Paid Search Advertising',
+  description: data.seoDescription || data.shortDescription,
+  url: `${site.url}/google-ads/`,
+  provider: {
+    '@type': 'ProfessionalService',
+    name: site.name,
+    url: `${site.url}/`,
+    email: site.email,
+    telephone: site.phone,
+  },
+  areaServed: 'Worldwide',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `${data.title} Capabilities`,
+    itemListElement: (data.capabilities || []).map((cap) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: cap.title,
+        description: cap.desc,
+      },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title={data.seoTitle || `${data.title} — ${site.name}`}
+  description={data.seoDescription || data.shortDescription}
+  canonical={`${site.url}/google-ads/`}
+  schema={serviceSchema}
+>
+  <section class="page-header">
+    <div class="wrap">
+      <Breadcrumbs items={breadcrumbs} />
+      <span class="eyebrow">{data.tag}</span>
+      <h1>Google <span style="color:var(--accent);">Ads</span></h1>
+      <p class="section-sub">{data.heroSubtitle || data.shortDescription}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Intent-Based Growth</span>
+          <h2 style="margin-top:8px;">{data.thesisHeading}</h2>
+        </div>
+        <p>{data.thesisDescription}</p>
+      </div>
+
+      <div class="projects-grid" style="margin-top:40px;">
+        {data.capabilities.map((offering, i) => (
+          <div class="reveal" style="background:var(--bg-2);border:1px solid var(--border);border-radius:14px;padding:32px;">
+            <span class="eyebrow" style="color:var(--accent);">0{i + 1}</span>
+            <h3 style="font-size:22px;margin:12px 0 10px;color:var(--text-1);">{offering.title}</h3>
+            <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{offering.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Ads Methodology -->
+  <section class="section" style="background:var(--bg-2);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Our Methodology</span>
+          <h2 style="margin-top:8px;">{data.methodologyHeading}</h2>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;">
+        {data.methodologySteps.map((step) => (
+          <div class="reveal">
+            <h4 style="font-size:18px;color:var(--accent);margin-bottom:8px;">{step.title}</h4>
+            <p style="color:var(--text-2);font-size:14px;">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow reveal">Account Audit</span>
+      <h2 class="reveal" style="margin:16px 0 24px;">Want an Objective Review of Your Current Google Ads Account?</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 40px;">We pinpoint wasted ad spend, negative keyword gaps, and tracking inaccuracies with actionable insights.</p>
+      <ContactForm id="google-ads-contact-form" />
+    </div>
+  </section>
+</BaseLayout>

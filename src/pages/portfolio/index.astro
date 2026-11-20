@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import site from '../../data/site.json';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Portfolio' }
+];
+
+const allProjects = (await getCollection('portfolio'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const categories = ['All', ...new Set(allProjects.map((p) => p.data.category))];
+
+const portfolioSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `Portfolio & Selected Case Studies — ${site.name}`,
+  description: 'Explore our archive of selected case studies spanning brand identity, 3D visualization, architectural rendering, and full-funnel performance marketing campaigns.',
+  url: `${site.url}/portfolio/`,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: allProjects.map((proj, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: proj.data.title,
+      url: `${site.url}/portfolio/${proj.slug}/`,
+      description: proj.data.overview,
+      image: proj.data.featuredImage
+        ? proj.data.featuredImage.startsWith('http')
+          ? proj.data.featuredImage
+          : `${site.url}${proj.data.featuredImage}`
+        : undefined,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title={`Portfolio & Selected Case Studies — ${site.name}`}
+  description="Explore our archive of selected case studies spanning brand identity, 3D visualization, architectural rendering, and full-funnel performance marketing campaigns."
+  canonical={`${site.url}/portfolio/`}
+  schema={portfolioSchema}
+>
+  <section class="page-header">
+    <div class="wrap">
+      <Breadcrumbs items={breadcrumbs} />
+      <span class="eyebrow">Work Archive</span>
+      <h1>Selected <span style="color:var(--accent);">Projects</span></h1>
+      <p class="section-sub">A curated selection of brand, 3D production, and digital marketing engagements engineered for measurable business outcomes.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <!-- Filter Row -->
+      <div class="reveal" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px;" id="filter-buttons">
+        {categories.map((cat, i) => (
+          <button
+            type="button"
+            class:list={['soft-tag sm', { active: i === 0 }]}
+            data-filter={cat}
+            style={`cursor:pointer;background:${i === 0 ? 'var(--accent)' : 'transparent'};color:${i === 0 ? '#000' : 'var(--text-2)'};font-weight:${i === 0 ? '600' : 'normal'};border-color:${i === 0 ? 'var(--accent)' : 'var(--border)'};`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div class="projects-grid" id="portfolio-grid">
+        {allProjects.map((project) => (
+          <div class="portfolio-item" data-category={project.data.category}>
+            <ProjectCard
+              title={project.data.title}
+              category={project.data.category}
+              year={project.data.year}
+              slug={project.slug}
+              gradientFrom={project.data.gradientFrom}
+              gradientTo={project.data.gradientTo}
+              featuredImage={project.data.featuredImage}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background:var(--bg-2);">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow reveal">Start a Project</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Have an Ambitious Project in Mind?</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Let's discuss how our multidisciplinary studio can craft your brand and drive growth.</p>
+      <a href="/contact/" class="btn primary magnetic reveal" data-track="book_call_click" data-track-location="portfolio_bottom">
+        Book Discovery Call <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const buttons = document.querySelectorAll('#filter-buttons button');
+      const items = document.querySelectorAll('#portfolio-grid .portfolio-item');
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const filter = btn.getAttribute('data-filter');
+
+          buttons.forEach(function (b) {
+            b.style.background = 'transparent';
+            b.style.color = 'var(--text-2)';
+            b.style.fontWeight = 'normal';
+            b.style.borderColor = 'var(--border)';
+          });
+          btn.style.background = 'var(--accent)';
+          btn.style.color = '#000';
+          btn.style.fontWeight = '600';
+          btn.style.borderColor = 'var(--accent)';
+
+          items.forEach(function (item) {
+            const cat = item.getAttribute('data-category');
+            if (filter === 'All' || cat === filter) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

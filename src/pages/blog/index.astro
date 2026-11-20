@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+import site from '../../data/site.json';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog' }
+];
+
+const allArticles = (await getCollection('blog'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+const featuredArticle = allArticles[0];
+const otherArticles = allArticles.slice(1);
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: `Insights & Studio Blog — ${site.name}`,
+  description: 'Field notes, technical breakdowns, and strategic perspectives on brand building, 3D visualization, performance marketing, and digital creative craft.',
+  url: `${site.url}/blog/`,
+  blogPost: allArticles.map((art) => ({
+    '@type': 'BlogPosting',
+    headline: art.data.title,
+    description: art.data.excerpt,
+    url: `${site.url}/blog/${art.slug}/`,
+    datePublished: art.data.publishDate.toISOString(),
+    image: art.data.featuredImage
+      ? art.data.featuredImage.startsWith('http')
+        ? art.data.featuredImage
+        : `${site.url}${art.data.featuredImage}`
+      : undefined,
+    author: {
+      '@type': 'Organization',
+      name: art.data.author || site.name,
+      url: site.url,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title={`Insights & Studio Blog — ${site.name}`}
+  description="Field notes, technical breakdowns, and strategic perspectives on brand building, 3D visualization, performance marketing, and digital creative craft."
+  canonical={`${site.url}/blog/`}
+  schema={blogSchema}
+>
+  <section class="page-header">
+    <div class="wrap">
+      <Breadcrumbs items={breadcrumbs} />
+      <span class="eyebrow">Studio Publications</span>
+      <h1>Insights &amp; <span style="color:var(--accent);">Journal</span></h1>
+      <p class="section-sub">Essays, technical notes, and industry reflections from our multidisciplinary production team.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      {featuredArticle && (
+        <a href={`/blog/${featuredArticle.slug}/`} class="blog-feature reveal" style="text-decoration:none;display:grid;">
+          <div class="proj-media" style="--proj-c1:#211a26;--proj-c2:#0a0a0a;">
+            {featuredArticle.data.featuredImage && (
+              <img src={featuredArticle.data.featuredImage} alt={featuredArticle.data.title} />
+            )}
+            <div class="proj-info">
+              <span class="eyebrow">Featured Insight — {featuredArticle.data.publishDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">{featuredArticle.data.category}</span>
+            <h2 style="font-size:clamp(24px,3vw,36px);margin-top:12px;color:var(--text-1);line-height:1.2;">
+              {featuredArticle.data.title}
+            </h2>
+            <p style="color:var(--text-2);font-size:15px;margin-top:16px;line-height:1.7;">
+              {featuredArticle.data.excerpt}
+            </p>
+            <div class="tag-row">
+              {featuredArticle.data.tags.map((tag) => (
+                <span>{tag}</span>
+              ))}
+            </div>
+          </div>
+        </a>
+      )}
+
+      <div class="section-head reveal" style="margin-top:80px;">
+        <div>
+          <span class="eyebrow">Archive</span>
+          <h2 style="margin-top:8px;">All Articles</h2>
+        </div>
+      </div>
+
+      <div class="blog-grid">
+        {otherArticles.map((article) => (
+          <BlogCard
+            title={article.data.title}
+            category={article.data.category}
+            slug={article.slug}
+            featuredImage={article.data.featuredImage}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter / CTA -->
+  <section class="section" style="background:var(--bg-2);">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow reveal">Stay Informed</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Direct Dispatches from the Studio</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">We publish quarterly deep-dives into 3D technology, brand strategy, and media buying.</p>
+      <a href="/contact/" class="btn primary magnetic reveal" data-track="primary_cta_click" data-track-location="blog_bottom">
+        Get in Touch <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

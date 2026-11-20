@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import site from '../data/site.json';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'About' }
+];
+
+const tools = [
+  { name: 'Blender', size: 'lg' },
+  { name: 'Autodesk Maya', size: '' },
+  { name: 'Substance Painter', size: 'sm' },
+  { name: 'ZBrush', size: '' },
+  { name: 'Figma', size: 'lg' },
+  { name: 'Photoshop', size: 'sm' },
+  { name: 'Illustrator', size: '' },
+  { name: 'After Effects', size: 'sm' },
+  { name: 'Premiere Pro', size: '' },
+  { name: 'DaVinci Resolve', size: 'sm' },
+  { name: 'Astro & Netlify', size: 'lg' },
+  { name: 'VS Code', size: 'sm' },
+  { name: 'Google Ads', size: '' },
+  { name: 'Meta Business Suite', size: 'sm' },
+  { name: 'Google Analytics 4', size: '' },
+  { name: 'SEMrush', size: 'sm' },
+  { name: 'Ahrefs', size: 'sm' }
+];
+
+const processSteps = [
+  { num: '01', title: 'Discover', desc: 'Deep-dive into brand vision, customer psychology, and competitive whitespace.' },
+  { num: '02', title: 'Research', desc: 'Quantitative market analysis, keyword intelligence, and visual landscape audit.' },
+  { num: '03', title: 'Strategy', desc: 'Establish the core thesis, measurable KPIs, and architectural roadmap.' },
+  { num: '04', title: 'Sketch', desc: 'Pencil explorations, volume blocking, and typographic tension testing.' },
+  { num: '05', title: 'Design', desc: 'High-fidelity visual systems, 3D modeling, and design token engineering.' },
+  { num: '06', title: 'Build', desc: 'Static code compilation, animation rendering, and tracking pipeline integration.' },
+  { num: '07', title: 'Test', desc: 'Multi-device responsive validation, Core Web Vitals checks, and tracking verification.' },
+  { num: '08', title: 'Launch', desc: 'Production deployment with zero downtime and search engine indexing.' },
+  { num: '09', title: 'Grow', desc: 'Algorithmic media optimization, weekly creative refreshes, and organic compounding.' }
+];
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: `About Us & Studio Philosophy — ${site.name}`,
+  description: 'Learn about ASH Creative Studio — our philosophy of uniting artistic craft with quantitative marketing discipline, tools, and nine-step creative process.',
+  url: `${site.url}/about/`,
+  mainEntity: {
+    '@type': 'ProfessionalService',
+    name: site.name,
+    url: `${site.url}/`,
+    description: site.description,
+    telephone: site.phone,
+    email: site.email,
+  },
+};
+---
+
+<BaseLayout
+  title={`About Us & Studio Philosophy — ${site.name}`}
+  description="Learn about ASH Creative Studio — our philosophy of uniting artistic craft with quantitative marketing discipline, tools, and nine-step creative process."
+  canonical={`${site.url}/about/`}
+  schema={aboutSchema}
+>
+  <section class="page-header">
+    <div class="wrap">
+      <Breadcrumbs items={breadcrumbs} />
+      <span class="eyebrow">Studio Profile</span>
+      <h1>Where Creativity Meets <span style="color:var(--accent);">Technology</span></h1>
+      <p class="section-sub">We are an integrated creative and digital marketing studio engineered to take an idea from initial pencil concept to verified business growth.</p>
+    </div>
+  </section>
+
+  <!-- Studio Philosophy (from original) -->
+  <section class="section" id="philosophy">
+    <div class="wrap philosophy">
+      <div class="philosophy-copy">
+        <div class="eyebrow reveal">Studio Philosophy</div>
+        <h2 class="reveal">Creativity without strategy is decoration. <span class="light">Strategy without creativity is invisible.</span></h2>
+        <div class="philosophy-body reveal">
+          <p>ASH was founded on the belief that the best digital work sits at the intersection of art and analytics — where a sketch and a spreadsheet inform the same decision.</p>
+          <p>We're not a design agency that also does marketing, or a marketing shop that also designs. We're a single studio built to carry an idea from first pencil line to measurable business growth, without losing the thread in the handoff.</p>
+        </div>
+        <div class="timeline-vmv reveal">
+          <div><div class="eyebrow">Vision</div><span style="font-size:13px;color:var(--text-2);">Design that performs as well as it looks.</span></div>
+          <div><div class="eyebrow">Mission</div><span style="font-size:13px;color:var(--text-2);">One studio, every discipline, one strategy.</span></div>
+          <div><div class="eyebrow">Values</div><span style="font-size:13px;color:var(--text-2);">Craft, rigor, honesty, momentum.</span></div>
+        </div>
+      </div>
+      <div class="studio-portrait reveal">
+        <span class="cap">Studio — Global &amp; Digital</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who We Are (Clearly labelled sample content) -->
+  <section class="section" style="background:var(--bg-2);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">The Collective</span>
+          <h2 style="margin-top:8px;">Who We Are</h2>
+        </div>
+        <p style="font-family:var(--mono);font-size:11px;color:var(--accent);">[Sample team overview — update with actual studio background]</p>
+      </div>
+
+      <div style="max-width:760px;color:var(--text-2);font-size:16px;line-height:1.8;" class="reveal">
+        <p style="margin-bottom:20px;">
+          ASH Creative Studio brings together dedicated specialists across visual identity, 3D CGI production, full-funnel media buying, and technical frontend engineering. Rather than operating in isolated silos, our team collaborates under a unified strategic umbrella.
+        </p>
+        <p style="margin-bottom:20px;">
+          When our 3D artists build product renders, they understand the exact aspect ratios and hook angles required by our performance media buyers. When our developers build web experiences, they engineer for sub-second Core Web Vitals to maximize Google Ads Quality Scores and SEO ranking velocity.
+        </p>
+        <p>
+          The result is seamless brand continuity and measurable ROI from first impression to long-term customer loyalty.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Software Ecosystem -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Tooling &amp; Infrastructure</span>
+          <h2 style="margin-top:8px;">Software Ecosystem</h2>
+        </div>
+        <p>The industrial-grade toolchain behind every project.</p>
+      </div>
+      <div class="soft-wall reveal">
+        {tools.map((t) => (
+          <div class:list={['soft-tag', t.size]}>{t.name}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Creative Process (9 stages) -->
+  <section class="section" style="background:var(--bg-2);" id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Methodology</span>
+          <h2 style="margin-top:8px;">Our 9-Step Creative Process</h2>
+        </div>
+        <p>One continuous thread from initial curiosity to scalable growth.</p>
+      </div>
+
+      <div class="process-wrap reveal">
+        <div class="process-track" id="processTrack">
+          <div class="process-line"><div class="process-line-fill" id="processFill"></div></div>
+          {processSteps.map((step) => (
+            <div class="p-step">
+              <div class="p-dot"></div>
+              <span class="eyebrow">{step.num}</span>
+              <h4>{step.title}</h4>
+              <p style="color:var(--text-2);font-size:12px;margin-top:6px;line-height:1.5;">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow reveal">Collaboration</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Let's Build Something Meaningful</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Ready to elevate your visual identity and customer acquisition?</p>
+      <a href="/contact/" class="btn primary magnetic reveal" data-track="primary_cta_click" data-track-location="about_bottom">
+        Start a Project <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

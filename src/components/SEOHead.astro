@@ -1,0 +1,72 @@
+---
+import site from '../data/site.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  schema?: object | object[];
+}
+
+const {
+  title = `${site.name} — ${site.tagline}`,
+  description = site.description,
+  canonical = `${site.url}/`,
+  ogImage = site.ogImage || '/images/uploads/og-default.svg',
+  ogType = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+// Ensure ogImage is an absolute URL
+const absoluteOgImage = ogImage.startsWith('http')
+  ? ogImage
+  : `${site.url}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`;
+
+// Normalize schema to an array
+const schemas = schema
+  ? Array.isArray(schema)
+    ? schema
+    : [schema]
+  : [];
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta
+  name="robots"
+  content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+/>
+<meta name="theme-color" content="#090909" />
+<meta name="color-scheme" content="dark" />
+
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={absoluteOgImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonical} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteOgImage} />
+<meta name="twitter:image:alt" content={title} />
+
+<!-- Structured Data (JSON-LD) in <head> -->
+{schemas.map((s) => (
+  <script type="application/ld+json" set:html={JSON.stringify(s)} />
+))}

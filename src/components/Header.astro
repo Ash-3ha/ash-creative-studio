@@ -1,0 +1,104 @@
+---
+import nav from '../data/navigation.json';
+
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  return currentPath === href || currentPath.startsWith(href);
+};
+---
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="/" class="logo">A<b>S</b>H <span class="logo-sub">CREATIVE STUDIO</span></a>
+
+    <div class="nav-links">
+      {nav.main.map((item) => (
+        <div class:list={['nav-item', { 'has-dropdown': item.children }]}>
+          <a href={item.href} class:list={{ active: isCurrent(item.href) }}>
+            {item.label}
+          </a>
+          {item.children && (
+            <div class="nav-dropdown">
+              {item.children.map((child) => (
+                <a href={child.href} class:list={{ active: currentPath === child.href }}>
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <a href={nav.cta.href} class="nav-cta magnetic" data-track="book_call_click" data-track-location="header">{nav.cta.label}</a>
+
+    <button class="burger" id="burger-btn" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<style>
+  .logo-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-2);
+    letter-spacing: .1em;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-item.has-dropdown:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -16px;
+    min-width: 220px;
+    padding: 12px 0;
+    margin-top: 12px;
+    background: rgba(21, 21, 21, 0.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    z-index: 510;
+  }
+
+  .nav-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--text-2);
+    transition: color 0.2s, background 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-dropdown a:hover {
+    color: var(--text-1);
+    background: var(--glass);
+  }
+
+  .nav-links a.active {
+    color: var(--text-1);
+  }
+
+  @media (max-width: 900px) {
+    .nav-dropdown {
+      display: none;
+    }
+  }
+</style>

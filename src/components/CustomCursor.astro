@@ -1,0 +1,53 @@
+---
+---
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<script is:inline>
+(function () {
+  // Respect prefers-reduced-motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var dot = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+
+  // Only on desktop
+  if (!window.matchMedia('(min-width: 901px)').matches) {
+    document.body.classList.add('no-custom-cursor');
+    dot.style.display = 'none';
+    ring.style.display = 'none';
+    return;
+  }
+
+  document.body.classList.add('has-custom-cursor');
+
+  var rx = 0, ry = 0, mx = 0, my = 0;
+
+  window.addEventListener('mousemove', function (e) {
+    mx = e.clientX;
+    my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
+  });
+
+  function loopCursor() {
+    rx += (mx - rx) * 0.18;
+    ry += (my - ry) * 0.18;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(loopCursor);
+  }
+  loopCursor();
+
+  // Add hover class on interactive elements
+  function attachHover() {
+    document.querySelectorAll('a, button, .magnetic, .cap-row, .proj-card, .btn, [role="button"]').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('hover'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('hover'); });
+    });
+  }
+  attachHover();
+})();
+</script>

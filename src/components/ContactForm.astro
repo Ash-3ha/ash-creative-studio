@@ -1,0 +1,274 @@
+---
+import site from '../data/site.json';
+import { getWhatsAppUrl } from '../utils/whatsapp';
+
+interface Props {
+  id?: string;
+  className?: string;
+}
+
+const { id = 'site-contact-form', className = 'contact-form reveal' } = Astro.props;
+
+const serviceOptions = [
+  'Performance Marketing',
+  'Google Ads',
+  'Meta Ads',
+  'Social Media Marketing',
+  'SEO Services',
+  'Creative Design',
+  '3D & Animation',
+  'Web Development',
+  'Other'
+];
+
+const budgetOptions = [
+  'Under $5,000',
+  '$5,000 – $15,000',
+  '$15,000 – $50,000',
+  '$50,000+',
+  'Not sure yet'
+];
+
+const whatsappUrl = getWhatsAppUrl(
+  site.whatsapp,
+  'Hello ASH Creative Studio, I just sent an enquiry through your website and would love to connect.'
+);
+---
+
+<div class="contact-form-container">
+  <form
+    id={id}
+    class={className}
+    name="contact"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+  >
+    <input type="hidden" name="form-name" value="contact" />
+    <p style="display:none;" aria-hidden="true">
+      <label>Don’t fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+    </p>
+
+    <!-- Error Banner -->
+    <div
+      class="form-error-banner"
+      id={`${id}-error-banner`}
+      style="display:none;padding:12px 18px;background:rgba(255,71,87,0.12);border:1px solid #ff4757;border-radius:10px;color:#ff6b81;margin-bottom:24px;font-size:13px;line-height:1.5;"
+      role="alert"
+    ></div>
+
+    <div class="f-row">
+      <div class="f-group">
+        <label for={`${id}-name`}>Name <span style="color:var(--accent);">*</span></label>
+        <input type="text" id={`${id}-name`} name="name" required placeholder="Your full name" autocomplete="name" />
+        <span class="error-msg">Please enter your name.</span>
+      </div>
+      <div class="f-group">
+        <label for={`${id}-email`}>Email <span style="color:var(--accent);">*</span></label>
+        <input type="email" id={`${id}-email`} name="email" required placeholder="you@company.com" autocomplete="email" />
+        <span class="error-msg">Please enter a valid email address.</span>
+      </div>
+    </div>
+
+    <div class="f-row">
+      <div class="f-group">
+        <label for={`${id}-phone`}>Phone Number</label>
+        <input type="tel" id={`${id}-phone`} name="phone" placeholder="+91 98765 43210" autocomplete="tel" />
+      </div>
+      <div class="f-group">
+        <label for={`${id}-service`}>Service Required</label>
+        <select id={`${id}-service`} name="service">
+          <option value="">Select a discipline…</option>
+          {serviceOptions.map(opt => (
+            <option value={opt}>{opt}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    <div class="f-row">
+      <div class="f-group">
+        <label for={`${id}-budget`}>Estimated Budget</label>
+        <select id={`${id}-budget`} name="budget">
+          <option value="">Select estimated range…</option>
+          {budgetOptions.map(opt => (
+            <option value={opt}>{opt}</option>
+          ))}
+        </select>
+      </div>
+      <div class="f-group">
+        <label for={`${id}-timeline`}>Target Timeline</label>
+        <input type="text" id={`${id}-timeline`} name="timeline" placeholder="e.g. Q1 launch, 4-6 weeks" />
+      </div>
+    </div>
+
+    <div class="f-group" style="margin-bottom:28px;">
+      <label for={`${id}-message`}>Project Overview <span style="color:var(--accent);">*</span></label>
+      <textarea id={`${id}-message`} name="message" required placeholder="Tell us about your brand, goals, scope, and target milestones…"></textarea>
+      <span class="error-msg">Please provide a brief project overview.</span>
+    </div>
+
+    <div class="contact-ctas">
+      <button type="submit" class="btn primary magnetic">
+        Send Enquiry <span class="arrow">→</span>
+      </button>
+      <a href="/contact/" class="btn ghost magnetic" data-track="book_call_click">
+        Schedule Discovery Call
+      </a>
+    </div>
+  </form>
+
+  <!-- Success Confirmation Card -->
+  <div class="form-success" id={`${id}-success`} style="display:none;" role="alert">
+    <div style="width:56px;height:56px;margin:0 auto 16px;border-radius:50%;background:rgba(255,106,0,0.12);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent);">
+      ✓
+    </div>
+    <h3 style="font-size:26px;margin-bottom:10px;color:var(--text-1);">Enquiry Received</h3>
+    <p style="color:var(--text-2);font-size:15px;max-width:520px;margin:0 auto 24px;line-height:1.7;">
+      Thank you for reaching out to ASH Creative Studio. Our team reviews all incoming briefs within 24 business hours.
+    </p>
+
+    <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:20px;">
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn ghost"
+        data-track="whatsapp_click"
+        style="border-color:rgba(255,106,0,0.3);color:var(--accent);"
+      >
+        <span>💬 Instant WhatsApp Chat</span>
+      </a>
+      <button
+        type="button"
+        class="btn ghost reset-form-btn"
+        id={`${id}-reset`}
+        style="font-size:12px;opacity:0.8;"
+      >
+        Send Another Enquiry
+      </button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ formId: id }}>
+  (function () {
+    const form = document.getElementById(formId);
+    const success = document.getElementById(`${formId}-success`);
+    const errorBanner = document.getElementById(`${formId}-error-banner`);
+    const resetBtn = document.getElementById(`${formId}-reset`);
+
+    if (!form || !success) return;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      if (errorBanner) {
+        errorBanner.style.display = 'none';
+        errorBanner.textContent = '';
+      }
+
+      // Reset error highlights
+      form.querySelectorAll('.f-group').forEach(function (g) {
+        g.classList.remove('error');
+      });
+
+      let isValid = true;
+      const nameInput = form.querySelector('input[name="name"]');
+      const emailInput = form.querySelector('input[name="email"]');
+      const messageInput = form.querySelector('textarea[name="message"]');
+
+      if (!nameInput.value.trim()) {
+        nameInput.closest('.f-group').classList.add('error');
+        isValid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+        emailInput.closest('.f-group').classList.add('error');
+        isValid = false;
+      }
+
+      if (!messageInput.value.trim()) {
+        messageInput.closest('.f-group').classList.add('error');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending Enquiry...';
+
+      try {
+        const formData = new FormData(form);
+        const searchParams = new URLSearchParams(formData).toString();
+
+        const isLocal =
+          window.location.hostname === 'localhost' ||
+          window.location.hostname === '127.0.0.1';
+
+        let responseOk = false;
+        try {
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: searchParams,
+          });
+          responseOk = response.ok;
+        } catch (fetchErr) {
+          // If running locally, fetch to static '/' may fail with network error
+          if (!isLocal) throw fetchErr;
+        }
+
+        // On Netlify production, responseOk will be true. In local dev, allow test flow.
+        if (responseOk || isLocal) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+          // Trigger GTM dataLayer event
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'contact_form_submit',
+            form_id: formId,
+            form_name: 'contact',
+            service_requested: form.querySelector('select[name="service"]')?.value || 'Not specified',
+            budget_range: form.querySelector('select[name="budget"]')?.value || 'Not specified',
+            target_timeline: form.querySelector('input[name="timeline"]')?.value || '',
+            page_path: window.location.pathname,
+            page_location: window.location.href,
+            conversion_type: 'lead_inquiry',
+          });
+        } else {
+          throw new Error('Server returned submission status error');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        if (errorBanner) {
+          errorBanner.textContent =
+            'We encountered a problem sending your message. Please reach out to us directly via WhatsApp or email below.';
+          errorBanner.style.display = 'block';
+        } else {
+          alert('There was an issue sending your message. Please reach out via WhatsApp or email.');
+        }
+      }
+    });
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function () {
+        form.reset();
+        form.style.display = 'block';
+        success.style.display = 'none';
+        if (errorBanner) errorBanner.style.display = 'none';
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Send Enquiry <span class="arrow">→</span>';
+        }
+      });
+    }
+  })();
+</script>

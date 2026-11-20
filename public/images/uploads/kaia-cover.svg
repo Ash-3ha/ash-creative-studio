@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101c2a"/>
+      <stop offset="60%" stop-color="#0a121c"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <radialGradient id="r2" cx="70%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#3d6bff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3d6bff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#g2)"/>
+  <rect width="800" height="1000" fill="url(#r2)"/>
+  <rect x="60" y="60" width="680" height="880" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  
+  <!-- Abstract architectural 3D chair wireframe & solid -->
+  <g transform="translate(400, 480)">
+    <polygon points="0,-160 140,-80 0,0 -140,-80" fill="#141e2b" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <polygon points="0,0 140,-80 140,80 0,160" fill="#0d1520" stroke="rgba(61,107,255,0.4)" stroke-width="1.5"/>
+    <polygon points="0,0 -140,-80 -140,80 0,160" fill="#182535" stroke="rgba(255,106,0,0.4)" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="4" fill="#FF6A00"/>
+  </g>
+  
+  <text x="100" y="860" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="12" letter-spacing="3">02 / 3D VISUALIZATION</text>
+  <text x="100" y="900" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="32" font-weight="500">Kaia Furniture</text>
+</svg>

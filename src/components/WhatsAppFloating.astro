@@ -1,0 +1,157 @@
+---
+import site from '../data/site.json';
+import { getWhatsAppUrl } from '../utils/whatsapp';
+
+interface Props {
+  message?: string;
+}
+
+const { message } = Astro.props;
+const whatsappHref = getWhatsAppUrl(site.whatsapp, message);
+---
+
+<aside class="whatsapp-floating-wrap" aria-label="Direct WhatsApp Contact">
+  <a
+    href={whatsappHref}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-floating-btn"
+    data-track="whatsapp_click"
+    data-track-location="floating_badge"
+    aria-label="Chat with ASH Creative Studio on WhatsApp"
+  >
+    <div class="whatsapp-icon-circle">
+      <svg
+        viewBox="0 0 24 24"
+        width="22"
+        height="22"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M12.031 2c-5.508 0-9.986 4.477-9.986 9.984 0 1.761.458 3.479 1.328 4.996L2 22l5.163-1.353a9.948 9.948 0 004.868 1.258h.004c5.507 0 9.986-4.477 9.986-9.984 0-2.668-1.039-5.176-2.925-7.062A9.923 9.923 0 0012.031 2zm0 18.271h-.003a8.277 8.277 0 01-4.218-1.155l-.302-.18-3.136.822.837-3.056-.197-.314a8.273 8.273 0 01-1.267-4.404c0-4.57 3.719-8.289 8.287-8.289a8.24 8.24 0 015.86 2.428 8.238 8.238 0 012.427 5.863c0 4.571-3.719 8.289-8.287 8.289zm4.542-6.204c-.249-.124-1.472-.727-1.7-.81-.228-.083-.394-.124-.56.124-.166.249-.643.81-.788.976-.145.166-.29.187-.539.062-.249-.124-1.05-.387-2.001-1.234-.739-.659-1.239-1.474-1.384-1.723-.145-.249-.015-.384.109-.508.112-.111.249-.29.373-.435.124-.145.166-.249.249-.415.083-.166.041-.311-.021-.435-.062-.124-.56-1.349-.768-1.847-.202-.486-.407-.42-.56-.428l-.477-.008c-.166 0-.435.062-.664.311-.228.249-.871.851-.871 2.075 0 1.224.892 2.407 1.016 2.573.124.166 1.756 2.681 4.254 3.759.594.257 1.059.41 1.42.525.597.19 1.14.163 1.57.099.479-.071 1.472-.602 1.68-1.183.207-.581.207-1.079.145-1.183-.062-.104-.228-.166-.477-.29z" />
+      </svg>
+      <span class="whatsapp-pulse"></span>
+    </div>
+    <span class="whatsapp-label">Quick Chat</span>
+  </a>
+</aside>
+
+<style>
+  .whatsapp-floating-wrap {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 990;
+    pointer-events: auto;
+  }
+
+  .whatsapp-floating-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 6px 6px;
+    background: rgba(18, 18, 18, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 106, 0, 0.35);
+    border-radius: 9999px;
+    color: var(--text-1);
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 106, 0, 0.18);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+
+  .whatsapp-icon-circle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .whatsapp-pulse {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1.5px solid #25D366;
+    opacity: 0.8;
+    animation: whatsappPulse 2.8s infinite;
+  }
+
+  @keyframes whatsappPulse {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+  }
+
+  .whatsapp-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--text-1);
+    white-space: nowrap;
+    padding-right: 4px;
+    transition: color 0.3s ease;
+  }
+
+  .whatsapp-floating-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 106, 0, 0.35);
+  }
+
+  .whatsapp-floating-btn:hover .whatsapp-label {
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .whatsapp-floating-wrap {
+      bottom: 20px;
+      right: 20px;
+    }
+    .whatsapp-label {
+      display: none;
+    }
+    .whatsapp-floating-btn {
+      padding: 0;
+      border-radius: 50%;
+    }
+    .whatsapp-icon-circle {
+      width: 46px;
+      height: 46px;
+    }
+  }
+
+  @media print {
+    .whatsapp-floating-wrap {
+      display: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-pulse {
+      animation: none;
+    }
+    .whatsapp-floating-btn {
+      transition: none;
+    }
+  }
+</style>

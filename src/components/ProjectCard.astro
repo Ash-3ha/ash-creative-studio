@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  year?: string;
+  slug: string;
+  gradientFrom?: string;
+  gradientTo?: string;
+  featuredImage?: string;
+  className?: string;
+}
+
+const {
+  title,
+  category,
+  year = '2025',
+  slug,
+  gradientFrom = '#2a1a10',
+  gradientTo = '#0a0a0a',
+  featuredImage,
+  className = 'reveal',
+} = Astro.props;
+---
+
+<a href={`/portfolio/${slug}/`} class:list={['proj-card', className]}>
+  <div
+    class="proj-media"
+    style={`--proj-c1:${gradientFrom};--proj-c2:${gradientTo};`}
+  >
+    {featuredImage && (
+      <img
+        src={featuredImage}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        width="600"
+        height="750"
+      />
+    )}
+    <div class="proj-info">
+      <span class="eyebrow">{category} — {year}</span>
+      <h3>{title}</h3>
+    </div>
+    <span class="proj-view">View Case Study</span>
+  </div>
+</a>

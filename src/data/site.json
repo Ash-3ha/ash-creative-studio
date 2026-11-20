@@ -1,0 +1,19 @@
+{
+  "name": "ASH Creative Studio",
+  "tagline": "Where Creativity Meets Technology",
+  "description": "ASH Creative Studio blends creativity, technology, and strategy to craft powerful brands, immersive visuals, high-end 3D experiences, and performance-driven digital solutions.",
+  "url": "https://ashcreativestudio.com",
+  "ogImage": "/images/uploads/og-default.svg",
+  "email": "hello@ashcreativestudio.com",
+  "phone": "+91 98765 43210",
+  "whatsapp": "+91 98765 43210",
+  "address": "Mumbai & Global Remote [Sample Studio Location]",
+  "gtmId": "GTM-XXXXXXX",
+  "social": {
+    "linkedin": "#",
+    "behance": "#",
+    "artstation": "#",
+    "instagram": "#",
+    "youtube": "#"
+  }
+}

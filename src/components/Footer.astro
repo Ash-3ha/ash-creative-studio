@@ -1,0 +1,108 @@
+---
+import site from '../data/site.json';
+import { getWhatsAppUrl } from '../utils/whatsapp';
+
+const year = new Date().getFullYear();
+const whatsappHref = getWhatsAppUrl(site.whatsapp);
+const cleanPhone = site.phone ? site.phone.replace(/[^\d+]/g, '') : '';
+---
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="logo" style="font-size:16px;">A<b>S</b>H</a>
+      <span class="eyebrow" style="color:var(--text-2);">© {year} {site.name} — All rights reserved</span>
+      <span class="eyebrow" style="color:var(--text-2);">{site.tagline}</span>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/services/">Services</a>
+      <a href="/portfolio/">Portfolio</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+
+    <div class="footer-social">
+      {site.social.linkedin !== '#' && <a href={site.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+      {site.social.behance !== '#' && <a href={site.social.behance} target="_blank" rel="noopener noreferrer">Behance</a>}
+      {site.social.artstation !== '#' && <a href={site.social.artstation} target="_blank" rel="noopener noreferrer">ArtStation</a>}
+      {site.social.instagram !== '#' && <a href={site.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
+      {site.social.youtube !== '#' && <a href={site.social.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>}
+      {site.social.linkedin === '#' && <a href={site.social.linkedin}>LinkedIn</a>}
+      {site.social.behance === '#' && <a href={site.social.behance}>Behance</a>}
+      {site.social.artstation === '#' && <a href={site.social.artstation}>ArtStation</a>}
+      {site.social.instagram === '#' && <a href={site.social.instagram}>Instagram</a>}
+      {site.social.youtube === '#' && <a href={site.social.youtube}>YouTube</a>}
+    </div>
+
+    <div class="footer-contact">
+      <a href={whatsappHref} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="footer">WhatsApp</a>
+      <a href={`mailto:${site.email}`} data-track="email_click" data-track-location="footer">{site.email}</a>
+      <a href={`tel:${cleanPhone}`} data-track="phone_click" data-track-location="footer">{site.phone}</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 44px var(--margin);
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav a,
+  .footer-social a,
+  .footer-contact a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    transition: color 0.3s;
+  }
+
+  .footer-nav a:hover,
+  .footer-social a:hover,
+  .footer-contact a:hover {
+    color: var(--accent);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-contact {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 640px) {
+    .footer-inner {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+title: "Performance Marketing"
+slug: "performance-marketing"
+sortOrder: 1
+tag: "Full-Funnel Media"
+shortDescription: "Algorithmic media buying across Google and Meta optimized against verified outcomes, customer acquisition cost (CAC), and customer lifetime value (LTV)."
+heroSubtitle: "Media buying engineered with artistic precision and rigorous quantitative discipline. We eliminate ad spend waste and scale customer acquisition."
+thesisHeading: "Where Creative Meets Analytical Rigor"
+thesisDescription: "Most agencies either make pretty ads that don't convert, or run quantitative campaigns with generic stock imagery. We unite high-end studio design with algorithmic media buying."
+capabilities:
+  - title: "Full-Funnel Campaign Architecture"
+    desc: "Holistic strategy connecting top-of-funnel awareness to bottom-of-funnel conversion triggers."
+  - title: "Cross-Channel Media Buying"
+    desc: "Integrated ad deployment across Google, Meta, YouTube, and programmatically targeted networks."
+  - title: "Creative Variation & Testing"
+    desc: "High-frequency creative asset testing using motion design, 3D cuts, and benefit-led copywriting."
+  - title: "Server-Side Tracking & CAPI"
+    desc: "Robust first-party data capture resisting browser privacy restrictions and ad blockers."
+  - title: "Landing Page Conversion Rate Optimization"
+    desc: "Dedicated high-converting responsive landing page experiences optimized for quality score."
+  - title: "Attribution & Executive Analytics"
+    desc: "Custom Looker Studio dashboards giving absolute transparency into customer acquisition costs (CAC)."
+methodologyHeading: "How We Scale Campaigns"
+methodologySteps:
+  - num: "01"
+    title: "Audit & Baseline"
+    desc: "Comprehensive tagging audit, pixel validation, tracking fix, and account structure teardown."
+  - num: "02"
+    title: "Creative Engine"
+    desc: "Bespoke video, 3D, and static asset creation aligned to psychological buyer motivations."
+  - num: "03"
+    title: "Algorithmic Scaling"
+    desc: "Bid strategy optimization, audience segmenting, and controlled budget allocation."
+  - num: "04"
+    title: "Iterate & Compound"
+    desc: "Weekly creative refreshes and landing page split tests to combat ad fatigue."
+seoTitle: "Performance Marketing Services — ASH Creative Studio"
+seoDescription: "Data-driven performance marketing campaigns. Full-funnel media buying across Google Ads and Meta Ads engineered for measurable customer acquisition."
+---
+
+Our performance marketing practice treats creative assets and media buying algorithms as a unified feedback loop. Every campaign is tracked from initial impression to final downstream revenue.

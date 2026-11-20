@@ -1,0 +1,161 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import site from '../../data/site.json';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('blog');
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+const allArticles = await getCollection('blog');
+
+// Find related articles
+let related = allArticles.filter(
+  (a) => a.slug !== article.slug && !a.data.draft && article.data.relatedSlugs?.includes(a.slug)
+);
+if (related.length === 0) {
+  related = allArticles.filter((a) => a.slug !== article.slug && !a.data.draft).slice(0, 3);
+}
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: article.data.title }
+];
+
+const pageTitle = article.data.seoTitle || `${article.data.title} — ${site.name} Journal`;
+const pageDesc = article.data.seoDescription || article.data.excerpt || '';
+const canonicalUrl = `${site.url}/blog/${article.slug}/`;
+
+const formattedDate = article.data.publishDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: article.data.title,
+  description: pageDesc,
+  datePublished: article.data.publishDate.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: article.data.author || site.name,
+    url: site.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+  },
+  ...(article.data.featuredImage
+    ? {
+        image: article.data.featuredImage.startsWith('http')
+          ? article.data.featuredImage
+          : `${site.url}${article.data.featuredImage}`,
+      }
+    : {}),
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonicalUrl}
+  ogImage={article.data.featuredImage}
+  ogType="article"
+  schema={schemaData}
+>
+  <section class="page-header">
+    <div class="wrap">
+      <Breadcrumbs items={breadcrumbs} />
+      <span class="eyebrow">{article.data.category}</span>
+      <h1 style="max-width:920px;margin:20px 0;">{article.data.title}</h1>
+      
+      <div style="display:flex;align-items:center;gap:20px;font-family:var(--mono);font-size:12px;color:var(--text-2);margin-top:16px;">
+        <span>By {article.data.author}</span>
+        <span>•</span>
+        <time datetime={article.data.publishDate.toISOString()}>{formattedDate}</time>
+      </div>
+    </div>
+  </header>
+
+  {article.data.featuredImage && (
+    <div class="wrap" style="padding-top:40px;">
+      <div class="proj-media reveal" style="aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--border);">
+        <img src={article.data.featuredImage} alt={article.data.title} style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+    </div>
+  )}
+
+  <!-- Article Prose Content -->
+  <section class="section">
+    <div class="wrap">
+      <article class="article-content reveal">
+        <Content />
+
+        {article.data.tags && article.data.tags.length > 0 && (
+          <div style="margin-top:60px;padding-top:30px;border-top:1px solid var(--border);">
+            <div class="eyebrow" style="margin-bottom:12px;">Tagged Topics</div>
+            <div class="tag-row">
+              {article.data.tags.map((tag) => (
+                <span>#{tag}</span>
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+    </div>
+  </section>
+
+  <!-- Related Articles -->
+  {related.length > 0 && (
+    <section class="section" style="background:var(--bg-2);">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Continue Reading</span>
+            <h2 style="margin-top:8px;">Related Insights</h2>
+          </div>
+        </div>
+
+        <div class="blog-grid" style="margin-top:40px;">
+          {related.map((item) => (
+            <BlogCard
+              title={item.data.title}
+              category={item.data.category}
+              slug={item.slug}
+              featuredImage={item.data.featuredImage}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Article CTA -->
+  <section class="section">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow reveal">Collaboration</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Let's Bring These Insights to Your Brand</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Schedule a conversation with our studio directors.</p>
+      <a href="/contact/" class="btn primary magnetic reveal" data-track="book_call_click" data-track-location="article_bottom">
+        Book Discovery Call <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

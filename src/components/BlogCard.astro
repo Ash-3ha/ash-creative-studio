@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  slug: string;
+  featuredImage?: string;
+  gradientFrom?: string;
+  gradientTo?: string;
+  className?: string;
+}
+
+const {
+  title,
+  category,
+  slug,
+  featuredImage,
+  gradientFrom = '#1a1a24',
+  gradientTo = '#0a0a0a',
+  className = 'reveal',
+} = Astro.props;
+---
+
+<a href={`/blog/${slug}/`} class:list={['blog-card', className]}>
+  <div
+    class="proj-media"
+    style={`--proj-c1:${gradientFrom};--proj-c2:${gradientTo};`}
+  >
+    {featuredImage && (
+      <img
+        src={featuredImage}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        width="600"
+        height="412"
+      />
+    )}
+  </div>
+  <span class="eyebrow">{category}</span>
+  <h4>{title}</h4>
+</a>

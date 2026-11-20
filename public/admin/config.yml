@@ -1,0 +1,227 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  # ==========================================
+  # SERVICES COLLECTION
+  # ==========================================
+  - name: "services"
+    label: "Services"
+    label_singular: "Service"
+    folder: "src/content/services"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Service Title", name: "title", widget: "string" }
+      - { label: "URL Slug", name: "slug", widget: "string", hint: "e.g. performance-marketing, google-ads, 3d-animation" }
+      - { label: "Sort Order", name: "sortOrder", widget: "number", default: 1, value_type: "int" }
+      - { label: "Tag / Category Pill", name: "tag", widget: "string", default: "Service" }
+      - { label: "Short Description (Card Overview)", name: "shortDescription", widget: "text" }
+      - { label: "Page Hero Subtitle", name: "heroSubtitle", widget: "text", required: false }
+      - { label: "Thesis Section Heading", name: "thesisHeading", widget: "string", required: false }
+      - { label: "Thesis Section Description", name: "thesisDescription", widget: "text", required: false }
+      - label: "Core Capabilities"
+        name: "capabilities"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Capability Title", name: "title", widget: "string" }
+          - { label: "Description", name: "desc", widget: "text" }
+      - { label: "Methodology Section Heading", name: "methodologyHeading", widget: "string", required: false }
+      - label: "Methodology Steps"
+        name: "methodologySteps"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Step Number (e.g. 01)", name: "num", widget: "string" }
+          - { label: "Step Title", name: "title", widget: "string" }
+          - { label: "Step Description", name: "desc", widget: "text" }
+      - { label: "SEO Title", name: "seoTitle", widget: "string", required: false }
+      - { label: "SEO Meta Description", name: "seoDescription", widget: "text", required: false }
+      - { label: "Detailed Overview / Case Story (Markdown)", name: "body", widget: "markdown", required: false }
+
+  # ==========================================
+  # PORTFOLIO CASE STUDIES COLLECTION
+  # ==========================================
+  - name: "portfolio"
+    label: "Portfolio Projects"
+    label_singular: "Project"
+    folder: "src/content/portfolio"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Project Title", name: "title", widget: "string" }
+      - { label: "Client Name", name: "client", widget: "string", required: false }
+      - { label: "Industry", name: "industry", widget: "string", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Brand Identity", "3D Visualization", "3D & Animation", "Performance Marketing", "Creative Design", "SEO Services", "Web Development"] }
+      - { label: "Year", name: "year", widget: "string", default: "2025" }
+      - { label: "Project Overview", name: "overview", widget: "text" }
+      - { label: "Objective", name: "objective", widget: "text", required: false }
+      - { label: "Strategy", name: "strategy", widget: "text", required: false }
+      - { label: "Execution", name: "execution", widget: "text", required: false }
+      - { label: "Deliverables List", name: "deliverables", widget: "list", required: false }
+      - { label: "Verified Results", name: "results", widget: "list", required: false, hint: "Only verified client results" }
+      - { label: "Featured Hero Image", name: "featuredImage", widget: "image", required: false }
+      - { label: "Additional Gallery Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
+      - { label: "Gradient Start Color", name: "gradientFrom", widget: "string", default: "#2a1a10" }
+      - { label: "Gradient End Color", name: "gradientTo", widget: "string", default: "#0a0a0a" }
+      - { label: "Draft Mode", name: "draft", widget: "boolean", default: false }
+      - { label: "Sort Order", name: "sortOrder", widget: "number", default: 0, value_type: "int" }
+      - { label: "SEO Title", name: "seoTitle", widget: "string", required: false }
+      - { label: "SEO Meta Description", name: "seoDescription", widget: "text", required: false }
+      - { label: "Case Study Body Narrative (Markdown)", name: "body", widget: "markdown" }
+
+  # ==========================================
+  # BLOG ARTICLES COLLECTION
+  # ==========================================
+  - name: "blog"
+    label: "Blog Articles"
+    label_singular: "Article"
+    folder: "src/content/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Article Title", name: "title", widget: "string" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
+      - { label: "Author", name: "author", widget: "string", default: "ASH Creative Studio" }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Excerpt Summary", name: "excerpt", widget: "text", required: false }
+      - { label: "Draft Mode", name: "draft", widget: "boolean", default: false }
+      - { label: "Related Article Slugs", name: "relatedSlugs", widget: "list", required: false }
+      - { label: "SEO Title", name: "seoTitle", widget: "string", required: false }
+      - { label: "SEO Meta Description", name: "seoDescription", widget: "text", required: false }
+      - { label: "Article Content (Markdown)", name: "body", widget: "markdown" }
+
+  # ==========================================
+  # TESTIMONIALS COLLECTION
+  # ==========================================
+  - name: "testimonials"
+    label: "Testimonials"
+    label_singular: "Testimonial"
+    folder: "src/content/testimonials"
+    extension: "json"
+    format: "json"
+    create: true
+    delete: true
+    slug: "{{name}}"
+    fields:
+      - { label: "Client Name", name: "name", widget: "string" }
+      - { label: "Role & Title", name: "role", widget: "string" }
+      - { label: "Company", name: "company", widget: "string" }
+      - { label: "Testimonial Quote", name: "quote", widget: "text" }
+      - { label: "Client Avatar Image", name: "avatar", widget: "image", required: false }
+      - { label: "Sort Order", name: "sortOrder", widget: "number", default: 0, value_type: "int" }
+
+  # ==========================================
+  # SITE SETTINGS & PAGES CONTENT (SINGLETONS)
+  # ==========================================
+  - name: "settings"
+    label: "Site Settings & Content"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "site"
+        label: "Contact & Analytics Settings"
+        file: "src/data/site.json"
+        fields:
+          - { label: "Studio Name", name: "name", widget: "string" }
+          - { label: "Studio Tagline", name: "tagline", widget: "string" }
+          - { label: "Site Meta Description", name: "description", widget: "text" }
+          - { label: "Production Canonical URL", name: "url", widget: "string" }
+          - { label: "Default Social Share Image (OG Image)", name: "ogImage", widget: "image", required: false }
+          - { label: "Business Email", name: "email", widget: "string" }
+          - { label: "Phone Number", name: "phone", widget: "string" }
+          - { label: "WhatsApp Contact Number", name: "whatsapp", widget: "string" }
+          - { label: "Studio Physical Address", name: "address", widget: "string" }
+          - { label: "Google Tag Manager ID", name: "gtmId", widget: "string", hint: "Set to your live container ID (e.g. GTM-XXXXXXX)" }
+          - label: "Social Media Channels"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+              - { label: "Behance URL", name: "behance", widget: "string", required: false }
+              - { label: "ArtStation URL", name: "artstation", widget: "string", required: false }
+              - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+              - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
+
+      - name: "home"
+        label: "Home Page Copy & Headings"
+        file: "src/data/home.json"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow Text", name: "eyebrow", widget: "string" }
+              - { label: "Main Headline", name: "headline", widget: "string" }
+              - { label: "Paragraph Description", name: "description", widget: "text" }
+              - { label: "Primary Button Label", name: "ctaPrimaryLabel", widget: "string" }
+              - { label: "Secondary Button Label", name: "ctaSecondaryLabel", widget: "string" }
+          - label: "Philosophy Section"
+            name: "philosophy"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline Part 1", name: "headline", widget: "string" }
+              - { label: "Headline Part 2 (Italic Light)", name: "lightHeadline", widget: "string" }
+              - { label: "First Paragraph", name: "paragraph1", widget: "text" }
+              - { label: "Second Paragraph", name: "paragraph2", widget: "text" }
+              - { label: "Vision", name: "vision", widget: "string" }
+              - { label: "Mission", name: "mission", widget: "string" }
+              - { label: "Values", name: "values", widget: "string" }
+          - label: "Stats & Numbers"
+            name: "stats"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "Disclaimer Note", name: "disclaimer", widget: "string" }
+              - label: "Stat Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Metric Number", name: "count", widget: "number", value_type: "int" }
+                  - { label: "Suffix (e.g. + or %)", name: "suffix", widget: "string" }
+                  - { label: "Metric Label", name: "label", widget: "string" }
+
+      - name: "navigation"
+        label: "Header Navigation Links"
+        file: "src/data/navigation.json"
+        fields:
+          - label: "Main Menu Links"
+            name: "main"
+            widget: "list"
+            fields:
+              - { label: "Link Label", name: "label", widget: "string" }
+              - { label: "Destination URL", name: "href", widget: "string" }
+              - label: "Submenu Items"
+                name: "children"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Submenu Label", name: "label", widget: "string" }
+                  - { label: "Submenu URL", name: "href", widget: "string" }
+          - label: "Call To Action Button"
+            name: "cta"
+            widget: "object"
+            fields:
+              - { label: "Button Label", name: "label", widget: "string" }
+              - { label: "Button Link", name: "href", widget: "string" }

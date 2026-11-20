@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090909"/>
+      <stop offset="50%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#0c0c0c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#FF6A00" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#FF6A00" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <line x1="80" y1="80" x2="1120" y2="80" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <line x1="80" y1="550" x2="1120" y2="550" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  
+  <text x="80" y="140" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="16" letter-spacing="4">ASH CREATIVE STUDIO</text>
+  <text x="80" y="280" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="64" font-weight="500">Where Creativity Meets</text>
+  <text x="80" y="360" fill="#FF6A00" font-family="'Playfair Display', serif" font-size="64" font-style="italic" font-weight="500">Technology.</text>
+  <text x="80" y="440" fill="#9C9C9C" font-family="'Inter', sans-serif" font-size="22" font-weight="300">Brand Identity • 3D Production • Performance Marketing • Web Development</text>
+  
+  <text x="80" y="585" fill="#9C9C9C" font-family="'IBM Plex Mono', monospace" font-size="13">ashcreativestudio.com</text>
+  <circle cx="1060" cy="300" r="100" fill="none" stroke="rgba(255,106,0,0.3)" stroke-width="1"/>
+  <circle cx="1060" cy="300" r="60" fill="none" stroke="#FF6A00" stroke-width="2"/>
+</svg>
