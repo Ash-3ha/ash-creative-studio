@@ -11,9 +11,11 @@ const activeGtmId = envGtmId || propGtmId;
 const isConfigured = activeGtmId && activeGtmId !== 'GTM-XXXXXXX';
 ---
 
-<!-- Global Google Tag Manager dataLayer Initialization (Always in <head>) -->
+<!-- Global Google Tag Manager dataLayer & gtag Initialization (Always in <head>) -->
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  gtag('js', new Date());
 </script>
 
 {/* Google Tag Manager Container Script */}
