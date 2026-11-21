@@ -7,20 +7,27 @@
  * - Meta Pixel (Lead, Contact, ViewContent, Schedule via GTM triggers)
  */
 
+let lastPageviewLocation = '';
+
 /**
- * Universal safe dataLayer pusher with debugging support
+ * Universal safe dataLayer pusher with admin suppression and debugging support
  */
 export function pushDataLayer(payload) {
   if (typeof window === 'undefined') return;
+
+  // Ensure admin pages (/admin and Decap CMS) never trigger marketing conversion events
+  if (window.location.pathname.startsWith('/admin')) {
+    return;
+  }
+
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);
 
   // Helpful console logging for local testing & preview verification
   if (
-    typeof window !== 'undefined' &&
-    (window.location.search.includes('gtm_debug=1') ||
-      window.location.hostname === 'localhost' ||
-      window.location.hostname === '127.0.0.1')
+    window.location.search.includes('gtm_debug=1') ||
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1'
   ) {
     console.log(`[GTM dataLayer: ${payload.event}]`, payload);
   }
@@ -30,17 +37,39 @@ export function pushDataLayer(payload) {
  * Generic event tracker
  */
 export function trackEvent(name, params = {}) {
+  if (typeof window === 'undefined' || window.location.pathname.startsWith('/admin')) return;
+
   pushDataLayer({
     event: name,
-    page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    page_path: window.location.pathname,
     page_title: typeof document !== 'undefined' ? document.title : '',
-    page_location: typeof window !== 'undefined' ? window.location.href : '',
+    page_location: window.location.href,
     ...params,
   });
 }
 
 /**
+ * SPA & MPA Page View Tracker
+ * Dispatches page_view to GTM without duplicate firing
+ */
+export function trackPageView() {
+  if (typeof window === 'undefined' || window.location.pathname.startsWith('/admin')) return;
+
+  const currentLocation = window.location.href;
+  if (currentLocation === lastPageviewLocation) return;
+  lastPageviewLocation = currentLocation;
+
+  pushDataLayer({
+    event: 'page_view',
+    page_path: window.location.pathname,
+    page_title: typeof document !== 'undefined' ? document.title : '',
+    page_location: currentLocation,
+  });
+}
+
+/**
  * 1. Form Submission (Google Ads Lead conversion / Meta Lead)
+ * Invoked ONLY after form validation and successful backend response
  */
 export function trackContactFormSubmit(params = {}) {
   trackEvent('contact_form_submit', {
@@ -139,7 +168,11 @@ function inferCtaLocation(el) {
  * Global click delegation for all tracked elements
  */
 if (typeof document !== 'undefined') {
+  // Listen for clicks on links and buttons
   document.addEventListener('click', (event) => {
+    // Suppress marketing events on admin pages
+    if (window.location.pathname.startsWith('/admin')) return;
+
     const target = event.target;
     if (!target) return;
 
@@ -147,6 +180,10 @@ if (typeof document !== 'undefined') {
     const trackEl = target.closest('[data-track]');
     if (trackEl) {
       const eventName = trackEl.getAttribute('data-track');
+
+      // Contact form submit is handled strictly upon verified form submission, never on simple click
+      if (eventName === 'contact_form_submit') return;
+
       const location = inferCtaLocation(trackEl);
       const text = (trackEl.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
       const href = trackEl.getAttribute('href') || undefined;
@@ -160,7 +197,6 @@ if (typeof document !== 'undefined') {
       };
 
       const handlerMap = {
-        contact_form_submit: trackContactFormSubmit,
         whatsapp_click: trackWhatsAppClick,
         phone_click: trackPhoneClick,
         email_click: trackEmailClick,
@@ -205,4 +241,18 @@ if (typeof document !== 'undefined') {
       });
     }
   });
+
+  // Support Astro SPA View Transitions as well as initial MPA load
+  document.addEventListener('astro:page-load', () => {
+    trackPageView();
+  });
+
+  // Support initial DOM load for MPA
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    trackPageView();
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      trackPageView();
+    }, { once: true });
+  }
 }

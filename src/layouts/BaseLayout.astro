@@ -39,6 +39,8 @@ const isGtmConfigured = activeGtmId && activeGtmId !== 'GTM-XXXXXXX';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {/* Official Google Tag Manager Snippet (Placed as high as possible in <head>) */}
+  <GTM gtmId={activeGtmId} />
   <SEOHead
     title={title}
     description={description}
@@ -48,7 +50,6 @@ const isGtmConfigured = activeGtmId && activeGtmId !== 'GTM-XXXXXXX';
     noindex={noindex}
     schema={schema}
   />
-  <GTM gtmId={activeGtmId} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
