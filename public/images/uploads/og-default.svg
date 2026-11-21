@@ -20,7 +20,7 @@
   <text x="80" y="360" fill="#FF6A00" font-family="'Playfair Display', serif" font-size="64" font-style="italic" font-weight="500">Technology.</text>
   <text x="80" y="440" fill="#9C9C9C" font-family="'Inter', sans-serif" font-size="22" font-weight="300">Brand Identity • 3D Production • Performance Marketing • Web Development</text>
   
-  <text x="80" y="585" fill="#9C9C9C" font-family="'IBM Plex Mono', monospace" font-size="13">ashcreativestudio.com</text>
+  <text x="80" y="585" fill="#9C9C9C" font-family="'IBM Plex Mono', monospace" font-size="13">ashcreatives.in</text>
   <circle cx="1060" cy="300" r="100" fill="none" stroke="rgba(255,106,0,0.3)" stroke-width="1"/>
   <circle cx="1060" cy="300" r="60" fill="none" stroke="#FF6A00" stroke-width="2"/>
 </svg>

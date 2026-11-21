@@ -3,14 +3,14 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ashcreativestudio.com',
+  site: 'https://ashcreatives.in',
   trailingSlash: 'always',
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/admin/'),
       serialize(item) {
         const url = item.url;
-        if (url === 'https://ashcreativestudio.com/') {
+        if (url === 'https://ashcreatives.in/') {
           item.changefreq = 'weekly';
           item.priority = 1.0;
         } else if (
