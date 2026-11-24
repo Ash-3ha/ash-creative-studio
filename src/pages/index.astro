@@ -29,6 +29,13 @@ const rawTestimonials = (await getCollection('testimonials'))
 const serviceEntries = (await getCollection('services'))
   .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 
+const heroCards = home.heroCards || [
+  { id: 'fc1', label: 'Sketchbook', depth: 18, image: '/images/hero/sketchbook.svg', alt: 'Sketchbook creative design' },
+  { id: 'fc2', label: '3D Sculpt', depth: 30, image: '/images/hero/3d-sculpt.svg', alt: '3D sculpt modeling' },
+  { id: 'fc3', label: 'Marketing Dashboard', depth: 12, image: '/images/hero/dashboard.svg', alt: 'Marketing performance dashboard' },
+  { id: 'fc4', label: 'Camera + Lighting', depth: 24, image: '/images/hero/camera-lighting.svg', alt: 'Camera and 3D lighting' },
+];
+
 const homeSchema = [
   {
     '@context': 'https://schema.org',
@@ -103,10 +110,17 @@ const homeSchema = [
     </div>
     <div class="hero-visual" id="heroVisual" aria-hidden="true">
       <div class="blob b1"></div><div class="blob b2"></div>
-      <div class="float-card fc1" data-depth="18">Sketchbook</div>
-      <div class="float-card fc2" data-depth="30">3D Sculpt</div>
-      <div class="float-card fc3" data-depth="12">Marketing Dashboard</div>
-      <div class="float-card fc4" data-depth="24">Camera + Lighting</div>
+      {heroCards.map((card) => (
+        <div class={`float-card ${card.id}`} data-depth={card.depth}>
+          {card.image && (
+            <div class="float-card-media">
+              <img src={card.image} alt={card.alt || card.label} loading="eager" />
+              <div class="float-card-overlay"></div>
+            </div>
+          )}
+          <span class="float-card-label">{card.label}</span>
+        </div>
+      ))}
     </div>
     <div class="scroll-cue"><div class="line"><span></span></div>Scroll</div>
   </section>

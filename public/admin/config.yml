@@ -175,6 +175,15 @@ collections:
               - { label: "Paragraph Description", name: "description", widget: "text" }
               - { label: "Primary Button Label", name: "ctaPrimaryLabel", widget: "string" }
               - { label: "Secondary Button Label", name: "ctaSecondaryLabel", widget: "string" }
+          - label: "Hero Floating Showcase Cards"
+            name: "heroCards"
+            widget: "list"
+            fields:
+              - { label: "Card Identifier (fc1, fc2, fc3, fc4)", name: "id", widget: "string" }
+              - { label: "Title / Label", name: "label", widget: "string" }
+              - { label: "Parallax Depth (10-35)", name: "depth", widget: "number", value_type: "int" }
+              - { label: "Card Image", name: "image", widget: "image" }
+              - { label: "Alt Text Description", name: "alt", widget: "string", required: false }
           - label: "Philosophy Section"
             name: "philosophy"
             widget: "object"

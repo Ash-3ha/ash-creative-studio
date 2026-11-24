@@ -6,6 +6,36 @@
     "ctaPrimaryLabel": "Explore Portfolio",
     "ctaSecondaryLabel": "Book Discovery Call"
   },
+  "heroCards": [
+    {
+      "id": "fc1",
+      "label": "Sketchbook",
+      "depth": 18,
+      "image": "/images/hero/sketchbook.svg",
+      "alt": "Bespoke brand design and sketching"
+    },
+    {
+      "id": "fc2",
+      "label": "3D Sculpt",
+      "depth": 30,
+      "image": "/images/hero/3d-sculpt.svg",
+      "alt": "High fidelity 3D modeling and sculpture"
+    },
+    {
+      "id": "fc3",
+      "label": "Marketing Dashboard",
+      "depth": 12,
+      "image": "/images/hero/dashboard.svg",
+      "alt": "Performance marketing metrics and analytics"
+    },
+    {
+      "id": "fc4",
+      "label": "Camera + Lighting",
+      "depth": 24,
+      "image": "/images/hero/camera-lighting.svg",
+      "alt": "Cinematic 3D lighting and studio camera setup"
+    }
+  ],
   "philosophy": {
     "eyebrow": "02 — Studio Philosophy",
     "headline": "Creativity without strategy is decoration.",

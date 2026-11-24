@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sb-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="sb-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6A00"/>
+      <stop offset="100%" stop-color="#FFA040"/>
+    </linearGradient>
+    <pattern id="sb-grid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M 16 0 L 0 0 0 16" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.75"/>
+    </pattern>
+  </defs>
+  <!-- Background -->
+  <rect width="240" height="180" fill="url(#sb-bg)"/>
+  <rect width="240" height="180" fill="url(#sb-grid)"/>
+
+  <!-- Blueprint / Construction circles -->
+  <circle cx="120" cy="85" r="50" fill="none" stroke="rgba(255,106,0,0.18)" stroke-width="1" stroke-dasharray="3 3"/>
+  <circle cx="120" cy="85" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+  <circle cx="95" cy="85" r="25" fill="none" stroke="rgba(255,106,0,0.12)" stroke-width="0.8"/>
+  <circle cx="145" cy="85" r="25" fill="none" stroke="rgba(255,106,0,0.12)" stroke-width="0.8"/>
+  <line x1="30" y1="85" x2="210" y2="85" stroke="rgba(255,255,255,0.08)" stroke-width="0.75"/>
+  <line x1="120" y1="20" x2="120" y2="150" stroke="rgba(255,255,255,0.08)" stroke-width="0.75"/>
+
+  <!-- Geometric Brand Mark / Sketch Lines -->
+  <path d="M85 115 L120 45 L155 115" fill="none" stroke="url(#sb-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M98 96 L142 96" fill="none" stroke="#FF6A00" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="120" cy="45" r="3" fill="#FF6A00"/>
+  <circle cx="85" cy="115" r="2.5" fill="#F7F7F5"/>
+  <circle cx="155" cy="115" r="2.5" fill="#F7F7F5"/>
+
+  <!-- Golden Ratio Spiral Arc -->
+  <path d="M120 85 A32 32 0 0 1 152 117 A16 16 0 0 1 136 133" fill="none" stroke="rgba(255,106,0,0.4)" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Annotation details -->
+  <text x="18" y="24" fill="rgba(255,255,255,0.4)" font-family="'IBM Plex Mono', monospace" font-size="8" letter-spacing="1">SKETCH // 01</text>
+  <text x="18" y="162" fill="rgba(255,106,0,0.8)" font-family="'IBM Plex Mono', monospace" font-size="7.5" letter-spacing="0.5">GOLDEN RATIO • 1.618</text>
+  <text x="195" y="24" fill="rgba(255,255,255,0.25)" font-family="'IBM Plex Mono', monospace" font-size="7">r:50px</text>
+</svg>
