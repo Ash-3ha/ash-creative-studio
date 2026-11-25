@@ -1,0 +1,353 @@
+---
+interface ReelItem {
+  title: string;
+  platform: string;
+  category?: string;
+  thumbnail: string;
+  videoUrl: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  headline?: string;
+  subtitle?: string;
+  items: ReelItem[];
+}
+
+const {
+  eyebrow = '11 — Social Reels & Shorts',
+  headline = 'In Motion',
+  subtitle = '9:16 vertical previews from our studio — click any bar to watch on Instagram or YouTube.',
+  items = [],
+} = Astro.props;
+---
+
+{items.length > 0 && (
+  <section class="section reels-section" id="social-reels">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">{eyebrow}</span>
+          <h2 style="margin-top:8px;">{headline}</h2>
+        </div>
+        <div class="reels-head-right">
+          <p>{subtitle}</p>
+          <div class="reels-controls" aria-label="Slider Controls">
+            <button type="button" class="reels-nav-btn" id="reelsPrevBtn" aria-label="Previous video">
+              <span aria-hidden="true">←</span>
+            </button>
+            <button type="button" class="reels-nav-btn" id="reelsNextBtn" aria-label="Next video">
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reels-track-wrap reveal">
+        <div class="reels-track" id="reelsTrack" role="region" aria-label="Social Media Video Previews">
+          {items.map((item) => {
+            const isYouTube = item.platform.toLowerCase().includes('youtube');
+            return (
+              <a
+                href={item.videoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="reel-card magnetic"
+                data-track="social_reel_click"
+                data-track-location="home_social_slider"
+                aria-label={`Watch ${item.title} on ${item.platform}`}
+              >
+                <div class="reel-media">
+                  <img src={item.thumbnail} alt={`${item.title} — ${item.platform} preview`} loading="lazy" decoding="async" />
+                  <div class="reel-gradient"></div>
+                </div>
+
+                <div class="reel-top">
+                  <span class={`reel-platform ${isYouTube ? 'yt' : 'ig'}`}>
+                    {isYouTube ? (
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                      </svg>
+                    )}
+                    <span>{item.platform}</span>
+                  </span>
+                </div>
+
+                <div class="reel-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+
+                <div class="reel-bottom">
+                  {item.category && <span class="reel-cat">{item.category}</span>}
+                  <h3 class="reel-title">{item.title}</h3>
+                  <span class="reel-cta">Watch Video ↗</span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .reels-head-right {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .reels-controls {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .reels-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: rgba(18, 18, 18, 0.7);
+    color: var(--text-1);
+    font-family: var(--mono);
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  }
+
+  .reels-nav-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(255, 106, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .reels-track-wrap {
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .reels-track {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 8px 4px 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .reels-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 9:16 Portrait Bars */
+  .reel-card {
+    position: relative;
+    flex: 0 0 250px;
+    aspect-ratio: 9 / 16;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    scroll-snap-align: start;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.35s ease;
+  }
+
+  @media (max-width: 640px) {
+    .reel-card {
+      flex: 0 0 215px;
+    }
+  }
+
+  .reel-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 106, 0, 0.65);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65), 0 0 24px rgba(255, 106, 0, 0.18);
+  }
+
+  .reel-media {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .reel-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reel-card:hover .reel-media img {
+    transform: scale(1.06);
+  }
+
+  .reel-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(9, 9, 9, 0.55) 0%,
+      rgba(9, 9, 9, 0.08) 38%,
+      rgba(9, 9, 9, 0.35) 65%,
+      rgba(9, 9, 9, 0.94) 100%
+    );
+  }
+
+  .reel-top {
+    position: relative;
+    z-index: 3;
+    padding: 14px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .reel-platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 9999px;
+    background: rgba(12, 12, 12, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-1);
+  }
+
+  .reel-platform.ig svg {
+    color: #E1306C;
+  }
+
+  .reel-platform.yt svg {
+    color: #FF0000;
+  }
+
+  .reel-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(15, 15, 15, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.3s ease,
+                border-color 0.3s ease;
+  }
+
+  .reel-card:hover .reel-play-btn {
+    transform: translate(-50%, -50%) scale(1.12);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #090909;
+  }
+
+  .reel-bottom {
+    position: relative;
+    z-index: 3;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .reel-cat {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .reel-title {
+    font-family: var(--display);
+    font-size: 18px;
+    line-height: 1.25;
+    color: var(--text-1);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .reel-cta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    margin-top: 2px;
+    transition: color 0.25s ease;
+  }
+
+  .reel-card:hover .reel-cta {
+    color: var(--accent);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function initReelsSlider() {
+      const track = document.getElementById('reelsTrack');
+      const prevBtn = document.getElementById('reelsPrevBtn');
+      const nextBtn = document.getElementById('reelsNextBtn');
+
+      if (!track || !prevBtn || !nextBtn) return;
+
+      const step = () => {
+        const card = track.querySelector('.reel-card');
+        return card ? card.getBoundingClientRect().width + 22 : 272;
+      };
+
+      prevBtn.addEventListener('click', function () {
+        track.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', function () {
+        track.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initReelsSlider);
+    } else {
+      initReelsSlider();
+    }
+    document.addEventListener('astro:page-load', initReelsSlider);
+  })();
+</script>

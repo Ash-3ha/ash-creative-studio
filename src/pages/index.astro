@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import ProjectCard from '../components/ProjectCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import Testimonials from '../components/Testimonials.astro';
+import SocialReelsSlider from '../components/SocialReelsSlider.astro';
 import ContactForm from '../components/ContactForm.astro';
 import site from '../data/site.json';
 import home from '../data/home.json';
@@ -374,10 +375,20 @@ const homeSchema = [
     </div>
   </section>
 
+  <!-- ============ SOCIAL REELS & SHORTS SLIDER ============ -->
+  {home.socialReels && (
+    <SocialReelsSlider
+      eyebrow={home.socialReels.eyebrow}
+      headline={home.socialReels.headline}
+      subtitle={home.socialReels.subtitle}
+      items={home.socialReels.items}
+    />
+  )}
+
   <!-- ============ CONTACT ============ -->
   <section class="contact-section section" id="contact">
     <div class="wrap">
-      <div class="eyebrow reveal">11 — Start a Project</div>
+      <div class="eyebrow reveal">12 — Start a Project</div>
       <h2 class="reveal">Let's build something extraordinary.</h2>
       
       <ContactForm id="home-contact-form" />

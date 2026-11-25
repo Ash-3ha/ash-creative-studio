@@ -210,6 +210,22 @@ collections:
                   - { label: "Metric Number", name: "count", widget: "number", value_type: "int" }
                   - { label: "Suffix (e.g. + or %)", name: "suffix", widget: "string" }
                   - { label: "Metric Label", name: "label", widget: "string" }
+          - label: "Social Reels & Shorts Slider (9:16)"
+            name: "socialReels"
+            widget: "object"
+            fields:
+              - { label: "Section Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Section Headline", name: "headline", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - label: "Video Preview Bars (9:16 Portrait)"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Project / Video Title", name: "title", widget: "string" }
+                  - { label: "Platform", name: "platform", widget: "select", options: ["Instagram", "YouTube"] }
+                  - { label: "Category Tag", name: "category", widget: "string", required: false }
+                  - { label: "9:16 Preview Image / Thumbnail", name: "thumbnail", widget: "image" }
+                  - { label: "Social Media Video Link (URL)", name: "videoUrl", widget: "string" }
 
       - name: "navigation"
         label: "Header Navigation Links"

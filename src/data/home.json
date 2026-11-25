@@ -57,5 +57,47 @@
       { "count": 98, "suffix": "%", "label": "Satisfaction [Sample]" },
       { "count": 100, "suffix": "%", "label": "Dedication" }
     ]
+  },
+  "socialReels": {
+    "eyebrow": "11 — Social Reels & Shorts",
+    "headline": "In Motion",
+    "subtitle": "9:16 vertical previews from our studio — click any bar to watch on Instagram or YouTube.",
+    "items": [
+      {
+        "title": "3D Product Reveal — Kaia",
+        "platform": "Instagram",
+        "category": "3D Animation",
+        "thumbnail": "/images/reels/reel-1.svg",
+        "videoUrl": "https://www.instagram.com/reels/"
+      },
+      {
+        "title": "Kinetic Brand Film — Solene",
+        "platform": "YouTube",
+        "category": "Motion Design",
+        "thumbnail": "/images/reels/reel-2.svg",
+        "videoUrl": "https://www.youtube.com/shorts/"
+      },
+      {
+        "title": "Studio Lighting Rig BTS",
+        "platform": "Instagram",
+        "category": "3D Lighting",
+        "thumbnail": "/images/reels/reel-3.svg",
+        "videoUrl": "https://www.instagram.com/reels/"
+      },
+      {
+        "title": "4.8x ROAS Creative Breakdown",
+        "platform": "YouTube",
+        "category": "Performance Ads",
+        "thumbnail": "/images/reels/reel-4.svg",
+        "videoUrl": "https://www.youtube.com/shorts/"
+      },
+      {
+        "title": "Luxury Packaging CGI",
+        "platform": "Instagram",
+        "category": "Brand Identity",
+        "thumbnail": "/images/reels/reel-5.svg",
+        "videoUrl": "https://www.instagram.com/reels/"
+      }
+    ]
   }
 }
