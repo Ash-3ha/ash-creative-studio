@@ -37,15 +37,15 @@
     }
   ],
   "about": {
-    "eyebrow": "02 — About Me",
-    "headline": "Marketing guided by data.",
-    "lightHeadline": "Communication shaped by design.",
     "paragraph1": "I'm Akash Thirumal, currently working as a Digital Marketing and Visual Marketing Executive at SPT Hospitals in Coimbatore, with around 6–12 months of hands-on professional experience.",
     "paragraph2": "Rather than treating marketing numbers and visual craft as separate tracks, I work across both—planning paid campaigns, configuring conversion tracking, designing graphics, editing video content, and keeping websites and landing pages clear and effective.",
-    "roleSummary": "Digital Marketing & Visual Marketing Executive at SPT Hospitals",
+    "eyebrow": "02 — About Me",
+    "lightHeadline": "Communication shaped by design.",
+    "portraitCaption": "Akash Thirumal — Coimbatore, India",
     "focusSummary": "Performance Marketing, Analytics Tracking & Visual Content",
+    "roleSummary": "Digital Marketing & Visual Marketing Executive at SPT Hospitals",
     "goalSummary": "Building measurable campaigns and thoughtful digital experiences",
-    "portraitCaption": "Akash Thirumal — Coimbatore, India"
+    "headline": "Marketing guided by data."
   },
   "skillGroups": [
     {
@@ -105,40 +105,64 @@
     }
   ],
   "experience": {
-    "eyebrow": "05 — Experience",
-    "headline": "Current Role & Responsibilities",
-    "subtitle": "How I contribute day to day across marketing execution and visual communication.",
     "roleTitle": "Digital Marketing and Visual Marketing Executive",
-    "organization": "SPT Hospitals, Coimbatore",
-    "duration": "Current Role • ~6–12 Months Experience",
-    "overview": "[Placeholder — Add a short 2–3 line summary of your role and day-to-day priorities at SPT Hospitals through the CMS.]",
-    "individualTitle": "What I Personally Handle",
+    "collaborativeTitle": "Where I Collaborate",
     "individualItems": [
       "Designing graphic creatives and editing short-form video content for social and digital campaigns",
       "Managing website content updates, CMS edits, and landing-page updates",
       "Setting up and monitoring Google Analytics, Google Tag Manager, and Google Search Console tracking",
       "[Placeholder — Add specific tasks or campaigns you own directly]"
     ],
-    "collaborativeTitle": "Where I Collaborate",
+    "eyebrow": "05 — Experience",
     "collaborativeItems": [
       "Working with hospital departments and internal stakeholders to translate medical information into clear visuals and campaign copy",
       "Supporting broader Google Ads, Meta Ads, and social media initiatives aligned with team calendars",
       "[Placeholder — Add collaborative shoots, events, or cross-team campaigns]"
-    ]
+    ],
+    "organization": "SPT Hospitals, Coimbatore",
+    "duration": "Current Role • ~12 Months Experience",
+    "headline": "Current Role & Responsibilities",
+    "subtitle": "How I contribute day to day across marketing execution and visual communication.",
+    "overview": "[Placeholder — Add a short 2–3 line summary of your role and day-to-day priorities at SPT Hospitals through the CMS.]",
+    "individualTitle": "What I Personally Handle"
   },
   "tools": {
     "eyebrow": "07 — Platforms & Tools",
     "headline": "Tools I Work With",
     "subtitle": "Core platforms across ads, analytics, and digital publishing — update or expand this list anytime in the CMS.",
     "items": [
-      { "name": "Google Ads", "size": "lg" },
-      { "name": "Meta Ads", "size": "lg" },
-      { "name": "Google Analytics (GA4)", "size": "" },
-      { "name": "Google Tag Manager", "size": "" },
-      { "name": "Google Search Console", "size": "" },
-      { "name": "Graphic Design", "size": "sm" },
-      { "name": "Video Editing", "size": "sm" },
-      { "name": "Landing Pages & CMS", "size": "sm" }
+      {
+        "name": "Google Ads",
+        "size": "lg"
+      },
+      {
+        "name": "Meta Ads",
+        "size": "lg"
+      },
+      {
+        "name": "Google Analytics (GA4)",
+        "size": ""
+      },
+      {
+        "name": "Google Tag Manager",
+        "size": ""
+      },
+      {
+        "name": "Google Search Console",
+        "size": ""
+      },
+      {
+        "name": "Graphic Design",
+        "size": "sm"
+      },
+      {
+        "name": "Video Editing",
+        "size": "sm"
+      },
+      {
+        "name": "Landing Pages & CMS",
+        "size": "sm"
+      }
     ]
   },
   "socialReels": {
