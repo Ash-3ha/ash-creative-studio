@@ -24,10 +24,11 @@ export default defineConfig({
           url.includes('/performance-marketing/') ||
           url.includes('/google-ads/') ||
           url.includes('/meta-ads/') ||
+          url.includes('/analytics-tracking/') ||
           url.includes('/social-media-marketing/') ||
           url.includes('/seo-services/') ||
           url.includes('/creative-design/') ||
-          url.includes('/3d-animation/')
+          url.includes('/video-editing/')
         ) {
           item.changefreq = 'monthly';
           item.priority = 0.85;

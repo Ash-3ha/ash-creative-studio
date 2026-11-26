@@ -12,40 +12,39 @@ const breadcrumbs = [
 
 const whatsappHref = getWhatsAppUrl(
   site.whatsapp,
-  'Hello ASH Creative Studio, I would like to discuss a new project brief.'
+  'Hi Akash, I visited your portfolio and would like to get in touch.'
 );
 const cleanPhone = site.phone.replace(/[^\d+]/g, '');
 
 const contactSchema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
-  name: `Contact & Project Inquiries — ${site.name}`,
-  description: 'Initiate a project with ASH Creative Studio. Tell us about your brand vision, scope, and timeline, and we will get back within 24 business hours.',
+  name: `Contact — ${site.name}`,
+  description: 'Get in touch with Akash Thirumal directly via the contact form, email, phone, or WhatsApp for opportunities, collaborations, or project enquiries.',
   url: `${site.url}/contact/`,
   mainEntity: {
-    '@type': 'ProfessionalService',
+    '@type': 'Person',
     name: site.name,
     url: `${site.url}/`,
+    jobTitle: 'Digital Marketing and Visual Marketing Executive',
     email: site.email,
     telephone: site.phone,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Mumbai',
-      addressCountry: 'IN',
-    },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: site.phone,
-      contactType: 'customer support',
-      availableLanguage: ['English', 'Hindi'],
+    homeLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Coimbatore',
+        addressRegion: 'TN',
+        addressCountry: 'IN',
+      },
     },
   },
 };
 ---
 
 <BaseLayout
-  title={`Contact & Project Inquiries — ${site.name}`}
-  description="Initiate a project with ASH Creative Studio. Tell us about your brand vision, scope, and timeline, and we will get back within 24 business hours."
+  title={`Contact — ${site.name}`}
+  description="Get in touch with Akash Thirumal directly via the contact form, email, phone, or WhatsApp for opportunities, collaborations, or project enquiries."
   canonical={`${site.url}/contact/`}
   schema={contactSchema}
 >
@@ -53,8 +52,8 @@ const contactSchema = {
     <div class="wrap">
       <Breadcrumbs items={breadcrumbs} />
       <span class="eyebrow">Direct Contact</span>
-      <h1>Let's Build Something <span style="color:var(--accent);">Extraordinary.</span></h1>
-      <p class="section-sub">We review all project briefs within 24 business hours. Tell us about your goals, timeline, and current challenges.</p>
+      <h1>Let's <span style="color:var(--accent);">Connect.</span></h1>
+      <p class="section-sub">Feel free to reach out directly regarding digital marketing roles, collaborations, campaigns, or creative work.</p>
     </div>
   </section>
 
@@ -62,17 +61,17 @@ const contactSchema = {
     <div class="wrap contact-grid">
       <!-- Main Form -->
       <div>
-        <span class="eyebrow reveal" style="margin-bottom:16px;">Project Brief</span>
-        <h2 class="reveal" style="font-size:32px;margin-bottom:32px;">Send an Enquiry</h2>
+        <span class="eyebrow reveal" style="margin-bottom:16px;">Write to Me</span>
+        <h2 class="reveal" style="font-size:32px;margin-bottom:32px;">Send a Message</h2>
         <ContactForm id="contact-page-form" />
       </div>
 
-      <!-- Direct Channels & Office Info -->
+      <!-- Direct Channels -->
       <div class="direct-channels-card reveal">
         <span class="eyebrow" style="color:var(--accent);">Direct Channels</span>
-        <h3 style="font-size:24px;margin:12px 0 24px;color:var(--text-1);">Prefer a Direct Conversation?</h3>
+        <h3 style="font-size:24px;margin:12px 0 24px;color:var(--text-1);">Reach Me Directly</h3>
         <p style="color:var(--text-2);font-size:14px;line-height:1.7;margin-bottom:32px;">
-          Reach out directly via WhatsApp, email, or telephone for expedited project discovery or partnership discussions.
+          Prefer a direct conversation? You can message me on WhatsApp, send an email, or call using the contact details below.
         </p>
 
         <div style="display:flex;flex-direction:column;gap:16px;">
@@ -86,7 +85,7 @@ const contactSchema = {
             style="justify-content:flex-start;width:100%;"
           >
             <span style="color:#25D366;font-size:18px;">💬</span>
-            <span>WhatsApp Us ({formatWhatsAppDisplay(site.whatsapp)})</span>
+            <span>WhatsApp ({formatWhatsAppDisplay(site.whatsapp)})</span>
           </a>
 
           <a
@@ -113,21 +112,20 @@ const contactSchema = {
         </div>
 
         <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border);">
-          <div class="eyebrow" style="margin-bottom:8px;">Studio Location</div>
+          <div class="eyebrow" style="margin-bottom:8px;">Based In</div>
           <p style="font-size:14px;color:var(--text-1);">{site.address}</p>
         </div>
 
         <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--border);">
-          <div class="eyebrow" style="margin-bottom:12px;">Social Networks</div>
+          <div class="eyebrow" style="margin-bottom:12px;">Social Profiles</div>
           <div style="display:flex;flex-wrap:wrap;gap:16px;">
             {site.social.linkedin !== '#' && <a href={site.social.linkedin} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">LinkedIn</a>}
             {site.social.behance !== '#' && <a href={site.social.behance} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">Behance</a>}
-            {site.social.artstation !== '#' && <a href={site.social.artstation} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">ArtStation</a>}
             {site.social.instagram !== '#' && <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">Instagram</a>}
             {site.social.youtube !== '#' && <a href={site.social.youtube} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">YouTube</a>}
-            {site.social.linkedin === '#' && <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">LinkedIn</span>}
-            {site.social.behance === '#' && <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">Behance</span>}
-            {site.social.instagram === '#' && <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">Instagram</span>}
+            {site.social.linkedin === '#' && <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">LinkedIn (Add URL in CMS)</span>}
+            {site.social.instagram === '#' && <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">Instagram (Add URL in CMS)</span>}
+            {site.social.youtube === '#' && <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);text-transform:uppercase;">YouTube (Add URL in CMS)</span>}
           </div>
         </div>
       </div>

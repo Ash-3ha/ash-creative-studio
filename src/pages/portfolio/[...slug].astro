@@ -21,7 +21,7 @@ const breadcrumbs = [
   { label: project.data.title }
 ];
 
-const pageTitle = project.data.seoTitle || `${project.data.title} — Case Study | ${site.name}`;
+const pageTitle = project.data.seoTitle || `${project.data.title} — ${site.name}`;
 const pageDesc = project.data.seoDescription || project.data.overview;
 const canonicalUrl = `${site.url}/portfolio/${project.slug}/`;
 
@@ -39,12 +39,7 @@ const schemaData = {
       : `${site.url}${project.data.featuredImage}`
     : undefined,
   creator: {
-    '@type': 'Organization',
-    name: site.name,
-    url: site.url,
-  },
-  publisher: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: site.name,
     url: site.url,
   },
@@ -61,31 +56,31 @@ const schemaData = {
   <section class="page-header">
     <div class="wrap">
       <Breadcrumbs items={breadcrumbs} />
-      <span class="eyebrow">{project.data.category} — {project.data.year}</span>
+      <span class="eyebrow">{project.data.projectType} • {project.data.category} — {project.data.year}</span>
       <h1>{project.data.title}</h1>
       <p class="section-sub">{project.data.overview}</p>
 
-      <!-- Case Study Meta Bar -->
+      <!-- Project Meta Bar -->
       <div class="case-study-meta">
         <div>
-          <div class="lab">Client</div>
-          <div class="val">{project.data.client || 'Confidential'}</div>
+          <div class="lab">Project Type</div>
+          <div class="val">{project.data.projectType}</div>
         </div>
         <div>
-          <div class="lab">Industry</div>
-          <div class="val">{project.data.industry || 'Multi-disciplinary'}</div>
+          <div class="lab">Context / Organization</div>
+          <div class="val">{project.data.organization || 'Personal Project'}</div>
         </div>
         <div>
-          <div class="lab">Category</div>
-          <div class="val">{project.data.category}</div>
+          <div class="lab">My Role</div>
+          <div class="val">{project.data.role || 'Individual Contributor'}</div>
         </div>
         <div>
-          <div class="lab">Timeline</div>
-          <div class="val">{project.data.year}</div>
+          <div class="lab">Category &amp; Year</div>
+          <div class="val">{project.data.category} ({project.data.year})</div>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- Project Visual Header -->
   <section class="section" style="padding:60px 0;">
@@ -113,29 +108,29 @@ const schemaData = {
     </div>
   </section>
 
-  <!-- Structured Strategic Sections -->
-  {(project.data.objective || project.data.strategy || project.data.execution) && (
+  <!-- Objective, Role & Execution -->
+  {(project.data.objective || project.data.myContribution || project.data.execution) && (
     <section class="section" style="background:var(--bg-2);">
       <div class="wrap">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;">
           {project.data.objective && (
             <div class="reveal">
               <span class="eyebrow">01 — Objective</span>
-              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">The Challenge</h3>
+              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">Goal</h3>
               <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{project.data.objective}</p>
             </div>
           )}
-          {project.data.strategy && (
+          {project.data.myContribution && (
             <div class="reveal">
-              <span class="eyebrow">02 — Strategy</span>
-              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">The Direction</h3>
-              <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{project.data.strategy}</p>
+              <span class="eyebrow">02 — My Role</span>
+              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">Contribution</h3>
+              <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{project.data.myContribution}</p>
             </div>
           )}
           {project.data.execution && (
             <div class="reveal">
               <span class="eyebrow">03 — Execution</span>
-              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">The Solution</h3>
+              <h3 style="font-size:20px;margin:12px 0 10px;color:var(--text-1);">What Was Built / Done</h3>
               <p style="color:var(--text-2);font-size:14px;line-height:1.7;">{project.data.execution}</p>
             </div>
           )}
@@ -144,14 +139,14 @@ const schemaData = {
     </section>
   )}
 
-  <!-- Deliverables & Results -->
+  <!-- Deliverables & Outcomes -->
   <section class="section">
     <div class="wrap">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:60px;align-items:start;">
         {project.data.deliverables && project.data.deliverables.length > 0 && (
           <div class="reveal">
-            <span class="eyebrow">Project Deliverables</span>
-            <h2 style="font-size:28px;margin:12px 0 24px;">Scope of Work</h2>
+            <span class="eyebrow">Work Included</span>
+            <h2 style="font-size:28px;margin:12px 0 24px;">Key Outputs</h2>
             <div class="deliverables-list">
               {project.data.deliverables.map((item) => (
                 <span class="deliverable-tag">✓ {item}</span>
@@ -160,13 +155,12 @@ const schemaData = {
           </div>
         )}
 
-        {project.data.results && project.data.results.length > 0 && (
+        {project.data.outcomes && project.data.outcomes.length > 0 && (
           <div class="reveal">
-            <span class="eyebrow">Measurable Outcomes</span>
-            <h2 style="font-size:28px;margin:12px 0 12px;">Verified Results</h2>
-            <p style="font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:20px;">[Verified client outcome metric]</p>
+            <span class="eyebrow">Summary</span>
+            <h2 style="font-size:28px;margin:12px 0 16px;">Outcome &amp; Takeaways</h2>
             <ul style="list-style:none;padding:0;">
-              {project.data.results.map((res) => (
+              {project.data.outcomes.map((res) => (
                 <li style="padding:14px 0;border-top:1px solid var(--border);color:var(--text-1);font-size:15px;display:flex;align-items:center;gap:12px;">
                   <span style="color:var(--accent);font-weight:600;">→</span> {res}
                 </li>
@@ -193,14 +187,14 @@ const schemaData = {
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">Visual Documentation</span>
+            <span class="eyebrow">Visuals</span>
             <h2 style="margin-top:8px;">Project Gallery</h2>
           </div>
         </div>
         <div class="projects-grid" style="margin-top:40px;">
           {project.data.images.map((img, i) => (
             <div class="reveal" style="border-radius:12px;overflow:hidden;border:1px solid var(--border);">
-              <img src={img} alt={`${project.data.title} asset ${i + 1}`} loading="lazy" decoding="async" />
+              <img src={img} alt={`${project.data.title} visual ${i + 1}`} loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
@@ -211,12 +205,12 @@ const schemaData = {
   <!-- Next Step CTA -->
   <section class="section">
     <div class="wrap" style="text-align:center;">
-      <span class="eyebrow reveal">Next Step</span>
-      <h2 class="reveal" style="margin:16px 0 20px;">Interested in Similar Work for Your Brand?</h2>
-      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Let's schedule a discovery consultation to explore goals, scope, and timeline.</p>
+      <span class="eyebrow reveal">Connect</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Want to Discuss This Project?</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Feel free to reach out if you have questions about my process, tracking setup, or creative execution.</p>
       <div class="reveal" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <a href="/contact/" class="btn primary magnetic" data-track="primary_cta_click" data-track-location="case_study_bottom">
-          Start a Project <span class="arrow">→</span>
+          Let's Connect <span class="arrow">→</span>
         </a>
         <a href="/portfolio/" class="btn ghost magnetic">
           Back to Portfolio

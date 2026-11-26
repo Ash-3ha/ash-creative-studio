@@ -1,100 +1,183 @@
 {
   "hero": {
-    "eyebrow": "Where Creativity Meets Technology",
-    "headline": "Creating digital experiences that inspire, engage & perform.",
-    "description": "ASH Creative Studio blends creativity, technology, and strategy to craft powerful brands, immersive visuals, high-end 3D experiences, and performance-driven digital solutions.",
-    "ctaPrimaryLabel": "Explore Portfolio",
-    "ctaSecondaryLabel": "Book Discovery Call"
+    "eyebrow": "Akash Thirumal — Digital Marketer & Visual Creative",
+    "headline": "Building Digital Experiences Through Marketing & Creativity.",
+    "description": "I'm a digital marketer and visual creative focused on performance marketing, digital campaigns, content creation and visual communication. I combine analytical thinking with creative execution to build meaningful digital experiences.",
+    "ctaPrimaryLabel": "Explore My Work",
+    "ctaSecondaryLabel": "Let's Connect"
   },
   "heroCards": [
     {
       "id": "fc1",
-      "label": "Sketchbook",
+      "label": "Visual Creative",
       "depth": 18,
       "image": "/images/hero/sketchbook.svg",
-      "alt": "Bespoke brand design and sketching"
+      "alt": "Graphic design layout and visual communication work"
     },
     {
       "id": "fc2",
-      "label": "3D Sculpt",
+      "label": "Video & Reels",
       "depth": 30,
-      "image": "/images/hero/3d-sculpt.svg",
-      "alt": "High fidelity 3D modeling and sculpture"
+      "image": "/images/hero/video-reels.svg",
+      "alt": "Short-form video editing and social media content"
     },
     {
       "id": "fc3",
-      "label": "Marketing Dashboard",
+      "label": "Ads & Analytics",
       "depth": 12,
       "image": "/images/hero/dashboard.svg",
-      "alt": "Performance marketing metrics and analytics"
+      "alt": "Performance campaign tracking with Google Ads, Meta Ads and GA4"
     },
     {
       "id": "fc4",
-      "label": "Camera + Lighting",
+      "label": "Web & SEO",
       "depth": 24,
       "image": "/images/hero/camera-lighting.svg",
-      "alt": "Cinematic 3D lighting and studio camera setup"
+      "alt": "Landing page development, CMS updates and SEO fundamentals"
     }
   ],
-  "philosophy": {
-    "eyebrow": "02 — Studio Philosophy",
-    "headline": "Creativity without strategy is decoration.",
-    "lightHeadline": "Strategy without creativity is invisible.",
-    "paragraph1": "ASH was founded on the belief that the best digital work sits at the intersection of art and analytics — where a sketch and a spreadsheet inform the same decision.",
-    "paragraph2": "We're not a design agency that also does marketing, or a marketing shop that also designs. We're a single studio built to carry an idea from first pencil line to measurable business growth, without losing the thread in the handoff.",
-    "vision": "Design that performs as well as it looks.",
-    "mission": "One studio, every discipline, one strategy.",
-    "values": "Craft, rigor, honesty, momentum."
+  "about": {
+    "eyebrow": "02 — About Me",
+    "headline": "Marketing guided by data.",
+    "lightHeadline": "Communication shaped by design.",
+    "paragraph1": "I'm Akash Thirumal, currently working as a Digital Marketing and Visual Marketing Executive at SPT Hospitals in Coimbatore, with around 6–12 months of hands-on professional experience.",
+    "paragraph2": "Rather than treating marketing numbers and visual craft as separate tracks, I work across both—planning paid campaigns, configuring conversion tracking, designing graphics, editing video content, and keeping websites and landing pages clear and effective.",
+    "roleSummary": "Digital Marketing & Visual Marketing Executive at SPT Hospitals",
+    "focusSummary": "Performance Marketing, Analytics Tracking & Visual Content",
+    "goalSummary": "Building measurable campaigns and thoughtful digital experiences",
+    "portraitCaption": "Akash Thirumal — Coimbatore, India"
   },
-  "stats": {
-    "eyebrow": "07 — Track Record",
-    "headline": "Why Choose ASH",
-    "disclaimer": "[Sample metrics — illustrative placeholders]",
+  "skillGroups": [
+    {
+      "num": "01",
+      "title": "Performance Marketing",
+      "summary": "Planning, launching, and optimising paid campaigns focused on qualified reach and lead generation.",
+      "linkHref": "/performance-marketing/",
+      "linkLabel": "Explore Performance Marketing",
+      "items": [
+        "Google Ads",
+        "Meta Ads",
+        "Campaign planning and management",
+        "Audience targeting",
+        "Lead generation",
+        "Campaign optimisation"
+      ]
+    },
+    {
+      "num": "02",
+      "title": "Analytics & Tracking",
+      "summary": "Setting up reliable measurement so every campaign decision and lead source can be tracked clearly.",
+      "linkHref": "/analytics-tracking/",
+      "linkLabel": "Explore Analytics & Tracking",
+      "items": [
+        "Google Analytics",
+        "Google Tag Manager",
+        "Google Search Console",
+        "Conversion tracking",
+        "Lead monitoring and reporting"
+      ]
+    },
+    {
+      "num": "03",
+      "title": "Creative & Content",
+      "summary": "Designing visual assets and editing video content tailored for digital campaigns and social platforms.",
+      "linkHref": "/creative-design/",
+      "linkLabel": "Explore Creative & Video Work",
+      "items": [
+        "Graphic design",
+        "Video editing",
+        "Social media content creation",
+        "Creative campaign development"
+      ]
+    },
+    {
+      "num": "04",
+      "title": "Website & SEO",
+      "summary": "Managing website updates, structuring landing pages, and applying practical on-page SEO fundamentals.",
+      "linkHref": "/seo-services/",
+      "linkLabel": "Explore Website & SEO",
+      "items": [
+        "Website content management",
+        "Landing pages",
+        "CMS updates",
+        "SEO fundamentals"
+      ]
+    }
+  ],
+  "experience": {
+    "eyebrow": "05 — Experience",
+    "headline": "Current Role & Responsibilities",
+    "subtitle": "How I contribute day to day across marketing execution and visual communication.",
+    "roleTitle": "Digital Marketing and Visual Marketing Executive",
+    "organization": "SPT Hospitals, Coimbatore",
+    "duration": "Current Role • ~6–12 Months Experience",
+    "overview": "[Placeholder — Add a short 2–3 line summary of your role and day-to-day priorities at SPT Hospitals through the CMS.]",
+    "individualTitle": "What I Personally Handle",
+    "individualItems": [
+      "Designing graphic creatives and editing short-form video content for social and digital campaigns",
+      "Managing website content updates, CMS edits, and landing-page updates",
+      "Setting up and monitoring Google Analytics, Google Tag Manager, and Google Search Console tracking",
+      "[Placeholder — Add specific tasks or campaigns you own directly]"
+    ],
+    "collaborativeTitle": "Where I Collaborate",
+    "collaborativeItems": [
+      "Working with hospital departments and internal stakeholders to translate medical information into clear visuals and campaign copy",
+      "Supporting broader Google Ads, Meta Ads, and social media initiatives aligned with team calendars",
+      "[Placeholder — Add collaborative shoots, events, or cross-team campaigns]"
+    ]
+  },
+  "tools": {
+    "eyebrow": "07 — Platforms & Tools",
+    "headline": "Tools I Work With",
+    "subtitle": "Core platforms across ads, analytics, and digital publishing — update or expand this list anytime in the CMS.",
     "items": [
-      { "count": 150, "suffix": "+", "label": "Projects [Sample]" },
-      { "count": 50, "suffix": "+", "label": "Clients [Sample]" },
-      { "count": 10, "suffix": "+", "label": "Disciplines" },
-      { "count": 98, "suffix": "%", "label": "Satisfaction [Sample]" },
-      { "count": 100, "suffix": "%", "label": "Dedication" }
+      { "name": "Google Ads", "size": "lg" },
+      { "name": "Meta Ads", "size": "lg" },
+      { "name": "Google Analytics (GA4)", "size": "" },
+      { "name": "Google Tag Manager", "size": "" },
+      { "name": "Google Search Console", "size": "" },
+      { "name": "Graphic Design", "size": "sm" },
+      { "name": "Video Editing", "size": "sm" },
+      { "name": "Landing Pages & CMS", "size": "sm" }
     ]
   },
   "socialReels": {
-    "eyebrow": "11 — Social Reels & Shorts",
+    "eyebrow": "09 — Video & Reels",
     "headline": "In Motion",
-    "subtitle": "9:16 vertical previews from our studio — click any bar to watch on Instagram or YouTube.",
+    "subtitle": "[Placeholder] 9:16 vertical previews for my video edits and social media reels — click any card to open on Instagram or YouTube.",
     "items": [
       {
-        "title": "3D Product Reveal — Kaia",
+        "title": "[Placeholder] Social Campaign Reel 01",
         "platform": "Instagram",
-        "category": "3D Animation",
+        "category": "Video Editing",
         "thumbnail": "/images/reels/reel-1.svg",
         "videoUrl": "https://www.instagram.com/reels/"
       },
       {
-        "title": "Kinetic Brand Film — Solene",
+        "title": "[Placeholder] Brand Story Edit 02",
         "platform": "YouTube",
-        "category": "Motion Design",
+        "category": "Social Media",
         "thumbnail": "/images/reels/reel-2.svg",
         "videoUrl": "https://www.youtube.com/shorts/"
       },
       {
-        "title": "Studio Lighting Rig BTS",
+        "title": "[Placeholder] Visual Campaign Cut 03",
         "platform": "Instagram",
-        "category": "3D Lighting",
+        "category": "Creative Content",
         "thumbnail": "/images/reels/reel-3.svg",
         "videoUrl": "https://www.instagram.com/reels/"
       },
       {
-        "title": "4.8x ROAS Creative Breakdown",
+        "title": "[Placeholder] Ad Creative Walkthrough 04",
         "platform": "YouTube",
         "category": "Performance Ads",
         "thumbnail": "/images/reels/reel-4.svg",
         "videoUrl": "https://www.youtube.com/shorts/"
       },
       {
-        "title": "Luxury Packaging CGI",
+        "title": "[Placeholder] Awareness Highlight Reel 05",
         "platform": "Instagram",
-        "category": "Brand Identity",
+        "category": "Visual Marketing",
         "thumbnail": "/images/reels/reel-5.svg",
         "videoUrl": "https://www.instagram.com/reels/"
       }

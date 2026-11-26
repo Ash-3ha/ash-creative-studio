@@ -1,0 +1,18 @@
+---
+import { getEntry } from 'astro:content';
+import SkillPageLayout from '../components/SkillPageLayout.astro';
+
+const entry = await getEntry('services', 'video-editing');
+if (!entry) throw new Error('Missing services entry: video-editing');
+---
+
+<SkillPageLayout
+  entry={entry}
+  headingWhite="Video Editing &"
+  headingAccent="Content"
+  eyebrowLabel="Short-Form & Visual"
+  ctaEyebrow="Get in Touch"
+  ctaHeading="Want to See More Video Work?"
+  ctaDescription="Check out my social reels on the homepage or reach out directly using the form below."
+  formId="video-contact-form"
+/>

@@ -1,18 +1,17 @@
 {
-  "name": "ASH Creative Studio",
-  "tagline": "Where Creativity Meets Technology",
-  "description": "ASH Creative Studio blends creativity, technology, and strategy to craft powerful brands, immersive visuals, high-end 3D experiences, and performance-driven digital solutions.",
+  "name": "Akash Thirumal",
+  "tagline": "Digital Marketer | Performance Marketing | Visual Creative",
+  "description": "Personal portfolio of Akash Thirumal — Digital Marketer and Visual Creative based in Coimbatore, working across Google Ads, Meta Ads, analytics tracking, graphic design, video editing, and landing pages.",
   "url": "https://ashcreatives.in",
   "ogImage": "/images/uploads/og-default.svg",
   "email": "hello@ashcreatives.in",
   "phone": "+91 98765 43210",
   "whatsapp": "+91 98765 43210",
-  "address": "Mumbai & Global Remote [Sample Studio Location]",
+  "address": "Coimbatore, Tamil Nadu, India",
   "gtmId": "GTM-53S2T356",
   "social": {
     "linkedin": "#",
     "behance": "#",
-    "artstation": "#",
     "instagram": "#",
     "youtube": "#"
   }

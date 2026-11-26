@@ -1,5 +1,5 @@
 /**
- * ASH Creative Studio — Production Google Tag Manager dataLayer Architecture
+ * Akash Thirumal — Google Tag Manager dataLayer Architecture
  *
  * Prepared for:
  * - Google Analytics 4 (GA4 recommended & custom events)

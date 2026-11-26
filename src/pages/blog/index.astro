@@ -20,8 +20,8 @@ const otherArticles = allArticles.slice(1);
 const blogSchema = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
-  name: `Insights & Studio Blog — ${site.name}`,
-  description: 'Field notes, technical breakdowns, and strategic perspectives on brand building, 3D visualization, performance marketing, and digital creative craft.',
+  name: `Blog & Notes — ${site.name}`,
+  description: 'Personal notes and practical write-ups by Akash Thirumal on performance marketing, GA4 & GTM tracking, SEO fundamentals, visual design, and video editing.',
   url: `${site.url}/blog/`,
   blogPost: allArticles.map((art) => ({
     '@type': 'BlogPosting',
@@ -35,7 +35,7 @@ const blogSchema = {
         : `${site.url}${art.data.featuredImage}`
       : undefined,
     author: {
-      '@type': 'Organization',
+      '@type': 'Person',
       name: art.data.author || site.name,
       url: site.url,
     },
@@ -44,17 +44,17 @@ const blogSchema = {
 ---
 
 <BaseLayout
-  title={`Insights & Studio Blog — ${site.name}`}
-  description="Field notes, technical breakdowns, and strategic perspectives on brand building, 3D visualization, performance marketing, and digital creative craft."
+  title={`Blog & Notes — ${site.name}`}
+  description="Personal notes and practical write-ups by Akash Thirumal on performance marketing, GA4 & GTM tracking, SEO fundamentals, visual design, and video editing."
   canonical={`${site.url}/blog/`}
   schema={blogSchema}
 >
   <section class="page-header">
     <div class="wrap">
       <Breadcrumbs items={breadcrumbs} />
-      <span class="eyebrow">Studio Publications</span>
-      <h1>Insights &amp; <span style="color:var(--accent);">Journal</span></h1>
-      <p class="section-sub">Essays, technical notes, and industry reflections from our multidisciplinary production team.</p>
+      <span class="eyebrow">Personal Notes</span>
+      <h1>Notes &amp; <span style="color:var(--accent);">Insights</span></h1>
+      <p class="section-sub">Reflections and practical notes from my work across paid campaigns, analytics setup, visual design, and web updates.</p>
     </div>
   </section>
 
@@ -67,7 +67,7 @@ const blogSchema = {
               <img src={featuredArticle.data.featuredImage} alt={featuredArticle.data.title} />
             )}
             <div class="proj-info">
-              <span class="eyebrow">Featured Insight — {featuredArticle.data.publishDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              <span class="eyebrow">Featured Note — {featuredArticle.data.publishDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
             </div>
           </div>
           <div>
@@ -90,7 +90,7 @@ const blogSchema = {
       <div class="section-head reveal" style="margin-top:80px;">
         <div>
           <span class="eyebrow">Archive</span>
-          <h2 style="margin-top:8px;">All Articles</h2>
+          <h2 style="margin-top:8px;">All Notes</h2>
         </div>
       </div>
 
@@ -107,14 +107,14 @@ const blogSchema = {
     </div>
   </section>
 
-  <!-- Newsletter / CTA -->
+  <!-- CTA -->
   <section class="section" style="background:var(--bg-2);">
     <div class="wrap" style="text-align:center;">
-      <span class="eyebrow reveal">Stay Informed</span>
-      <h2 class="reveal" style="margin:16px 0 20px;">Direct Dispatches from the Studio</h2>
-      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">We publish quarterly deep-dives into 3D technology, brand strategy, and media buying.</p>
+      <span class="eyebrow reveal">Connect</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Have a Question or Topic to Discuss?</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">I enjoy exchanging notes on campaign structure, tracking workflows, and visual communication.</p>
       <a href="/contact/" class="btn primary magnetic reveal" data-track="primary_cta_click" data-track-location="blog_bottom">
-        Get in Touch <span class="arrow">→</span>
+        Let's Connect <span class="arrow">→</span>
       </a>
     </div>
   </section>

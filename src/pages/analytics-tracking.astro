@@ -1,0 +1,18 @@
+---
+import { getEntry } from 'astro:content';
+import SkillPageLayout from '../components/SkillPageLayout.astro';
+
+const entry = await getEntry('services', 'analytics-tracking');
+if (!entry) throw new Error('Missing services entry: analytics-tracking');
+---
+
+<SkillPageLayout
+  entry={entry}
+  headingWhite="Analytics &"
+  headingAccent="Tracking"
+  eyebrowLabel="Measurement"
+  ctaEyebrow="Get in Touch"
+  ctaHeading="Need Help With Tracking & Reporting?"
+  ctaDescription="Contact me to discuss GA4, Google Tag Manager, Search Console, or campaign reporting."
+  formId="analytics-contact-form"
+/>

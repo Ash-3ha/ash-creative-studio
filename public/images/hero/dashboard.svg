@@ -14,39 +14,29 @@
       <stop offset="100%" stop-color="#FF6A00" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <!-- Background -->
   <rect width="280" height="160" fill="url(#db-bg)"/>
+  <text x="18" y="24" fill="rgba(255,255,255,0.45)" font-family="'IBM Plex Mono', monospace" font-size="8" letter-spacing="1">GA4 // GTM // GSC</text>
+  <rect x="194" y="13" width="68" height="15" rx="3" fill="rgba(255,106,0,0.15)" stroke="rgba(255,106,0,0.4)" stroke-width="0.75"/>
+  <text x="202" y="23" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="7" font-weight="600">TRACKING ON</text>
 
-  <!-- Top bar & KPIs -->
-  <text x="18" y="24" fill="rgba(255,255,255,0.4)" font-family="'IBM Plex Mono', monospace" font-size="8" letter-spacing="1">METRICS // REVENUE</text>
-  <rect x="206" y="14" width="56" height="14" rx="3" fill="rgba(255,106,0,0.15)" stroke="rgba(255,106,0,0.4)" stroke-width="0.75"/>
-  <text x="212" y="24" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="7.5" font-weight="600">+340% ROAS</text>
+  <text x="18" y="50" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="18" font-weight="500">Ads &amp; Analytics</text>
 
-  <!-- Big Metric Value -->
-  <text x="18" y="52" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="22" font-weight="600">$184.2K</text>
-  <text x="120" y="50" fill="#25D366" font-family="'IBM Plex Mono', monospace" font-size="8">↑ 4.2x conv</text>
-
-  <!-- Chart Grid Lines -->
   <line x1="18" y1="75" x2="262" y2="75" stroke="rgba(255,255,255,0.06)" stroke-width="0.75"/>
   <line x1="18" y1="105" x2="262" y2="105" stroke="rgba(255,255,255,0.06)" stroke-width="0.75"/>
   <line x1="18" y1="135" x2="262" y2="135" stroke="rgba(255,255,255,0.08)" stroke-width="0.75"/>
 
-  <!-- Mini Bar Chart in corner -->
-  <rect x="220" y="90" width="6" height="45" rx="1" fill="rgba(255,255,255,0.1)"/>
-  <rect x="230" y="75" width="6" height="60" rx="1" fill="rgba(255,255,255,0.15)"/>
-  <rect x="240" y="60" width="6" height="75" rx="1" fill="rgba(255,106,0,0.4)"/>
-  <rect x="250" y="45" width="6" height="90" rx="1" fill="url(#db-line)"/>
+  <rect x="220" y="92" width="6" height="43" rx="1" fill="rgba(255,255,255,0.12)"/>
+  <rect x="230" y="80" width="6" height="55" rx="1" fill="rgba(255,255,255,0.18)"/>
+  <rect x="240" y="66" width="6" height="69" rx="1" fill="rgba(255,106,0,0.45)"/>
+  <rect x="250" y="52" width="6" height="83" rx="1" fill="url(#db-line)"/>
 
-  <!-- Area Chart Fill & Line Curve -->
-  <path d="M18 128 Q 50 120, 80 100 T 140 85 T 190 55 L 190 135 L 18 135 Z" fill="url(#db-fill)"/>
-  <path d="M18 128 Q 50 120, 80 100 T 140 85 T 190 55" fill="none" stroke="url(#db-line)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M18 126 Q 55 118, 85 102 T 140 86 T 192 58 L 192 135 L 18 135 Z" fill="url(#db-fill)"/>
+  <path d="M18 126 Q 55 118, 85 102 T 140 86 T 192 58" fill="none" stroke="url(#db-line)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="192" cy="58" r="4" fill="#FFA040"/>
+  <circle cx="192" cy="58" r="8" fill="none" stroke="#FF6A00" stroke-width="1" opacity="0.6"/>
 
-  <!-- Peak point pulse -->
-  <circle cx="190" cy="55" r="4" fill="#FFA040"/>
-  <circle cx="190" cy="55" r="8" fill="none" stroke="#FF6A00" stroke-width="1" opacity="0.6"/>
-
-  <text x="18" y="150" fill="rgba(255,255,255,0.3)" font-family="'IBM Plex Mono', monospace" font-size="7">W1</text>
-  <text x="75" y="150" fill="rgba(255,255,255,0.3)" font-family="'IBM Plex Mono', monospace" font-size="7">W2</text>
-  <text x="135" y="150" fill="rgba(255,255,255,0.3)" font-family="'IBM Plex Mono', monospace" font-size="7">W3</text>
-  <text x="185" y="150" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="7">W4</text>
+  <text x="18" y="150" fill="rgba(255,255,255,0.35)" font-family="'IBM Plex Mono', monospace" font-size="7">SEARCH</text>
+  <text x="72" y="150" fill="rgba(255,255,255,0.35)" font-family="'IBM Plex Mono', monospace" font-size="7">META</text>
+  <text x="128" y="150" fill="rgba(255,255,255,0.35)" font-family="'IBM Plex Mono', monospace" font-size="7">GTM</text>
+  <text x="178" y="150" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="7">LEADS</text>
 </svg>

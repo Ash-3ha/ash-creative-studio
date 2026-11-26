@@ -3,20 +3,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 import site from '../data/site.json';
+import home from '../data/home.json';
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
-  { label: 'Services' }
+  { label: 'Skills & Expertise' }
 ];
 
 const serviceEntries = (await getCollection('services'))
   .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 
-const servicesSchema = {
+const skillsSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: `Our Services & Disciplines — ${site.name}`,
-  description: 'Explore our specialized creative and marketing disciplines — from brand identity and 3D animation to Google Ads and performance marketing.',
+  name: `Skills & Expertise — ${site.name}`,
+  description: 'Explore my core skills across performance marketing, Google Ads, Meta Ads, analytics tracking, social media, graphic design, video editing, and SEO fundamentals.',
   url: `${site.url}/services/`,
   mainEntity: {
     '@type': 'ItemList',
@@ -32,29 +33,64 @@ const servicesSchema = {
 ---
 
 <BaseLayout
-  title={`Our Services & Disciplines — ${site.name}`}
-  description="Explore our specialized creative and marketing disciplines — from brand identity and 3D animation to Google Ads and performance marketing."
+  title={`Skills & Expertise — ${site.name}`}
+  description="Explore my core skills across performance marketing, Google Ads, Meta Ads, analytics tracking, social media, graphic design, video editing, and SEO fundamentals."
   canonical={`${site.url}/services/`}
-  schema={servicesSchema}
+  schema={skillsSchema}
 >
   <section class="page-header">
     <div class="wrap">
       <Breadcrumbs items={breadcrumbs} />
-      <span class="eyebrow">Studio Capabilities</span>
-      <h1>Our <span style="color:var(--accent);">Services</span></h1>
-      <p class="section-sub">Multidisciplinary pillars, each led by dedicated specialists and coordinated under one unified growth strategy.</p>
+      <span class="eyebrow">Capabilities &amp; Focus</span>
+      <h1>My <span style="color:var(--accent);">Skills</span></h1>
+      <p class="section-sub">Hands-on skills across performance marketing, analytics &amp; tracking, creative content, and website &amp; SEO execution.</p>
     </div>
   </section>
 
-  <!-- Overview Grid -->
+  <!-- 4 Core Skill Pillars -->
+  <section class="section" style="background:var(--bg-2);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Core Structure</span>
+          <h2 style="margin-top:8px;">Four Skill Pillars</h2>
+        </div>
+        <p>How my marketing, analytics, creative, and website capabilities fit together.</p>
+      </div>
+
+      <div class="skills-grid">
+        {home.skillGroups.map((group) => (
+          <div class="skill-pillar-card reveal" style="background:var(--bg-1);">
+            <div>
+              <span class="eyebrow">{group.num}</span>
+              <h3>{group.title}</h3>
+              <p>{group.summary}</p>
+              <div class="skill-chips">
+                {group.items.map((skill) => (
+                  <span class="skill-chip">{skill}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <a href={group.linkHref} style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);">
+                {group.linkLabel} →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Focus Areas -->
   <section class="section" id="services">
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow">Integrated Disciplines</span>
-          <h2 style="margin-top:8px;">Everything Your Brand Needs to Compete</h2>
+          <span class="eyebrow">Detailed Breakdown</span>
+          <h2 style="margin-top:8px;">Focus Areas in Practice</h2>
         </div>
-        <p>No handoff friction between design agencies and ad buyers. We conceptualize, build, and scale under one roof.</p>
+        <p>Select any focus area below to read how I plan, set up, and execute work in that discipline.</p>
       </div>
 
       <div>
@@ -73,7 +109,7 @@ const servicesSchema = {
                 </ul>
               )}
               <a href={`/${svc.slug}/`} class="btn ghost" style="margin-top:20px;">
-                Learn More About {svc.data.title} →
+                Explore {svc.data.title} →
               </a>
             </div>
           </div>
@@ -83,14 +119,17 @@ const servicesSchema = {
   </section>
 
   <!-- CTA -->
-  <section class="section">
+  <section class="section" style="background:var(--bg-2);">
     <div class="wrap" style="text-align:center;">
-      <span class="eyebrow reveal">Consultation</span>
-      <h2 class="reveal" style="margin:16px 0 20px;">Not Sure Which Mix is Right for You?</h2>
-      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Schedule an exploratory discovery call. We'll assess your current brand footprint and identify the highest-leverage opportunities.</p>
-      <a href="/contact/" class="btn primary magnetic reveal" data-track="book_call_click" data-track-location="services_bottom">
-        Schedule Discovery Call <span class="arrow">→</span>
-      </a>
+      <span class="eyebrow reveal">Get in Touch</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Want to See How I Apply These Skills?</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Browse my portfolio projects or reach out directly to discuss an opportunity or collaboration.</p>
+      <div class="reveal" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="/portfolio/" class="btn ghost magnetic">Explore My Work</a>
+        <a href="/contact/" class="btn primary magnetic" data-track="book_call_click" data-track-location="services_bottom">
+          Let's Connect <span class="arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

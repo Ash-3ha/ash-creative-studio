@@ -14,12 +14,12 @@
   <rect width="1200" height="630" fill="url(#glow)"/>
   <line x1="80" y1="80" x2="1120" y2="80" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
   <line x1="80" y1="550" x2="1120" y2="550" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-  
-  <text x="80" y="140" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="16" letter-spacing="4">ASH CREATIVE STUDIO</text>
-  <text x="80" y="280" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="64" font-weight="500">Where Creativity Meets</text>
-  <text x="80" y="360" fill="#FF6A00" font-family="'Playfair Display', serif" font-size="64" font-style="italic" font-weight="500">Technology.</text>
-  <text x="80" y="440" fill="#9C9C9C" font-family="'Inter', sans-serif" font-size="22" font-weight="300">Brand Identity • 3D Production • Performance Marketing • Web Development</text>
-  
+
+  <text x="80" y="140" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="16" letter-spacing="4">AKASH THIRUMAL — PORTFOLIO</text>
+  <text x="80" y="275" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="56" font-weight="500">Digital Marketer &amp;</text>
+  <text x="80" y="355" fill="#FF6A00" font-family="'Playfair Display', serif" font-size="56" font-style="italic" font-weight="500">Visual Creative.</text>
+  <text x="80" y="435" fill="#9C9C9C" font-family="'Inter', sans-serif" font-size="21" font-weight="300">Performance Marketing • Analytics &amp; Tracking • Visual Content • Web &amp; SEO</text>
+
   <text x="80" y="585" fill="#9C9C9C" font-family="'IBM Plex Mono', monospace" font-size="13">ashcreatives.in</text>
   <circle cx="1060" cy="300" r="100" fill="none" stroke="rgba(255,106,0,0.3)" stroke-width="1"/>
   <circle cx="1060" cy="300" r="60" fill="none" stroke="#FF6A00" stroke-width="2"/>

@@ -9,29 +9,19 @@ interface Props {
 
 const { id = 'site-contact-form', className = 'contact-form reveal' } = Astro.props;
 
-const serviceOptions = [
-  'Performance Marketing',
-  'Google Ads',
-  'Meta Ads',
-  'Social Media Marketing',
-  'SEO Services',
-  'Creative Design',
-  '3D & Animation',
-  'Web Development',
-  'Other'
-];
-
-const budgetOptions = [
-  'Under $5,000',
-  '$5,000 – $15,000',
-  '$15,000 – $50,000',
-  '$50,000+',
-  'Not sure yet'
+const topicOptions = [
+  'Performance Marketing (Google & Meta Ads)',
+  'Analytics & Tracking (GA4, GTM, GSC)',
+  'Social Media & Content Creation',
+  'Graphic Design & Video Editing',
+  'Website Content & Landing Pages',
+  'Full-time / Collaborative Opportunity',
+  'General Enquiry'
 ];
 
 const whatsappUrl = getWhatsAppUrl(
   site.whatsapp,
-  'Hello ASH Creative Studio, I just sent an enquiry through your website and would love to connect.'
+  'Hi Akash, I just sent a message through your portfolio website and would like to connect.'
 );
 ---
 
@@ -65,7 +55,7 @@ const whatsappUrl = getWhatsAppUrl(
       </div>
       <div class="f-group">
         <label for={`${id}-email`}>Email <span style="color:var(--accent);">*</span></label>
-        <input type="email" id={`${id}-email`} name="email" required placeholder="you@company.com" autocomplete="email" />
+        <input type="email" id={`${id}-email`} name="email" required placeholder="you@example.com" autocomplete="email" />
         <span class="error-msg">Please enter a valid email address.</span>
       </div>
     </div>
@@ -76,10 +66,10 @@ const whatsappUrl = getWhatsAppUrl(
         <input type="tel" id={`${id}-phone`} name="phone" placeholder="+91 98765 43210" autocomplete="tel" />
       </div>
       <div class="f-group">
-        <label for={`${id}-service`}>Service Required</label>
+        <label for={`${id}-service`}>Topic / Area</label>
         <select id={`${id}-service`} name="service">
-          <option value="">Select a discipline…</option>
-          {serviceOptions.map(opt => (
+          <option value="">Select what you'd like to discuss…</option>
+          {topicOptions.map(opt => (
             <option value={opt}>{opt}</option>
           ))}
         </select>
@@ -88,32 +78,27 @@ const whatsappUrl = getWhatsAppUrl(
 
     <div class="f-row">
       <div class="f-group">
-        <label for={`${id}-budget`}>Estimated Budget</label>
-        <select id={`${id}-budget`} name="budget">
-          <option value="">Select estimated range…</option>
-          {budgetOptions.map(opt => (
-            <option value={opt}>{opt}</option>
-          ))}
-        </select>
+        <label for={`${id}-budget`}>Organization / Role (Optional)</label>
+        <input type="text" id={`${id}-budget`} name="budget" placeholder="Company name or personal context" />
       </div>
       <div class="f-group">
-        <label for={`${id}-timeline`}>Target Timeline</label>
-        <input type="text" id={`${id}-timeline`} name="timeline" placeholder="e.g. Q1 launch, 4-6 weeks" />
+        <label for={`${id}-timeline`}>Timeline (Optional)</label>
+        <input type="text" id={`${id}-timeline`} name="timeline" placeholder="e.g. Immediate, next month, flexible" />
       </div>
     </div>
 
     <div class="f-group" style="margin-bottom:28px;">
-      <label for={`${id}-message`}>Project Overview <span style="color:var(--accent);">*</span></label>
-      <textarea id={`${id}-message`} name="message" required placeholder="Tell us about your brand, goals, scope, and target milestones…"></textarea>
-      <span class="error-msg">Please provide a brief project overview.</span>
+      <label for={`${id}-message`}>Message <span style="color:var(--accent);">*</span></label>
+      <textarea id={`${id}-message`} name="message" required placeholder="Tell me a bit about the role, project, or collaboration you have in mind…"></textarea>
+      <span class="error-msg">Please enter a brief message.</span>
     </div>
 
     <div class="contact-ctas">
       <button type="submit" class="btn primary magnetic">
-        Send Enquiry <span class="arrow">→</span>
+        Send Message <span class="arrow">→</span>
       </button>
-      <a href="/contact/" class="btn ghost magnetic" data-track="book_call_click">
-        Schedule Discovery Call
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn ghost magnetic" data-track="whatsapp_click" data-track-location="form_secondary_cta">
+        Message on WhatsApp
       </a>
     </div>
   </form>
@@ -123,9 +108,9 @@ const whatsappUrl = getWhatsAppUrl(
     <div style="width:56px;height:56px;margin:0 auto 16px;border-radius:50%;background:rgba(255,106,0,0.12);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent);">
       ✓
     </div>
-    <h3 style="font-size:26px;margin-bottom:10px;color:var(--text-1);">Enquiry Received</h3>
+    <h3 style="font-size:26px;margin-bottom:10px;color:var(--text-1);">Message Received</h3>
     <p style="color:var(--text-2);font-size:15px;max-width:520px;margin:0 auto 24px;line-height:1.7;">
-      Thank you for reaching out to ASH Creative Studio. Our team reviews all incoming briefs within 24 business hours.
+      Thank you for reaching out. I review messages personally and will get back to you as soon as possible.
     </p>
 
     <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:20px;">
@@ -137,7 +122,7 @@ const whatsappUrl = getWhatsAppUrl(
         data-track="whatsapp_click"
         style="border-color:rgba(255,106,0,0.3);color:var(--accent);"
       >
-        <span>💬 Instant WhatsApp Chat</span>
+        <span>💬 Quick WhatsApp Chat</span>
       </a>
       <button
         type="button"
@@ -145,7 +130,7 @@ const whatsappUrl = getWhatsAppUrl(
         id={`${id}-reset`}
         style="font-size:12px;opacity:0.8;"
       >
-        Send Another Enquiry
+        Send Another Message
       </button>
     </div>
   </div>
@@ -199,7 +184,7 @@ const whatsappUrl = getWhatsAppUrl(
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Sending Enquiry...';
+      submitBtn.innerHTML = 'Sending Message...';
 
       try {
         const formData = new FormData(form);
@@ -218,11 +203,9 @@ const whatsappUrl = getWhatsAppUrl(
           });
           responseOk = response.ok;
         } catch (fetchErr) {
-          // If running locally, fetch to static '/' may fail with network error
           if (!isLocal) throw fetchErr;
         }
 
-        // On Netlify production, responseOk will be true. In local dev, allow test flow.
         if (responseOk || isLocal) {
           form.style.display = 'none';
           success.style.display = 'block';
@@ -235,7 +218,7 @@ const whatsappUrl = getWhatsAppUrl(
             form_id: formId,
             form_name: 'contact',
             service_requested: form.querySelector('select[name="service"]')?.value || 'Not specified',
-            budget_range: form.querySelector('select[name="budget"]')?.value || 'Not specified',
+            budget_range: form.querySelector('input[name="budget"]')?.value || 'Not specified',
             target_timeline: form.querySelector('input[name="timeline"]')?.value || '',
             page_path: window.location.pathname,
             page_location: window.location.href,
@@ -249,7 +232,7 @@ const whatsappUrl = getWhatsAppUrl(
         submitBtn.innerHTML = originalText;
         if (errorBanner) {
           errorBanner.textContent =
-            'We encountered a problem sending your message. Please reach out to us directly via WhatsApp or email below.';
+            'There was a problem sending your message. Please reach out directly via WhatsApp or email below.';
           errorBanner.style.display = 'block';
         } else {
           alert('There was an issue sending your message. Please reach out via WhatsApp or email.');
@@ -266,7 +249,7 @@ const whatsappUrl = getWhatsAppUrl(
         const submitBtn = form.querySelector('button[type="submit"]');
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = 'Send Enquiry <span class="arrow">→</span>';
+          submitBtn.innerHTML = 'Send Message <span class="arrow">→</span>';
         }
       });
     }

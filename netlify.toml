@@ -10,6 +10,11 @@
   to = "/admin/index.html"
   status = 200
 
+[[redirects]]
+  from = "/3d-animation/*"
+  to = "/video-editing/"
+  status = 301
+
 [[headers]]
   for = "/admin/*"
   [headers.values]

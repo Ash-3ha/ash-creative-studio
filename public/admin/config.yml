@@ -9,11 +9,11 @@ public_folder: "/images/uploads"
 
 collections:
   # ==========================================
-  # SERVICES COLLECTION
+  # SKILLS & FOCUS AREAS COLLECTION
   # ==========================================
   - name: "services"
-    label: "Services"
-    label_singular: "Service"
+    label: "Skills & Focus Areas"
+    label_singular: "Skill Area"
     folder: "src/content/services"
     create: true
     delete: true
@@ -21,23 +21,23 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: "Service Title", name: "title", widget: "string" }
-      - { label: "URL Slug", name: "slug", widget: "string", hint: "e.g. performance-marketing, google-ads, 3d-animation" }
+      - { label: "Skill / Focus Title", name: "title", widget: "string" }
+      - { label: "URL Slug", name: "slug", widget: "string", hint: "e.g. performance-marketing, google-ads, analytics-tracking, video-editing" }
       - { label: "Sort Order", name: "sortOrder", widget: "number", default: 1, value_type: "int" }
-      - { label: "Tag / Category Pill", name: "tag", widget: "string", default: "Service" }
-      - { label: "Short Description (Card Overview)", name: "shortDescription", widget: "text" }
-      - { label: "Page Hero Subtitle", name: "heroSubtitle", widget: "text", required: false }
-      - { label: "Thesis Section Heading", name: "thesisHeading", widget: "string", required: false }
-      - { label: "Thesis Section Description", name: "thesisDescription", widget: "text", required: false }
-      - label: "Core Capabilities"
+      - { label: "Category Pill", name: "tag", widget: "string", default: "Skill Area" }
+      - { label: "Short Summary (Card Overview)", name: "shortDescription", widget: "text" }
+      - { label: "Page Subtitle", name: "heroSubtitle", widget: "text", required: false }
+      - { label: "Approach Section Heading", name: "thesisHeading", widget: "string", required: false }
+      - { label: "Approach Section Description", name: "thesisDescription", widget: "text", required: false }
+      - label: "Key Areas I Work On"
         name: "capabilities"
         widget: "list"
         required: false
         fields:
-          - { label: "Capability Title", name: "title", widget: "string" }
+          - { label: "Skill / Focus Title", name: "title", widget: "string" }
           - { label: "Description", name: "desc", widget: "text" }
-      - { label: "Methodology Section Heading", name: "methodologyHeading", widget: "string", required: false }
-      - label: "Methodology Steps"
+      - { label: "Process Section Heading", name: "methodologyHeading", widget: "string", required: false }
+      - label: "Workflow Steps"
         name: "methodologySteps"
         widget: "list"
         required: false
@@ -47,10 +47,10 @@ collections:
           - { label: "Step Description", name: "desc", widget: "text" }
       - { label: "SEO Title", name: "seoTitle", widget: "string", required: false }
       - { label: "SEO Meta Description", name: "seoDescription", widget: "text", required: false }
-      - { label: "Detailed Overview / Case Story (Markdown)", name: "body", widget: "markdown", required: false }
+      - { label: "Detailed Overview (Markdown)", name: "body", widget: "markdown", required: false }
 
   # ==========================================
-  # PORTFOLIO CASE STUDIES COLLECTION
+  # PORTFOLIO PROJECTS COLLECTION
   # ==========================================
   - name: "portfolio"
     label: "Portfolio Projects"
@@ -63,17 +63,19 @@ collections:
       preview: false
     fields:
       - { label: "Project Title", name: "title", widget: "string" }
-      - { label: "Client Name", name: "client", widget: "string", required: false }
-      - { label: "Industry", name: "industry", widget: "string", required: false }
-      - { label: "Category", name: "category", widget: "select", options: ["Brand Identity", "3D Visualization", "3D & Animation", "Performance Marketing", "Creative Design", "SEO Services", "Web Development"] }
-      - { label: "Year", name: "year", widget: "string", default: "2025" }
+      - { label: "Project Type", name: "projectType", widget: "select", options: ["Professional Work", "Personal Project", "Collaborative Project"], default: "Personal Project" }
+      - { label: "Organization / Context", name: "organization", widget: "string", required: false, hint: "e.g. SPT Hospitals, Coimbatore or Personal Project" }
+      - { label: "My Role", name: "role", widget: "string", required: false, hint: "e.g. Digital Marketing & Visual Marketing Executive" }
+      - { label: "Industry / Domain", name: "industry", widget: "string", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Performance Marketing", "Social Media", "Graphic Design", "Video Editing", "Website Projects"] }
+      - { label: "Year", name: "year", widget: "string", default: "2026" }
       - { label: "Project Overview", name: "overview", widget: "text" }
       - { label: "Objective", name: "objective", widget: "text", required: false }
-      - { label: "Strategy", name: "strategy", widget: "text", required: false }
+      - { label: "My Role & Contribution", name: "myContribution", widget: "text", required: false }
       - { label: "Execution", name: "execution", widget: "text", required: false }
-      - { label: "Deliverables List", name: "deliverables", widget: "list", required: false }
-      - { label: "Verified Results", name: "results", widget: "list", required: false, hint: "Only verified client results" }
-      - { label: "Featured Hero Image", name: "featuredImage", widget: "image", required: false }
+      - { label: "Work / Deliverables List", name: "deliverables", widget: "list", required: false }
+      - { label: "Outcomes / Takeaways", name: "outcomes", widget: "list", required: false, hint: "Only verified or factual project outcomes (or [Placeholder])" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
       - { label: "Additional Gallery Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
       - { label: "Gradient Start Color", name: "gradientFrom", widget: "string", default: "#2a1a10" }
       - { label: "Gradient End Color", name: "gradientTo", widget: "string", default: "#0a0a0a" }
@@ -81,13 +83,13 @@ collections:
       - { label: "Sort Order", name: "sortOrder", widget: "number", default: 0, value_type: "int" }
       - { label: "SEO Title", name: "seoTitle", widget: "string", required: false }
       - { label: "SEO Meta Description", name: "seoDescription", widget: "text", required: false }
-      - { label: "Case Study Body Narrative (Markdown)", name: "body", widget: "markdown" }
+      - { label: "Project Write-up (Markdown)", name: "body", widget: "markdown" }
 
   # ==========================================
   # BLOG ARTICLES COLLECTION
   # ==========================================
   - name: "blog"
-    label: "Blog Articles"
+    label: "Blog & Notes"
     label_singular: "Article"
     folder: "src/content/blog"
     create: true
@@ -98,7 +100,7 @@ collections:
     fields:
       - { label: "Article Title", name: "title", widget: "string" }
       - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
-      - { label: "Author", name: "author", widget: "string", default: "ASH Creative Studio" }
+      - { label: "Author", name: "author", widget: "string", default: "Akash Thirumal" }
       - { label: "Publish Date", name: "publishDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Category", name: "category", widget: "string" }
       - { label: "Tags", name: "tags", widget: "list", required: false }
@@ -110,60 +112,39 @@ collections:
       - { label: "Article Content (Markdown)", name: "body", widget: "markdown" }
 
   # ==========================================
-  # TESTIMONIALS COLLECTION
-  # ==========================================
-  - name: "testimonials"
-    label: "Testimonials"
-    label_singular: "Testimonial"
-    folder: "src/content/testimonials"
-    extension: "json"
-    format: "json"
-    create: true
-    delete: true
-    slug: "{{name}}"
-    fields:
-      - { label: "Client Name", name: "name", widget: "string" }
-      - { label: "Role & Title", name: "role", widget: "string" }
-      - { label: "Company", name: "company", widget: "string" }
-      - { label: "Testimonial Quote", name: "quote", widget: "text" }
-      - { label: "Client Avatar Image", name: "avatar", widget: "image", required: false }
-      - { label: "Sort Order", name: "sortOrder", widget: "number", default: 0, value_type: "int" }
-
-  # ==========================================
-  # SITE SETTINGS & PAGES CONTENT (SINGLETONS)
+  # SITE SETTINGS & PORTFOLIO CONTENT (SINGLETONS)
   # ==========================================
   - name: "settings"
-    label: "Site Settings & Content"
+    label: "Portfolio Content & Settings"
     delete: false
     editor:
       preview: false
     files:
       - name: "site"
-        label: "Contact & Analytics Settings"
+        label: "Personal Info, Contact & Analytics"
         file: "src/data/site.json"
         fields:
-          - { label: "Studio Name", name: "name", widget: "string" }
-          - { label: "Studio Tagline", name: "tagline", widget: "string" }
+          - { label: "Your Name", name: "name", widget: "string" }
+          - { label: "Professional Tagline", name: "tagline", widget: "string" }
           - { label: "Site Meta Description", name: "description", widget: "text" }
           - { label: "Production Canonical URL", name: "url", widget: "string" }
           - { label: "Default Social Share Image (OG Image)", name: "ogImage", widget: "image", required: false }
-          - { label: "Business Email", name: "email", widget: "string" }
+          - { label: "Contact Email", name: "email", widget: "string" }
           - { label: "Phone Number", name: "phone", widget: "string" }
           - { label: "WhatsApp Contact Number", name: "whatsapp", widget: "string" }
-          - { label: "Studio Physical Address", name: "address", widget: "string" }
-          - { label: "Google Tag Manager ID", name: "gtmId", widget: "string", hint: "Set to your live container ID (e.g. GTM-XXXXXXX)" }
-          - label: "Social Media Channels"
+          - { label: "Location", name: "address", widget: "string" }
+          - { label: "Google Tag Manager ID", name: "gtmId", widget: "string", hint: "Live container ID (e.g. GTM-XXXXXXX)" }
+          - label: "Social Profiles"
             name: "social"
             widget: "object"
             fields:
               - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
               - { label: "Behance URL", name: "behance", widget: "string", required: false }
-              - { label: "ArtStation URL", name: "artstation", widget: "string", required: false }
               - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
               - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
 
       - name: "home"
-        label: "Home Page Copy & Headings"
+        label: "Home Page Copy, Experience & Tools"
         file: "src/data/home.json"
         fields:
           - label: "Hero Section"
@@ -172,7 +153,7 @@ collections:
             fields:
               - { label: "Eyebrow Text", name: "eyebrow", widget: "string" }
               - { label: "Main Headline", name: "headline", widget: "string" }
-              - { label: "Paragraph Description", name: "description", widget: "text" }
+              - { label: "Introduction Paragraph", name: "description", widget: "text" }
               - { label: "Primary Button Label", name: "ctaPrimaryLabel", widget: "string" }
               - { label: "Secondary Button Label", name: "ctaSecondaryLabel", widget: "string" }
           - label: "Hero Floating Showcase Cards"
@@ -184,8 +165,8 @@ collections:
               - { label: "Parallax Depth (10-35)", name: "depth", widget: "number", value_type: "int" }
               - { label: "Card Image", name: "image", widget: "image" }
               - { label: "Alt Text Description", name: "alt", widget: "string", required: false }
-          - label: "Philosophy Section"
-            name: "philosophy"
+          - label: "About Me Summary Section"
+            name: "about"
             widget: "object"
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
@@ -193,23 +174,48 @@ collections:
               - { label: "Headline Part 2 (Italic Light)", name: "lightHeadline", widget: "string" }
               - { label: "First Paragraph", name: "paragraph1", widget: "text" }
               - { label: "Second Paragraph", name: "paragraph2", widget: "text" }
-              - { label: "Vision", name: "vision", widget: "string" }
-              - { label: "Mission", name: "mission", widget: "string" }
-              - { label: "Values", name: "values", widget: "string" }
-          - label: "Stats & Numbers"
-            name: "stats"
+              - { label: "Current Role Summary", name: "roleSummary", widget: "string" }
+              - { label: "Focus Summary", name: "focusSummary", widget: "string" }
+              - { label: "Career Goal Summary", name: "goalSummary", widget: "string" }
+              - { label: "Portrait Caption", name: "portraitCaption", widget: "string" }
+          - label: "Skills & Expertise Pillars"
+            name: "skillGroups"
+            widget: "list"
+            fields:
+              - { label: "Number (e.g. 01)", name: "num", widget: "string" }
+              - { label: "Category Title", name: "title", widget: "string" }
+              - { label: "Short Summary", name: "summary", widget: "text" }
+              - { label: "Detail Page Link", name: "linkHref", widget: "string" }
+              - { label: "Link Label", name: "linkLabel", widget: "string" }
+              - { label: "Skills List", name: "items", widget: "list" }
+          - label: "Experience Section (SPT Hospitals)"
+            name: "experience"
             widget: "object"
             fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Headline", name: "headline", widget: "string" }
-              - { label: "Disclaimer Note", name: "disclaimer", widget: "string" }
-              - label: "Stat Items"
+              - { label: "Section Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Section Headline", name: "headline", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Job Title", name: "roleTitle", widget: "string" }
+              - { label: "Organization & City", name: "organization", widget: "string" }
+              - { label: "Duration / Experience", name: "duration", widget: "string" }
+              - { label: "Role Overview (editable placeholder)", name: "overview", widget: "text" }
+              - { label: "Individual Responsibilities Heading", name: "individualTitle", widget: "string" }
+              - { label: "Individual Responsibilities List", name: "individualItems", widget: "list" }
+              - { label: "Collaborative Work Heading", name: "collaborativeTitle", widget: "string" }
+              - { label: "Collaborative Work List", name: "collaborativeItems", widget: "list" }
+          - label: "Tools & Platforms Section"
+            name: "tools"
+            widget: "object"
+            fields:
+              - { label: "Section Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Section Headline", name: "headline", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - label: "Tools List (Add design, video & web tools here)"
                 name: "items"
                 widget: "list"
                 fields:
-                  - { label: "Metric Number", name: "count", widget: "number", value_type: "int" }
-                  - { label: "Suffix (e.g. + or %)", name: "suffix", widget: "string" }
-                  - { label: "Metric Label", name: "label", widget: "string" }
+                  - { label: "Tool / Platform Name", name: "name", widget: "string" }
+                  - { label: "Tag Size", name: "size", widget: "select", options: ["", "lg", "sm"], required: false }
           - label: "Social Reels & Shorts Slider (9:16)"
             name: "socialReels"
             widget: "object"
@@ -226,6 +232,30 @@ collections:
                   - { label: "Category Tag", name: "category", widget: "string", required: false }
                   - { label: "9:16 Preview Image / Thumbnail", name: "thumbnail", widget: "image" }
                   - { label: "Social Media Video Link (URL)", name: "videoUrl", widget: "string" }
+
+      - name: "about"
+        label: "About Me Page Copy"
+        file: "src/data/about.json"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Headline Start", name: "headlineStart", widget: "string" }
+          - { label: "Headline Accent", name: "headlineAccent", widget: "string" }
+          - { label: "Header Introduction", name: "intro", widget: "text" }
+          - { label: "Journey Section Heading", name: "journeyHeading", widget: "string" }
+          - { label: "Journey Paragraphs", name: "journeyParagraphs", widget: "list", field: { label: "Paragraph", name: "paragraph", widget: "text" } }
+          - { label: "Approach Section Heading", name: "approachHeading", widget: "string" }
+          - { label: "Approach Paragraphs", name: "approachParagraphs", widget: "list", field: { label: "Paragraph", name: "paragraph", widget: "text" } }
+          - { label: "Career Goals Label", name: "goalsTitle", widget: "string" }
+          - { label: "Career Goals Description", name: "goalsText", widget: "text" }
+          - { label: "Workflow Section Heading", name: "workflowHeading", widget: "string" }
+          - { label: "Workflow Subtitle", name: "workflowSubtitle", widget: "text" }
+          - label: "Workflow Steps"
+            name: "workflowSteps"
+            widget: "list"
+            fields:
+              - { label: "Step Number", name: "num", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
 
       - name: "navigation"
         label: "Header Navigation Links"

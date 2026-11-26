@@ -1,0 +1,29 @@
+{
+  "eyebrow": "About Me",
+  "headlineStart": "Marketing Meets",
+  "headlineAccent": "Visual Craft",
+  "intro": "I'm Akash Thirumal, a Digital Marketing and Visual Marketing Executive at SPT Hospitals, Coimbatore, with 6–12 months of experience across performance campaigns, analytics, and visual communication.",
+  "journeyHeading": "My Journey & Focus",
+  "journeyParagraphs": [
+    "My interest sits where marketing strategy meets visual communication. Good campaigns depend on both: clear audience targeting and tracking on one side, and strong graphics, video edits, and landing pages that actually hold attention on the other.",
+    "Over the last 6–12 months, I've focused on building practical skills across the full digital workflow—running Google Ads and Meta Ads, setting up conversion tracking through Google Tag Manager and GA4, monitoring organic visibility in Google Search Console, and producing visual creatives and website updates.",
+    "[Placeholder — Add a personal note about how you started in digital marketing and visual design, or projects that shaped your direction.]"
+  ],
+  "approachHeading": "How I Combine Creativity & Marketing",
+  "approachParagraphs": [
+    "Instead of separating campaign execution from design, I look at both together: how a visual creative supports ad relevance, how a landing page continues the message of an ad, and how tracking confirms what visitors actually do after clicking.",
+    "My career goal is to continue deepening my expertise in performance marketing, conversion analytics, and creative campaign development—taking ownership of measurable digital growth initiatives while keeping visual quality consistent."
+  ],
+  "goalsTitle": "Career Goals",
+  "goalsText": "Grow as a well-rounded performance marketer and visual communicator who connects ad strategy, clean analytics tracking, and effective landing experiences.",
+  "workflowHeading": "How I Approach a Project",
+  "workflowSubtitle": "A structured workflow from understanding the goal to reviewing performance.",
+  "workflowSteps": [
+    { "num": "01", "title": "Understand the Goal", "desc": "Clarify who we want to reach, what action matters most, and what context the campaign serves." },
+    { "num": "02", "title": "Research & Structure", "desc": "Review audience intent, search terms, competitor messaging, and existing website or social assets." },
+    { "num": "03", "title": "Creative & Copy", "desc": "Design visual creatives, edit short-form videos, and write clear, honest messaging for each channel." },
+    { "num": "04", "title": "Landing & Tracking", "desc": "Update landing pages or CMS content and configure GA4, GTM, and conversion events before launch." },
+    { "num": "05", "title": "Launch & Monitor", "desc": "Publish campaigns across Google Ads, Meta Ads, or organic channels and check early lead signals." },
+    { "num": "06", "title": "Review & Optimise", "desc": "Refine targeting, creatives, and page content based on real analytics and search data." }
+  ]
+}

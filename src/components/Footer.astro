@@ -10,28 +10,27 @@ const cleanPhone = site.phone ? site.phone.replace(/[^\d+]/g, '') : '';
 <footer>
   <div class="wrap footer-inner">
     <div class="footer-brand">
-      <a href="/" class="logo" style="font-size:16px;">A<b>S</b>H</a>
-      <span class="eyebrow" style="color:var(--text-2);">© {year} {site.name} — All rights reserved</span>
+      <a href="/" class="logo" style="font-size:16px;">AK<b>A</b>SH</a>
+      <span class="eyebrow" style="color:var(--text-2);">© {year} {site.name}</span>
       <span class="eyebrow" style="color:var(--text-2);">{site.tagline}</span>
     </div>
 
     <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="/privacy-policy/">Privacy Policy</a>
-      <a href="/services/">Services</a>
+      <a href="/about/">About</a>
+      <a href="/services/">Skills</a>
       <a href="/portfolio/">Portfolio</a>
       <a href="/blog/">Blog</a>
       <a href="/contact/">Contact</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
     </nav>
 
     <div class="footer-social">
       {site.social.linkedin !== '#' && <a href={site.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
       {site.social.behance !== '#' && <a href={site.social.behance} target="_blank" rel="noopener noreferrer">Behance</a>}
-      {site.social.artstation !== '#' && <a href={site.social.artstation} target="_blank" rel="noopener noreferrer">ArtStation</a>}
       {site.social.instagram !== '#' && <a href={site.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
       {site.social.youtube !== '#' && <a href={site.social.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>}
       {site.social.linkedin === '#' && <a href={site.social.linkedin}>LinkedIn</a>}
       {site.social.behance === '#' && <a href={site.social.behance}>Behance</a>}
-      {site.social.artstation === '#' && <a href={site.social.artstation}>ArtStation</a>}
       {site.social.instagram === '#' && <a href={site.social.instagram}>Instagram</a>}
       {site.social.youtube === '#' && <a href={site.social.youtube}>YouTube</a>}
     </div>

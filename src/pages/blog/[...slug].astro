@@ -18,7 +18,6 @@ const { Content } = await article.render();
 
 const allArticles = await getCollection('blog');
 
-// Find related articles
 let related = allArticles.filter(
   (a) => a.slug !== article.slug && !a.data.draft && article.data.relatedSlugs?.includes(a.slug)
 );
@@ -32,7 +31,7 @@ const breadcrumbs = [
   { label: article.data.title }
 ];
 
-const pageTitle = article.data.seoTitle || `${article.data.title} — ${site.name} Journal`;
+const pageTitle = article.data.seoTitle || `${article.data.title} — ${site.name}`;
 const pageDesc = article.data.seoDescription || article.data.excerpt || '';
 const canonicalUrl = `${site.url}/blog/${article.slug}/`;
 
@@ -49,12 +48,12 @@ const schemaData = {
   description: pageDesc,
   datePublished: article.data.publishDate.toISOString(),
   author: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: article.data.author || site.name,
     url: site.url,
   },
   publisher: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: site.name,
     url: site.url,
   },
@@ -85,14 +84,14 @@ const schemaData = {
       <Breadcrumbs items={breadcrumbs} />
       <span class="eyebrow">{article.data.category}</span>
       <h1 style="max-width:920px;margin:20px 0;">{article.data.title}</h1>
-      
+
       <div style="display:flex;align-items:center;gap:20px;font-family:var(--mono);font-size:12px;color:var(--text-2);margin-top:16px;">
         <span>By {article.data.author}</span>
         <span>•</span>
         <time datetime={article.data.publishDate.toISOString()}>{formattedDate}</time>
       </div>
     </div>
-  </header>
+  </section>
 
   {article.data.featuredImage && (
     <div class="wrap" style="padding-top:40px;">
@@ -110,7 +109,7 @@ const schemaData = {
 
         {article.data.tags && article.data.tags.length > 0 && (
           <div style="margin-top:60px;padding-top:30px;border-top:1px solid var(--border);">
-            <div class="eyebrow" style="margin-bottom:12px;">Tagged Topics</div>
+            <div class="eyebrow" style="margin-bottom:12px;">Topics</div>
             <div class="tag-row">
               {article.data.tags.map((tag) => (
                 <span>#{tag}</span>
@@ -129,7 +128,7 @@ const schemaData = {
         <div class="section-head reveal">
           <div>
             <span class="eyebrow">Continue Reading</span>
-            <h2 style="margin-top:8px;">Related Insights</h2>
+            <h2 style="margin-top:8px;">More Notes</h2>
           </div>
         </div>
 
@@ -150,11 +149,11 @@ const schemaData = {
   <!-- Article CTA -->
   <section class="section">
     <div class="wrap" style="text-align:center;">
-      <span class="eyebrow reveal">Collaboration</span>
-      <h2 class="reveal" style="margin:16px 0 20px;">Let's Bring These Insights to Your Brand</h2>
-      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Schedule a conversation with our studio directors.</p>
+      <span class="eyebrow reveal">Connect</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Let's Connect</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Feel free to reach out if you'd like to discuss digital marketing, tracking, or creative projects.</p>
       <a href="/contact/" class="btn primary magnetic reveal" data-track="book_call_click" data-track-location="article_bottom">
-        Book Discovery Call <span class="arrow">→</span>
+        Send a Message <span class="arrow">→</span>
       </a>
     </div>
   </section>

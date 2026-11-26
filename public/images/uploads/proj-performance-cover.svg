@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="pp-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#142218"/>
+      <stop offset="100%" stop-color="#090909"/>
+    </linearGradient>
+    <radialGradient id="pp-glow" cx="50%" cy="42%" r="52%">
+      <stop offset="0%" stop-color="#28C76F" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#090909" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#pp-bg)"/>
+  <rect width="800" height="1000" fill="url(#pp-glow)"/>
+  <rect x="60" y="60" width="680" height="880" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <g transform="translate(400, 410)">
+    <circle cx="0" cy="0" r="145" fill="none" stroke="rgba(40,199,111,0.22)" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="95" fill="none" stroke="#FF6A00" stroke-width="1.6"/>
+    <path d="M-120,60 L-45,20 L20,40 L120,-55" fill="none" stroke="#28C76F" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="120" cy="-55" r="7" fill="#FF6A00"/>
+  </g>
+</svg>

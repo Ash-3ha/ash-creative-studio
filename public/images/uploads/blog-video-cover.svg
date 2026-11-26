@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="bg_vid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#241618"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg_vid)"/>
+  <rect x="60" y="60" width="1080" height="630" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <g transform="translate(600, 360)">
+    <rect x="-150" y="-95" width="300" height="190" rx="16" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    <polygon points="-22,-42 -22,42 46,0" fill="#FF6A00"/>
+  </g>
+  <text x="100" y="620" fill="#FF6A00" font-family="'IBM Plex Mono', monospace" font-size="14" letter-spacing="4">NOTES / VIDEO &amp; SOCIAL</text>
+</svg>

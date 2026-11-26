@@ -14,13 +14,24 @@ const allProjects = (await getCollection('portfolio'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 
-const categories = ['All', ...new Set(allProjects.map((p) => p.data.category))];
+const categoryOrder = [
+  'All',
+  'Performance Marketing',
+  'Social Media',
+  'Graphic Design',
+  'Video Editing',
+  'Website Projects',
+];
+
+const categories = categoryOrder.filter(
+  (c) => c === 'All' || allProjects.some((p) => p.data.category === c)
+);
 
 const portfolioSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: `Portfolio & Selected Case Studies — ${site.name}`,
-  description: 'Explore our archive of selected case studies spanning brand identity, 3D visualization, architectural rendering, and full-funnel performance marketing campaigns.',
+  name: `Portfolio & Work — ${site.name}`,
+  description: 'Selected personal, professional, and collaborative projects by Akash Thirumal across performance marketing, social media, graphic design, video editing, and website projects.',
   url: `${site.url}/portfolio/`,
   mainEntity: {
     '@type': 'ItemList',
@@ -41,17 +52,17 @@ const portfolioSchema = {
 ---
 
 <BaseLayout
-  title={`Portfolio & Selected Case Studies — ${site.name}`}
-  description="Explore our archive of selected case studies spanning brand identity, 3D visualization, architectural rendering, and full-funnel performance marketing campaigns."
+  title={`Portfolio & Selected Work — ${site.name}`}
+  description="Selected personal, professional, and collaborative projects by Akash Thirumal across performance marketing, social media, graphic design, video editing, and website projects."
   canonical={`${site.url}/portfolio/`}
   schema={portfolioSchema}
 >
   <section class="page-header">
     <div class="wrap">
       <Breadcrumbs items={breadcrumbs} />
-      <span class="eyebrow">Work Archive</span>
-      <h1>Selected <span style="color:var(--accent);">Projects</span></h1>
-      <p class="section-sub">A curated selection of brand, 3D production, and digital marketing engagements engineered for measurable business outcomes.</p>
+      <span class="eyebrow">Selected Work</span>
+      <h1>My <span style="color:var(--accent);">Portfolio</span></h1>
+      <p class="section-sub">A structured showcase of my personal projects, professional contributions, and collaborative work across five core categories.</p>
     </div>
   </section>
 
@@ -76,7 +87,7 @@ const portfolioSchema = {
           <div class="portfolio-item" data-category={project.data.category}>
             <ProjectCard
               title={project.data.title}
-              category={project.data.category}
+              category={`${project.data.projectType} • ${project.data.category}`}
               year={project.data.year}
               slug={project.slug}
               gradientFrom={project.data.gradientFrom}
@@ -92,11 +103,11 @@ const portfolioSchema = {
   <!-- CTA -->
   <section class="section" style="background:var(--bg-2);">
     <div class="wrap" style="text-align:center;">
-      <span class="eyebrow reveal">Start a Project</span>
-      <h2 class="reveal" style="margin:16px 0 20px;">Have an Ambitious Project in Mind?</h2>
-      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">Let's discuss how our multidisciplinary studio can craft your brand and drive growth.</p>
+      <span class="eyebrow reveal">Connect</span>
+      <h2 class="reveal" style="margin:16px 0 20px;">Interested in Working Together?</h2>
+      <p class="reveal" style="color:var(--text-2);max-width:540px;margin:0 auto 36px;">If you'd like to talk about any of these projects or discuss a role or collaboration, feel free to reach out.</p>
       <a href="/contact/" class="btn primary magnetic reveal" data-track="book_call_click" data-track-location="portfolio_bottom">
-        Book Discovery Call <span class="arrow">→</span>
+        Let's Connect <span class="arrow">→</span>
       </a>
     </div>
   </section>
@@ -111,11 +122,13 @@ const portfolioSchema = {
           const filter = btn.getAttribute('data-filter');
 
           buttons.forEach(function (b) {
+            b.classList.remove('active');
             b.style.background = 'transparent';
             b.style.color = 'var(--text-2)';
             b.style.fontWeight = 'normal';
             b.style.borderColor = 'var(--border)';
           });
+          btn.classList.add('active');
           btn.style.background = 'var(--accent)';
           btn.style.color = '#000';
           btn.style.fontWeight = '600';

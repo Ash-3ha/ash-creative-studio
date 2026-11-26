@@ -1,5 +1,5 @@
 /**
- * ASH Creative Studio — Animations & Interactions
+ * Akash Thirumal Portfolio — Animations & Interactions
  * All animations respect prefers-reduced-motion.
  */
 

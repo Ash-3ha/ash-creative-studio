@@ -3,21 +3,21 @@
  */
 
 export const DEFAULT_WHATSAPP_MESSAGE =
-  'Hello ASH Creative Studio, I would like to inquire about a project.';
+  'Hi Akash, I visited your portfolio website and would like to connect.';
 
 /**
  * Strips all non-digit characters to generate a valid wa.me URL
  */
 export function sanitizeWhatsAppNumber(rawNumber?: string): string {
   if (!rawNumber || rawNumber.includes('[YOUR-')) {
-    return '919876543210'; // Clearly labelled sample studio number
+    return '919876543210'; // Placeholder fallback number
   }
   const digits = rawNumber.replace(/\D/g, '');
   return digits || '919876543210';
 }
 
 /**
- * Builds a direct wa.me link with prefilled inquiry message
+ * Builds a direct wa.me link with prefilled message
  */
 export function getWhatsAppUrl(
   rawNumber?: string,
@@ -33,7 +33,7 @@ export function getWhatsAppUrl(
  */
 export function formatWhatsAppDisplay(rawNumber?: string): string {
   if (!rawNumber || rawNumber.includes('[YOUR-')) {
-    return '+91 98765 43210 [Sample]';
+    return '+91 98765 43210 [Placeholder]';
   }
   return rawNumber;
 }
