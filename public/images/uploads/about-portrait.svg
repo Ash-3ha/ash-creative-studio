@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="ap-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1612"/>
+      <stop offset="55%" stop-color="#101010"/>
+      <stop offset="100%" stop-color="#090909"/>
+    </linearGradient>
+    <radialGradient id="ap-glow" cx="35%" cy="28%" r="60%">
+      <stop offset="0%" stop-color="#FF6A00" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#090909" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="ap-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="1000" fill="url(#ap-bg)"/>
+  <rect width="800" height="1000" fill="url(#ap-grid)"/>
+  <rect width="800" height="1000" fill="url(#ap-glow)"/>
+
+  <!-- Subtle Portrait Frame Guides -->
+  <rect x="44" y="44" width="712" height="912" rx="16" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <circle cx="400" cy="400" r="145" fill="none" stroke="rgba(255,106,0,0.22)" stroke-width="1.2" stroke-dasharray="6 6"/>
+  <circle cx="400" cy="400" r="92" fill="rgba(255,106,0,0.06)" stroke="rgba(255,106,0,0.4)" stroke-width="1.5"/>
+
+  <!-- Monogram + Portrait Placeholder Cue -->
+  <text x="400" y="414" fill="#F7F7F5" font-family="'Playfair Display', serif" font-size="64" font-weight="500" text-anchor="middle" letter-spacing="4">AK<tspan fill="#FF6A00">A</tspan>SH</text>
+  <text x="400" y="595" fill="rgba(255,255,255,0.55)" font-family="'IBM Plex Mono', monospace" font-size="13" text-anchor="middle" letter-spacing="3">[PLACEHOLDER — UPLOAD PHOTO IN CMS]</text>
+</svg>

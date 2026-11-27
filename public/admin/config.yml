@@ -177,6 +177,8 @@ collections:
               - { label: "Current Role Summary", name: "roleSummary", widget: "string" }
               - { label: "Focus Summary", name: "focusSummary", widget: "string" }
               - { label: "Career Goal Summary", name: "goalSummary", widget: "string" }
+              - { label: "Portrait / Feature Image (4:5)", name: "portraitImage", widget: "image", required: false, hint: "Upload your photo here to replace the About Me container image" }
+              - { label: "Portrait Image Alt Text", name: "portraitAlt", widget: "string", required: false }
               - { label: "Portrait Caption", name: "portraitCaption", widget: "string" }
           - label: "Skills & Expertise Pillars"
             name: "skillGroups"

@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import ProjectCard from '../components/ProjectCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import SocialReelsSlider from '../components/SocialReelsSlider.astro';
+import AboutPortrait from '../components/AboutPortrait.astro';
 import ContactForm from '../components/ContactForm.astro';
 import site from '../data/site.json';
 import home from '../data/home.json';
@@ -154,9 +155,11 @@ const homeSchema = [
           <a href="/about/" class="btn ghost magnetic">Read Full Bio &amp; Journey →</a>
         </div>
       </div>
-      <div class="studio-portrait reveal">
-        <span class="cap">{home.about.portraitCaption}</span>
-      </div>
+      <AboutPortrait
+        image={home.about.portraitImage}
+        alt={home.about.portraitAlt}
+        caption={home.about.portraitCaption}
+      />
     </div>
   </section>
 

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import AboutPortrait from '../components/AboutPortrait.astro';
 import site from '../data/site.json';
 import home from '../data/home.json';
 import about from '../data/about.json';
@@ -67,9 +68,11 @@ const aboutSchema = {
           <div><div class="eyebrow">{about.goalsTitle}</div><span style="font-size:13px;color:var(--text-2);">{about.goalsText}</span></div>
         </div>
       </div>
-      <div class="studio-portrait reveal">
-        <span class="cap">{home.about.portraitCaption}</span>
-      </div>
+      <AboutPortrait
+        image={home.about.portraitImage}
+        alt={home.about.portraitAlt}
+        caption={home.about.portraitCaption}
+      />
     </div>
   </section>
 

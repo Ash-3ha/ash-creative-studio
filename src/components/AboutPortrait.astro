@@ -1,0 +1,25 @@
+---
+interface Props {
+  image?: string;
+  alt?: string;
+  caption?: string;
+}
+
+const {
+  image,
+  alt = 'Akash Thirumal',
+  caption = 'Akash Thirumal — Coimbatore, India',
+} = Astro.props;
+---
+
+<div class="studio-portrait reveal">
+  {image && (
+    <img
+      src={image}
+      alt={alt || caption}
+      loading="lazy"
+      decoding="async"
+    />
+  )}
+  <span class="cap">{caption}</span>
+</div>
