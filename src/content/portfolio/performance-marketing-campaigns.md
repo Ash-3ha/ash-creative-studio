@@ -46,9 +46,9 @@ outcomes:
     instead of clicks. Add approved figures here only with the period they cover
   - as listed under Outcome below. Until then
   - leave them out.
-featuredImage: /images/uploads/proj-performance-cover.svg
+featuredImage: /images/uploads/1.png
 images:
-  - /images/uploads/proj-performance-cover.svg
+  - /images/uploads/1.png
 gradientFrom: "#142218"
 gradientTo: "#0a0a0a"
 draft: false
