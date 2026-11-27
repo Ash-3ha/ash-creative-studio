@@ -49,6 +49,9 @@ outcomes:
 featuredImage: /images/uploads/proj-performance-cover.svg
 images:
   - /images/uploads/1.png
+  - /images/uploads/2.png
+  - /images/uploads/3.png
+  - /images/uploads/4.png
 gradientFrom: "#142218"
 gradientTo: "#0a0a0a"
 draft: false
