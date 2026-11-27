@@ -37,17 +37,17 @@
     }
   ],
   "about": {
+    "portraitImage": "/images/uploads/about-portrait.svg",
     "paragraph1": "I'm Akash Thirumal, currently working as a Digital Marketing and Visual Marketing Executive at SPT Hospitals in Coimbatore, with around 6–12 months of hands-on professional experience.",
     "paragraph2": "Rather than treating marketing numbers and visual craft as separate tracks, I work across both—planning paid campaigns, configuring conversion tracking, designing graphics, editing video content, and keeping websites and landing pages clear and effective.",
     "eyebrow": "02 — About Me",
     "lightHeadline": "Communication shaped by design.",
     "portraitCaption": "Akash Thirumal — Coimbatore, India",
+    "portraitAlt": "Akash Thirumal — Digital Marketer & Visual Creative",
     "focusSummary": "Performance Marketing, Analytics Tracking & Visual Content",
     "roleSummary": "Digital Marketing & Visual Marketing Executive at SPT Hospitals",
     "goalSummary": "Building measurable campaigns and thoughtful digital experiences",
-    "headline": "Marketing guided by data.",
-    "portraitImage": "/images/uploads/about-portrait.svg",
-    "portraitAlt": "Akash Thirumal — Digital Marketer & Visual Creative"
+    "headline": "Marketing guided by data."
   },
   "skillGroups": [
     {
@@ -173,39 +173,25 @@
     "subtitle": "[Placeholder] 9:16 vertical previews for my video edits and social media reels — click any card to open on Instagram or YouTube.",
     "items": [
       {
-        "title": "[Placeholder] Social Campaign Reel 01",
+        "title": "Social Media Awareness campaign",
         "platform": "Instagram",
-        "category": "Video Editing",
+        "category": "",
         "thumbnail": "/images/reels/reel-1.svg",
-        "videoUrl": "https://www.instagram.com/reels/"
+        "videoUrl": "https://www.instagram.com/reel/DbGHCYXyxvq/?utm_source=ig_web_copy_link&dmpr=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA=="
       },
       {
-        "title": "[Placeholder] Brand Story Edit 02",
-        "platform": "YouTube",
-        "category": "Social Media",
+        "title": "Doctors recognition",
+        "platform": "Instagram",
+        "category": "",
         "thumbnail": "/images/reels/reel-2.svg",
-        "videoUrl": "https://www.youtube.com/shorts/"
+        "videoUrl": "https://www.instagram.com/reel/DgM4h0xye1A/?utm_source=ig_web_copy_link&avpt=MzRlODBiNWFlZA=="
       },
       {
-        "title": "[Placeholder] Visual Campaign Cut 03",
+        "title": "Doctors Recognition",
         "platform": "Instagram",
-        "category": "Creative Content",
+        "category": "",
         "thumbnail": "/images/reels/reel-3.svg",
-        "videoUrl": "https://www.instagram.com/reels/"
-      },
-      {
-        "title": "[Placeholder] Ad Creative Walkthrough 04",
-        "platform": "YouTube",
-        "category": "Performance Ads",
-        "thumbnail": "/images/reels/reel-4.svg",
-        "videoUrl": "https://www.youtube.com/shorts/"
-      },
-      {
-        "title": "[Placeholder] Awareness Highlight Reel 05",
-        "platform": "Instagram",
-        "category": "Visual Marketing",
-        "thumbnail": "/images/reels/reel-5.svg",
-        "videoUrl": "https://www.instagram.com/reels/"
+        "videoUrl": "https://www.instagram.com/reel/Df_8-QBSb_v/?utm_source=ig_web_copy_link"
       }
     ]
   }
