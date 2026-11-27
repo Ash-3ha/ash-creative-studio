@@ -31,12 +31,13 @@ execution: >-
 
   I monitor budgets and performance, look for the gaps, and change targeting, copy or creative where results lag. I design the ad visuals and edit the video variations myself.
 deliverables:
-  - • Google Ads and Meta Ads setup • Audience targeting and ad copy • Ad
-    visuals and video variations • Conversion tracking in Google Tag Manager for
-    forms
-  - WhatsApp
-  - calls and thank-you pages • GA4 and Search Console reporting • Lead
-    monitoring and reporting
+  - Google Ads and Meta Ads setup
+  - Audience targeting and ad copy
+  - Ad visuals and video variations
+  - Conversion tracking in Google Tag Manager for forms • WhatsApp • calls and
+    thank-you pages
+  - GA4 and Search Console reporting
+  - Lead monitoring and reporting
 outcomes:
   - Every enquiry route
   - whether form
