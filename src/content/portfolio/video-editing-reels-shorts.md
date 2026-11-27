@@ -1,42 +1,97 @@
 ---
-title: "[Placeholder] Short-Form Reels & Campaign Video Edits"
-projectType: "Collaborative Project"
-organization: "SPT Hospitals / Social Video [Placeholder]"
-role: "Video Editor & Visual Marketing"
-industry: "Video & Social Media"
-category: "Video Editing"
+title: Healthcare Video Editing – Reels & Shorts
+projectType: Professional Work
+organization: SPT Hospitals, Coimbatore
+role: Digital Marketing & Visual Marketing Executive
+industry: Healthcare
+category: Video Editing
 year: "2026"
-overview: "[Placeholder — Highlight 9:16 vertical reels, promotional cuts, and informational videos you edited for Instagram Reels and YouTube Shorts.]"
-objective: "[Placeholder — Explain what viewers needed to learn or take away in the first few seconds of each video.]"
-myContribution: "[Placeholder — Distinguish your video editing, pacing, title overlays, and audio cleanup from collaborative filming or script input.]"
-execution: "[Placeholder — Describe editing rhythm, readable subtitles for mobile viewing, and vertical framing.]"
+overview: >-
+  A short-form video content project focused on creating engaging and
+  informative healthcare videos for social media platforms.
+
+
+  As part of my digital marketing and visual marketing responsibilities at SPT Hospitals, I work on editing video content that communicates healthcare information in a simple, engaging and audience-friendly format.
+
+
+  The content is designed to make medical topics easier for general audiences to understand while maintaining clarity, relevance and the hospital's communication style.
+objective: |-
+  Transform healthcare topics into engaging short-form video content.
+
+  Communicate medical information in a simple and accessible format.
+
+  Improve the presentation of educational and awareness-based content.
+
+  Create social media-ready videos suitable for Reels and Shorts.
+
+  Support the hospital's digital content and awareness initiatives.
+myContribution: |-
+  Edited short-form videos for social media.
+
+  Structured footage to maintain a clear storytelling flow.
+
+  Worked on hooks and opening sequences to capture attention.
+
+  Added text overlays, subtitles and supporting visual elements.
+
+  Used pacing, transitions and sound to improve content flow.
+
+  Adapted video formats for vertical social media platforms.
+
+  Maintained consistency with the hospital's visual communication.
+execution: >-
+  Content Understanding: Reviewed the topic, video footage and communication
+  objective.
+
+
+  Story Structure: Organised the footage into a clear and engaging sequence.
+
+
+  Hook Development: Focused on strong opening moments to capture viewer attention.
+
+
+  Video Editing: Worked on cuts, pacing, transitions, text overlays and subtitles.
+
+
+  Visual Enhancement: Added supporting visuals and relevant editing elements.
+
+
+  Final Output: Prepared vertical videos suitable for social media publishing.
 deliverables:
-  - "9:16 Vertical Reels & Shorts"
-  - "Pacing & Hook Editing"
-  - "Titles & Subtitle Formatting"
-  - "Audio Cleanup & Color Consistency"
-featuredImage: "/images/uploads/proj-video-cover.svg"
-images:
-  - "/images/uploads/proj-video-cover.svg"
+  - Instagram Reels
+  - YouTube Shorts
+  - Healthcare awareness videos
+  - Doctor-led informational videos
+  - Educational and preventive healthcare content
+  - Text overlays and subtitles
+  - Short-form promotional video edits
 outcomes:
-  - "[Placeholder — Add actual video links in the homepage slider and summarize learnings here]"
+  - Developed social-media-ready healthcare video content.  Presented medical
+    topics in a more accessible visual format.  Supported consistent healthcare
+    awareness content creation. Contributed to the hospital's digital
+    communication and content marketing activities.
+featuredImage: /images/uploads/proj-video-cover.svg
+images:
+  - /images/uploads/proj-video-cover.svg
 gradientFrom: "#241518"
 gradientTo: "#0a0a0a"
-sortOrder: 5
-seoTitle: "Video Editing & Short-Form Reels — Akash Thirumal"
-seoDescription: "Short-form video editing and social reels work by Akash Thirumal."
 draft: false
+sortOrder: 5
+seoTitle: Healthcare Video Editing & Reels Portfolio - Akash Thirumal
+seoDescription: Explore my healthcare video editing work at SPT Hospitals,
+  including Instagram Reels, YouTube Shorts and informative healthcare awareness
+  videos.
 ---
+### Creating Engaging Healthcare Videos Through Visual Storytelling
 
-## [Placeholder — Video Editing Work Editable in CMS]
+Short-form video has become an important way to communicate information on social media. In healthcare, the challenge is to make medical topics understandable, relevant and engaging without losing their meaning.
 
-> *Note: Update this write-up in `/admin/` and link your live Instagram Reels or YouTube Shorts in the homepage Video & Reels slider.*
+As part of my work at SPT Hospitals, Coimbatore, I contribute to editing short-form healthcare videos for digital platforms.
 
-### Objective
+My editing approach focuses on storytelling, strong opening hooks, clear messaging, appropriate pacing, subtitles and visual elements that support the subject.
 
-[Placeholder — Describe the purpose of the video series (e.g., patient awareness, informational explainers, or campaign promos).]
+From healthcare awareness topics to doctor-led informational content, each video is structured to deliver its message effectively within a short viewing duration.
 
-### My Role & Collaboration
+This project reflects my experience in combining video editing and visual communication to support healthcare content marketing.
 
-- **Handled Personally:** Selecting clips, tightening pacing, adding on-screen titles/captions, balancing audio, and exporting 9:16 cuts.
-- **Collaborative Work:** Coordinating shoots, topics, or on-camera speakers with internal teams.
+**My contribution:** Video editing, content structuring, hook development, subtitles, visual enhancements and social media-ready exports.
